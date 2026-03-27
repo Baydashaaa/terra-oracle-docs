@@ -228,7 +228,7 @@ footer a:hover{color:var(--accent2)}
   <p>Oracle Q&A is an on-chain question and answer system. Anyone can submit a question by paying 200,000 LUNC. The payment is split automatically, and the question author receives 2 free Weekly Draw entries.</p>
   <div class="info-box success">
     <strong>Payment split per question (200,000 LUNC):</strong><br>
-    50% → Weekly Draw Pool &nbsp;·&nbsp; 50% → Protocol Treasury &nbsp;·&nbsp; +2 free Weekly Draw entries for author
+    100,000 LUNC → Weekly Draw Pool &nbsp;·&nbsp; 100,000 LUNC → Protocol Treasury &nbsp;·&nbsp; +2 free Weekly Draw entries for author
   </div>
   <h2>How to ask a question</h2>
   <div class="steps">
@@ -251,9 +251,9 @@ footer a:hover{color:var(--accent2)}
   <p>Your on-chain wallet earns titles based on questions asked and upvotes received. The community sees your track record — they don't see who you are.</p>
   <div class="rep-list">
     <div class="rep-item"><div class="rep-emoji">🌱</div><div><div class="rep-title">Seeker</div><div class="rep-req">1 question asked</div></div><div class="rep-discount">No discount</div></div>
-    <div class="rep-item"><div class="rep-emoji">🔵</div><div><div class="rep-title">Validator</div><div class="rep-req">5 questions · 10 upvotes</div></div><div class="rep-discount">−5% fee</div></div>
-    <div class="rep-item"><div class="rep-emoji">⚡</div><div><div class="rep-title">Oracle</div><div class="rep-req">15 questions · 50 upvotes</div></div><div class="rep-discount">−12.5% fee</div></div>
-    <div class="rep-item"><div class="rep-emoji">🔥</div><div><div class="rep-title">Terra Legend</div><div class="rep-req">30 questions · 150 upvotes</div></div><div class="rep-discount">−25% fee</div></div>
+    <div class="rep-item"><div class="rep-emoji">🔵</div><div><div class="rep-title">Validator</div><div class="rep-req">5 questions · 10 upvotes</div></div><div class="rep-discount">−5% · 190,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji">⚡</div><div><div class="rep-title">Oracle</div><div class="rep-req">15 questions · 50 upvotes</div></div><div class="rep-discount">−12.5% · 175,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji">🔥</div><div><div class="rep-title">Terra Legend</div><div class="rep-req">30 questions · 150 upvotes</div></div><div class="rep-discount">−25% · 150,000 LUNC</div></div>
   </div>
 </section>
 
@@ -312,11 +312,46 @@ footer a:hover{color:var(--accent2)}
     <div class="prize-row"><div class="prize-label">🌱 Seeds Next Round</div><div class="prize-fill-wrap"><div class="prize-fill" style="width:10%;background:var(--green)"></div></div><div class="prize-pct">10%</div></div>
     <div class="prize-row"><div class="prize-label">🏛 Protocol Treasury</div><div class="prize-fill-wrap"><div class="prize-fill" style="width:10%;background:var(--gold)"></div></div><div class="prize-pct">10%</div></div>
   </div>
-  <h2>How the winner is selected</h2>
-  <p>The winner is selected using the on-chain block hash at draw time — fully transparent and verifiable by anyone:</p>
-  <div class="info-box" style="font-family:monospace;font-size:13px;letter-spacing:0.05em;">winner = block_hash % total_entries</div>
-  <p>Each NFT tier gives a different number of entries — more entries means a higher chance of winning.</p>
-  <div class="info-box">🔍 <a href="https://finder.terraclassic.community/columbus-5" target="_blank">finder.terraclassic.community/columbus-5</a></div>
+  <h2>Free Weekly Draw entries</h2>
+  <p>In addition to NFT entries, participants earn free Weekly Draw entries through Terra Oracle activity:</p>
+  <table>
+    <tr><th>Activity</th><th>Free entries</th><th>Limit</th></tr>
+    <tr><td>Every 10 DAO Chat messages</td><td>+1 Weekly entry</td><td>Max 2 per day</td></tr>
+    <tr><td>Each Oracle Q&A question (200,000 LUNC)</td><td>+2 Weekly entries</td><td>No limit</td></tr>
+  </table>
+  <p>Free entries are tracked automatically via on-chain transaction history, updated every hour, and combined with paid NFT entries into a single pool.</p>
+
+  <h2>How winners are selected</h2>
+  <p>Winners are selected using the <strong>on-chain block hash</strong> at draw time — fully transparent and verifiable by anyone on Terra Classic.</p>
+  <div class="info-box" style="font-family:monospace;font-size:13px;letter-spacing:0.05em;">winner_index = BigInt(block_hash) % BigInt(total_entries)</div>
+
+  <h2>Daily Draw — step by step</h2>
+  <ol style="margin:8px 0 16px 20px;line-height:2.2;">
+    <li>All NFT mint transactions to the Daily Draw wallet in the last <strong>24 hours</strong> are collected</li>
+    <li>Ticket array is built: Common = 1 ticket, Rare = 5, Legendary = 10</li>
+    <li>Latest on-chain block hash is fetched at 20:00 UTC</li>
+    <li><code>winner_index = BigInt(block_hash) % BigInt(total_tickets)</code></li>
+    <li>Winner receives <strong>80%</strong> of the prize pool automatically on-chain</li>
+    <li><strong>10%</strong> → Protocol Treasury · <strong>10%</strong> stays as seeds for next round</li>
+    <li>If fewer than 5 entries — draw is skipped, all funds carry to next round</li>
+  </ol>
+
+  <h2>Weekly Draw — step by step</h2>
+  <ol style="margin:8px 0 16px 20px;line-height:2.2;">
+    <li>All NFT mint transactions to the Weekly Draw wallet in the last <strong>7 days</strong> are collected</li>
+    <li>Free entries from Oracle Q&A and DAO Chat are added to the pool</li>
+    <li>Three unique winners are selected using the block hash:<br>
+      <code style="font-size:11px;display:block;margin:4px 0;">1st: sha256(block_hash + "0") % total → 48%</code>
+      <code style="font-size:11px;display:block;margin:4px 0;">2nd: sha256(block_hash + "1") % total → 20%</code>
+      <code style="font-size:11px;display:block;margin:4px 0;">3rd: sha256(block_hash + "2") % total → 12%</code>
+    </li>
+    <li><strong>10%</strong> → Protocol Treasury · <strong>10%</strong> stays as seeds for next round</li>
+    <li>If fewer than 5 entries — draw is skipped, all funds carry to next week</li>
+  </ol>
+
+  <h2>Verify results</h2>
+  <div class="info-box">🔍 <a href="https://finder.terraclassic.community/columbus-5" target="_blank">finder.terraclassic.community/columbus-5</a> — verify any transaction on-chain</div>
+  <div class="info-box">📂 <a href="https://github.com/Baydashaaa/oracle-draw/blob/main/winners.json" target="_blank">github.com/Baydashaaa/oracle-draw · winners.json</a> — all draw results</div>
 </section>
 
 <!-- TREASURY -->
@@ -326,14 +361,14 @@ footer a:hover{color:var(--accent2)}
   <p class="doc-subtitle">Protocol treasury funded by Q&A, Chat, and Draw activity. Fully transparent on-chain.</p>
   <h2>Treasury wallets</h2>
   <div class="wallet-list">
-    <div class="wallet-item"><div class="wallet-name">🏛 Protocol Treasury</div><div class="wallet-desc">Receives 50% of Q&A fees + 100% of Chat fees + 10% of each draw</div><div class="wallet-addr">terra1549z8zd9hkggzlwf0rcuszhc9rs9fxqfy2kagt</div></div>
+    <div class="wallet-item"><div class="wallet-name">🏛 Protocol Treasury</div><div class="wallet-desc">Receives 100,000 LUNC per Q&A question (minus title discount) + 100% of Chat fees + 10% of each draw</div><div class="wallet-addr">terra1549z8zd9hkggzlwf0rcuszhc9rs9fxqfy2kagt</div></div>
     <div class="wallet-item"><div class="wallet-name">📅 Daily Draw Pool</div><div class="wallet-desc">Accumulates prizes for the Daily Draw</div><div class="wallet-addr">terra1amp68zg7vph3nq84ummnfma4dz753ezxfqa9px</div></div>
-    <div class="wallet-item"><div class="wallet-name">📆 Weekly Draw Pool</div><div class="wallet-desc">Accumulates prizes for the Weekly Draw · receives 50% of Q&A fees</div><div class="wallet-addr">terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz</div></div>
+    <div class="wallet-item"><div class="wallet-name">📆 Weekly Draw Pool</div><div class="wallet-desc">Accumulates NFT mint fees for the Weekly Draw · receives 100,000 LUNC per Q&A question · 10% seeds carry to next round</div><div class="wallet-addr">terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz</div></div>
   </div>
   <h2>Revenue sources</h2>
   <table>
     <tr><th>Source</th><th>Amount</th><th>Treasury share</th></tr>
-    <tr><td><strong>Oracle Q&A</strong></td><td>200,000 LUNC/question</td><td>50% → 100,000 LUNC</td></tr>
+    <tr><td><strong>Oracle Q&A</strong></td><td>200,000 LUNC/question<br><small style="color:var(--muted)">Title discount applies to Treasury portion only</small></td><td>100,000 LUNC fixed → Weekly Pool<br>100,000 LUNC (−discount) → Treasury</td></tr>
     <tr><td><strong>DAO Chat</strong></td><td>5,000 LUNC/message</td><td>100% → 5,000 LUNC</td></tr>
     <tr><td><strong>Daily Draw</strong></td><td>Variable prize pool</td><td>10% of pool</td></tr>
     <tr><td><strong>Weekly Draw</strong></td><td>Variable prize pool</td><td>10% of pool</td></tr>
