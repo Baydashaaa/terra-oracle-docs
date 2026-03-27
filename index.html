@@ -340,10 +340,12 @@ footer a:hover{color:var(--accent2)}
   <ol style="margin:8px 0 16px 20px;line-height:2.2;">
     <li>All NFT mint transactions to the Weekly Draw wallet in the last <strong>7 days</strong> are collected</li>
     <li>Free entries from Oracle Q&A and DAO Chat are added to the pool</li>
-    <li>Three unique winners are selected using the block hash:<br>
-      <code style="font-size:11px;display:block;margin:4px 0;">1st: sha256(block_hash + "0") % total → 48%</code>
-      <code style="font-size:11px;display:block;margin:4px 0;">2nd: sha256(block_hash + "1") % total → 20%</code>
-      <code style="font-size:11px;display:block;margin:4px 0;">3rd: sha256(block_hash + "2") % total → 12%</code>
+    <li>Three unique winners are selected using the block hash:
+      <div class="info-box" style="font-family:monospace;font-size:12px;letter-spacing:0.04em;margin-top:8px;line-height:2;">
+        1st: sha256(block_hash + "0") % total → 48%<br>
+        2nd: sha256(block_hash + "1") % total → 20%<br>
+        3rd: sha256(block_hash + "2") % total → 12%
+      </div>
     </li>
     <li><strong>10%</strong> → Protocol Treasury · <strong>10%</strong> stays as seeds for next round</li>
     <li>If fewer than 5 entries — draw is skipped, all funds carry to next week</li>
