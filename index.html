@@ -147,6 +147,7 @@ footer a:hover{color:var(--accent2)}
   <a class="sidebar-link" onclick="showSection('oracle-qa')" data-section="oracle-qa"><span class="icon">❓</span> Oracle Q&A</a>
   <a class="sidebar-link" onclick="showSection('dao-chat')" data-section="dao-chat"><span class="icon">💬</span> DAO Chat</a>
   <a class="sidebar-link" onclick="showSection('oracle-draw')" data-section="oracle-draw"><span class="icon">🎭</span> Oracle Draw</a>
+  <a class="sidebar-link" onclick="showSection('reputation')" data-section="reputation"><span class="icon">⭐</span> Reputation</a>
   <a class="sidebar-link" onclick="showSection('treasury')" data-section="treasury"><span class="icon">💰</span> Treasury</a>
   <div class="sidebar-footer">
     <a href="https://nft.lunc.tools/" target="_blank">🖼 Mint NFTs</a>
@@ -248,12 +249,39 @@ footer a:hover{color:var(--accent2)}
     <tr><td><strong>General</strong></td><td>Anything else related to Terra Classic</td></tr>
   </table>
   <h2>Reputation System</h2>
-  <p>Your on-chain wallet earns titles based on questions asked and upvotes received. The community sees your track record — they don't see who you are.</p>
+  <p>Oracle Reputation (REP) measures your contribution to the protocol. It is not a token or balance — it reflects your activity, quality, and engagement. REP accumulates over time and unlocks ranks, fee discounts, and weekly rewards.</p>
+
+  <h2>How REP is earned</h2>
   <div class="rep-list">
-    <div class="rep-item"><div class="rep-emoji">🌱</div><div><div class="rep-title">Seeker</div><div class="rep-req">1 question asked</div></div><div class="rep-discount">No discount</div></div>
-    <div class="rep-item"><div class="rep-emoji">🔵</div><div><div class="rep-title">Validator</div><div class="rep-req">5 questions · 10 upvotes</div></div><div class="rep-discount">−5% · 190,000 LUNC</div></div>
-    <div class="rep-item"><div class="rep-emoji">⚡</div><div><div class="rep-title">Oracle</div><div class="rep-req">15 questions · 50 upvotes</div></div><div class="rep-discount">−12.5% · 175,000 LUNC</div></div>
-    <div class="rep-item"><div class="rep-emoji">🔥</div><div><div class="rep-title">Terra Legend</div><div class="rep-req">30 questions · 150 upvotes</div></div><div class="rep-discount">−25% · 150,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;">❓</div><div style="flex:1"><div class="rep-title">Ask a question</div><div class="rep-req">+40 REP per question</div></div><div class="rep-discount" style="color:var(--accent);border-color:rgba(84,147,247,0.3);background:rgba(84,147,247,0.08);">+40 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;">💬</div><div style="flex:1"><div class="rep-title">Answer a question</div><div class="rep-req">+15 REP per answer</div></div><div class="rep-discount" style="color:#66ffaa;border-color:rgba(102,255,170,0.3);background:rgba(102,255,170,0.08);">+15 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;">👍</div><div style="flex:1"><div class="rep-title">Upvote received</div><div class="rep-req">+10 REP per upvote on your questions or answers</div></div><div class="rep-discount" style="color:#ffd700;border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.08);">+10 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;">🗨️</div><div style="flex:1"><div class="rep-title">Chat message</div><div class="rep-req">+2 REP · first 20 messages per day earn full reward</div></div><div class="rep-discount" style="color:#c084fc;border-color:rgba(192,132,252,0.3);background:rgba(192,132,252,0.08);">+2 REP</div></div>
+  </div>
+  <div class="info-box">
+    <strong>Anti-abuse limits:</strong> Chat messages beyond the first 20 per day earn 20% of the standard reward. Voting is capped at 20 votes per day. Self-votes are blocked.
+  </div>
+
+  <h2>Oracle Ascension — 7 Ranks</h2>
+  <p>As your REP grows, you ascend through 7 ranks. Higher ranks unlock question fee discounts and weekly reward multipliers.</p>
+  <div class="rep-list">
+    <div class="rep-item"><div class="rep-emoji" style="color:#6b82a8;font-size:15px;min-width:20px;">◈</div><div style="flex:1"><div class="rep-title" style="color:#6b82a8;">INITIATE</div><div class="rep-req">Starting rank · 0 REP · x1.0</div></div><div class="rep-discount" style="color:var(--muted);border-color:rgba(255,255,255,0.1);background:transparent;">No discount</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">🌱</div><div style="flex:1"><div class="rep-title" style="color:#66ffaa;">SEEKER</div><div class="rep-req">500 REP · x1.0</div></div><div class="rep-discount" style="color:var(--muted);border-color:rgba(255,255,255,0.1);background:transparent;">No discount</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">🔵</div><div style="flex:1"><div class="rep-title" style="color:#7eb8ff;">ADEPT</div><div class="rep-req">1,500 REP · x1.2</div></div><div class="rep-discount">−5% · 190,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">🔮</div><div style="flex:1"><div class="rep-title" style="color:#c084fc;">ANALYST</div><div class="rep-req">4,000 REP · x1.5</div></div><div class="rep-discount">−10% · 180,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">⚡</div><div style="flex:1"><div class="rep-title" style="color:#ffd700;">ORACLE</div><div class="rep-req">8,000 REP · x2.0</div></div><div class="rep-discount">−15% · 170,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">🔥</div><div style="flex:1"><div class="rep-title" style="color:#ff8844;">ARCHON</div><div class="rep-req">15,000 REP · x2.5</div></div><div class="rep-discount">−20% · 160,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;color:#00ffff;">✦</div><div style="flex:1"><div class="rep-title" style="color:#00ffff;">ASCENDED</div><div class="rep-req">30,000 REP · x3.0</div></div><div class="rep-discount">−25% · 150,000 LUNC</div></div>
+  </div>
+
+  <h2>Weekly Reward Pool</h2>
+  <p>Each week, 20% of the Protocol Treasury is distributed to the top 20% of contributors ranked by their REP earned in the last 7 days. Your share is proportional to your weekly REP multiplied by your rank multiplier.</p>
+  <div class="info-box">
+    <strong>Activation threshold:</strong> Weekly rewards only activate when at least <strong>10 unique contributors</strong> are active in a given week. If the threshold is not met, the pool carries over to the following week and continues accumulating.
+  </div>
+  <div class="info-box success">
+    <strong>All-time REP</strong> determines your rank and fee discounts — it never resets.<br>
+    <strong>Weekly REP</strong> (last 7 days only) is used exclusively for reward distribution.
   </div>
 </section>
 
@@ -354,6 +382,62 @@ footer a:hover{color:var(--accent2)}
   <h2>Verify results</h2>
   <div class="info-box">🔍 <a href="https://finder.terraclassic.community/columbus-5" target="_blank">finder.terraclassic.community/columbus-5</a> — verify any transaction on-chain</div>
   <div class="info-box">📂 <a href="https://github.com/Baydashaaa/oracle-draw/blob/main/winners.json" target="_blank">github.com/Baydashaaa/oracle-draw · winners.json</a> — all draw results</div>
+</section>
+
+<!-- REPUTATION -->
+<section class="doc-section" id="section-reputation">
+  <div class="doc-tag">Protocol</div>
+  <h1 class="doc-title">Oracle <span>Reputation</span></h1>
+  <p class="doc-subtitle">Earn REP through activity. Unlock ranks, fee discounts, and weekly rewards.</p>
+
+  <h2>What is Oracle Reputation?</h2>
+  <p>Oracle Reputation (REP) measures your contribution to the Terra Oracle protocol. It is not a token or balance — it reflects your <strong>activity, quality, and engagement</strong> across all protocol modules. REP accumulates over time and unlocks ranks, fee discounts, and weekly rewards.</p>
+
+  <h2>How REP is earned</h2>
+  <div class="rep-list">
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;">❓</div><div style="flex:1"><div class="rep-title">Ask a question</div><div class="rep-req">+40 REP per question submitted</div></div><div class="rep-discount" style="color:var(--accent);border-color:rgba(84,147,247,0.3);background:rgba(84,147,247,0.08);">+40 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;">💬</div><div style="flex:1"><div class="rep-title">Answer a question</div><div class="rep-req">+15 REP per answer posted</div></div><div class="rep-discount" style="color:#66ffaa;border-color:rgba(102,255,170,0.3);background:rgba(102,255,170,0.08);">+15 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;">👍</div><div style="flex:1"><div class="rep-title">Upvote received</div><div class="rep-req">+10 REP per upvote on your questions or answers</div></div><div class="rep-discount" style="color:#ffd700;border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.08);">+10 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;">🗨️</div><div style="flex:1"><div class="rep-title">Chat message</div><div class="rep-req">+2 REP · first 20 messages per day earn full reward</div></div><div class="rep-discount" style="color:#c084fc;border-color:rgba(192,132,252,0.3);background:rgba(192,132,252,0.08);">+2 REP</div></div>
+  </div>
+  <div class="info-box">
+    <strong>Anti-abuse limits:</strong> Chat messages beyond the first 20 per day earn 20% of the standard reward. Voting is capped at 20 votes per day per wallet. Self-votes are blocked.
+  </div>
+
+  <h2>Oracle Ascension — 7 Ranks</h2>
+  <p>As your REP grows, you ascend through 7 ranks. Higher ranks unlock question fee discounts and weekly reward multipliers.</p>
+  <div class="rep-list">
+    <div class="rep-item"><div class="rep-emoji" style="color:#6b82a8;font-size:15px;min-width:20px;">◈</div><div style="flex:1"><div class="rep-title" style="color:#6b82a8;">INITIATE</div><div class="rep-req">Starting rank · 0 REP · ×1.0 multiplier</div></div><div class="rep-discount" style="color:var(--muted);border-color:rgba(255,255,255,0.1);background:transparent;">No discount</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">🌱</div><div style="flex:1"><div class="rep-title" style="color:#66ffaa;">SEEKER</div><div class="rep-req">500 REP · ×1.0 multiplier</div></div><div class="rep-discount" style="color:var(--muted);border-color:rgba(255,255,255,0.1);background:transparent;">No discount</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">🔵</div><div style="flex:1"><div class="rep-title" style="color:#7eb8ff;">ADEPT</div><div class="rep-req">1,500 REP · ×1.2 multiplier</div></div><div class="rep-discount">−5% · 190,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">🔮</div><div style="flex:1"><div class="rep-title" style="color:#c084fc;">ANALYST</div><div class="rep-req">4,000 REP · ×1.5 multiplier</div></div><div class="rep-discount">−10% · 180,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">⚡</div><div style="flex:1"><div class="rep-title" style="color:#ffd700;">ORACLE</div><div class="rep-req">8,000 REP · ×2.0 multiplier</div></div><div class="rep-discount">−15% · 170,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;">🔥</div><div style="flex:1"><div class="rep-title" style="color:#ff8844;">ARCHON</div><div class="rep-req">15,000 REP · ×2.5 multiplier</div></div><div class="rep-discount">−20% · 160,000 LUNC</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="color:#00ffff;font-size:15px;min-width:20px;">✦</div><div style="flex:1"><div class="rep-title" style="color:#00ffff;">ASCENDED</div><div class="rep-req">30,000 REP · ×3.0 multiplier</div></div><div class="rep-discount">−25% · 150,000 LUNC</div></div>
+  </div>
+
+  <h2>Weekly Reward Pool</h2>
+  <p>Each week, <strong>20% of the Protocol Treasury</strong> is set aside as the reward pool and distributed to the <strong>top 20% of contributors</strong> ranked by their REP earned in the last 7 days.</p>
+  <table>
+    <tr><th>Detail</th><th>Value</th></tr>
+    <tr><td>Pool size</td><td>~20% of Protocol Treasury weekly</td></tr>
+    <tr><td>Eligible contributors</td><td>Top 20% by 7-day REP score</td></tr>
+    <tr><td>Distribution</td><td>Proportional to weekly REP × rank multiplier</td></tr>
+    <tr><td>Activation threshold</td><td>Minimum 10 active contributors per week</td></tr>
+    <tr><td>If threshold not met</td><td>Pool carries over to the following week</td></tr>
+  </table>
+  <div class="info-box success">
+    <strong>All-time REP</strong> determines your rank and fee discounts — it never resets.<br>
+    <strong>Weekly REP</strong> (last 7 days only) is used exclusively for reward distribution and resets each week.
+  </div>
+
+  <h2>Where to see your Reputation</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Connect your wallet on Terra Oracle Classic</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Click <strong>Reputation</strong> in the navigation bar</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">View <strong>Your Stats</strong> for a full breakdown of your REP, rank, and estimated weekly reward</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Check the <strong>Leaderboard</strong> to see your position among all contributors</div></div>
+  </div>
 </section>
 
 <!-- TREASURY -->
