@@ -443,24 +443,103 @@ footer a:hover{color:var(--accent2)}
 <!-- TREASURY -->
 <section class="doc-section" id="section-treasury">
   <div class="doc-tag">Protocol</div>
-  <h1 class="doc-title"><span>Treasury</span></h1>
-  <p class="doc-subtitle">Protocol treasury funded by Q&A, Chat, and Draw activity. Fully transparent on-chain.</p>
-  <h2>Treasury wallets</h2>
-  <div class="wallet-list">
-    <div class="wallet-item"><div class="wallet-name">🏛 Protocol Treasury</div><div class="wallet-desc">Receives 100,000 LUNC per Q&A question (minus title discount) + 100% of Chat fees + 10% of each draw</div><div class="wallet-addr">terra1549z8zd9hkggzlwf0rcuszhc9rs9fxqfy2kagt</div></div>
-    <div class="wallet-item"><div class="wallet-name">📅 Daily Draw Pool</div><div class="wallet-desc">Accumulates prizes for the Daily Draw</div><div class="wallet-addr">terra1amp68zg7vph3nq84ummnfma4dz753ezxfqa9px</div></div>
-    <div class="wallet-item"><div class="wallet-name">📆 Weekly Draw Pool</div><div class="wallet-desc">Accumulates NFT mint fees for the Weekly Draw · receives 100,000 LUNC per Q&A question · 10% seeds carry to next round</div><div class="wallet-addr">terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz</div></div>
-  </div>
-  <h2>Revenue sources</h2>
+  <h1 class="doc-title">Protocol <span>Treasury</span></h1>
+  <p class="doc-subtitle">All protocol fees flow on-chain. Fully transparent — every wallet is publicly verifiable on Terra Classic.</p>
+
+  <h2>Revenue Sources</h2>
   <table>
-    <tr><th>Source</th><th>Amount</th><th>Treasury share</th></tr>
-    <tr><td><strong>Oracle Q&A</strong></td><td>200,000 LUNC/question<br><small style="color:var(--muted)">Title discount applies to Treasury portion only</small></td><td>100,000 LUNC fixed → Weekly Pool<br>100,000 LUNC (−discount) → Treasury</td></tr>
-    <tr><td><strong>DAO Chat</strong></td><td>5,000 LUNC/message</td><td>100% → 5,000 LUNC</td></tr>
-    <tr><td><strong>Daily Draw</strong></td><td>Variable prize pool</td><td>10% of pool</td></tr>
-    <tr><td><strong>Weekly Draw</strong></td><td>Variable prize pool</td><td>10% of pool</td></tr>
+    <tr><th>Source</th><th>Amount</th><th>Destination</th></tr>
+    <tr><td><strong>Oracle Q&A</strong></td><td>200,000 LUNC/question<br><small style="color:var(--muted)">Rank discount applies to Treasury portion only</small></td><td>100,000 LUNC → Weekly Draw Pool<br>100,000 LUNC (minus discount) → Protocol Treasury</td></tr>
+    <tr><td><strong>DAO Chat</strong></td><td>5,000 LUNC/message</td><td>100% → Protocol Treasury</td></tr>
+    <tr><td><strong>Daily Draw</strong></td><td>NFT mint fees</td><td>90% prizes · 10% → Protocol Treasury</td></tr>
+    <tr><td><strong>Weekly Draw</strong></td><td>NFT mint fees</td><td>90% prizes · 10% → Protocol Treasury</td></tr>
+    <tr><td><strong>Oracle Mask NFTs</strong></td><td>25,000 – 250,000 LUNC</td><td>Minted via nft.lunc.tools · enter Daily or Weekly Draw</td></tr>
   </table>
-  <h2>Verify on-chain</h2>
-  <div class="info-box">🔍 <a href="https://finder.terraclassic.community/columbus-5" target="_blank">finder.terraclassic.community/columbus-5</a></div>
+
+  <h2>Treasury Distribution</h2>
+  <p>Protocol Treasury funds are distributed weekly across four wallets according to fixed percentages.</p>
+
+  <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;margin:16px 0 10px;">
+    <div style="width:20%;background:#66ffaa;border-radius:6px 0 0 6px;"></div>
+    <div style="width:20%;background:#5493f7;"></div>
+    <div style="width:50%;background:#ffd700;"></div>
+    <div style="width:10%;background:#c084fc;border-radius:0 6px 6px 0;"></div>
+  </div>
+  <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:24px;">
+    <span><span style="color:#66ffaa;">■</span> REP Rewards 20%</span>
+    <span><span style="color:#5493f7;">■</span> Reserve 20%</span>
+    <span><span style="color:#ffd700;">■</span> Liquidity 50%</span>
+    <span><span style="color:#c084fc;">■</span> Development 10%</span>
+  </div>
+
+  <table>
+    <tr><th>Wallet</th><th>%</th><th>Purpose</th></tr>
+    <tr><td><strong style="color:#66ffaa;">REP Rewards</strong></td><td>20%</td><td>Weekly payouts to top 20% contributors by 7-day REP score</td></tr>
+    <tr><td><strong style="color:#5493f7;">Reserve</strong></td><td>20%</td><td>Protocol stability buffer — used only if protocol revenue drops</td></tr>
+    <tr><td><strong style="color:#ffd700;">Liquidity</strong></td><td>50%</td><td>Manual liquidity provision across selected trading pairs on Terra Classic DEXes</td></tr>
+    <tr><td><strong style="color:#c084fc;">Development</strong></td><td>10%</td><td>Protocol development, maintenance, and operations</td></tr>
+  </table>
+
+  <h2>Protocol Wallets</h2>
+  <p>All wallets are publicly visible on Terra Classic. Every transaction is on-chain and verifiable.</p>
+
+  <div class="wallet-list">
+
+    <div class="wallet-item">
+      <div class="wallet-name">Protocol Treasury</div>
+      <div class="wallet-desc">Main inflow wallet. Receives all Q&A and Chat fees. Distributes weekly to the 4 protocol wallets.</div>
+      <div class="wallet-addr">terra1549z8zd9hkggzlwf0rcuszhc9rs9fxqfy2kagt</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name" style="color:#66ffaa;">REP Rewards Wallet</div>
+      <div class="wallet-desc">Receives 20% of Treasury weekly. Used exclusively to pay out weekly REP rewards to top contributors.</div>
+      <div class="wallet-addr">terra1ty6fxd9u0jzae5lpzcs56rfclxg4q32hw5x4ce</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name" style="color:#5493f7;">Reserve Wallet</div>
+      <div class="wallet-desc">Receives 20% of Treasury weekly. Protocol stability buffer — not used in normal operations.</div>
+      <div class="wallet-addr">terra10q6syec2e27x8g76a0mvm3frgvarl5dz27a2jz</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name" style="color:#ffd700;">Liquidity Wallet</div>
+      <div class="wallet-desc">Receives 50% of Treasury weekly. Manually deployed as liquidity across selected trading pairs on Terra Classic DEXes.</div>
+      <div class="wallet-addr">terra1gukarslv6c8n0s2259822l7059putpqxz405su</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name" style="color:#c084fc;">Development Wallet</div>
+      <div class="wallet-desc">Receives 10% of Treasury weekly. Covers protocol development, maintenance, and operational costs.</div>
+      <div class="wallet-addr">terra17g55uzkm6cr5fcl3vzcrmu73v8as4yvf2kktzr</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name">Daily Draw Pool</div>
+      <div class="wallet-desc">Accumulates NFT mint fees for the Daily Draw. 90% distributed to winner, 10% goes to Protocol Treasury.</div>
+      <div class="wallet-addr">terra1amp68zg7vph3nq84ummnfma4dz753ezxfqa9px</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name">Weekly Draw Pool</div>
+      <div class="wallet-desc">Accumulates NFT mint fees for the Weekly Draw. Also receives 100,000 LUNC per Q&A question. 90% distributed to winner, 10% goes to Protocol Treasury.</div>
+      <div class="wallet-addr">terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name">Collection Wallet</div>
+      <div class="wallet-desc">Oracle Mask NFT collection wallet. Receives NFT mint fees from nft.lunc.tools. Used to manage the Oracle Mask collection.</div>
+      <div class="wallet-addr">terra16m05j95p9qvq93cdtchjcpwgvny8f57vzdj06p</div>
+    </div>
+
+  </div>
+
+  <h2>Verify On-chain</h2>
+  <div class="info-box">
+    All wallets and transactions are publicly visible on <a href="https://finder.terraclassic.community/columbus-5" target="_blank">finder.terraclassic.community/columbus-5</a>
+  </div>
+
 </section>
 
 </main>
@@ -479,7 +558,7 @@ function showSection(id){
   document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
   document.getElementById('section-'+id).classList.add('active');
   document.querySelector('[data-section="'+id+'"]').classList.add('active');
-  const names={overview:'Overview','get-started':'Get Started','oracle-qa':'Oracle Q&A','dao-chat':'DAO Chat','oracle-draw':'Oracle Draw',treasury:'Treasury'};
+  const names={overview:'Overview','get-started':'Get Started','oracle-qa':'Oracle Q&A','dao-chat':'DAO Chat','oracle-draw':'Oracle Draw',reputation:'Reputation',treasury:'Treasury'};
   document.getElementById('breadcrumb-text').textContent=names[id]||id;
   window.scrollTo({top:0,behavior:'smooth'});
   document.getElementById('sidebar').classList.remove('open');
