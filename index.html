@@ -456,6 +456,42 @@ footer a:hover{color:var(--accent2)}
   <h2>Trusted User status (30 days)</h2>
   <p>Reaching 30 consecutive days unlocks Trusted User status. This is a permanent achievement — even if your streak resets, the status and golden profile border remain. As a Trusted User, every Draw entry you make receives an automatic +1 bonus entry at no extra cost, as long as your current streak is 30 or more days.</p>
 
+  <div style="display:flex;align-items:center;gap:32px;margin:20px 0;padding:20px 24px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Regular user</div>
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(84,147,247,0.1);border:2px solid rgba(84,147,247,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:26px;">👤</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Trusted User · 30d streak</div>
+      <div style="
+        width:72px;height:72px;border-radius:50%;
+        background:linear-gradient(var(--bg),var(--bg)) padding-box,
+                   linear-gradient(135deg,#ffd700,#ffaa00,#ffe566,#ffd700) border-box;
+        border:2.5px solid transparent;
+        display:flex;align-items:center;justify-content:center;
+        margin:0 auto;font-size:26px;
+        box-shadow:0 0 14px rgba(255,215,0,0.55),0 0 28px rgba(255,170,0,0.25);
+        animation:trustedDocGlow 2s ease-in-out infinite;">👤</div>
+      <div style="margin-top:8px;font-size:10px;font-weight:700;letter-spacing:0.08em;
+        background:linear-gradient(90deg,#ffd700,#ffaa00);
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;">✦ TRUSTED USER</div>
+    </div>
+    <div style="flex:1;min-width:200px;">
+      <div style="font-size:11px;color:var(--text);line-height:1.8;">
+        <div>🔥 <strong style="color:#ffd700;">Permanent</strong> golden border — even after streak reset</div>
+        <div>⚡ <strong style="color:#ffd700;">×2.0 REP</strong> multiplier while streak is active</div>
+        <div>🎟 <strong style="color:#ffd700;">+1 bonus entry</strong> on every Draw (while streak ≥ 30d)</div>
+      </div>
+    </div>
+  </div>
+  <style>
+    @keyframes trustedDocGlow {
+      0%   { box-shadow:0 0 10px rgba(255,215,0,0.4),0 0 20px rgba(255,170,0,0.2); }
+      50%  { box-shadow:0 0 20px rgba(255,215,0,0.8),0 0 40px rgba(255,170,0,0.45); }
+      100% { box-shadow:0 0 10px rgba(255,215,0,0.4),0 0 20px rgba(255,170,0,0.2); }
+    }
+  </style>
+
   <h2>Streak in Your Stats</h2>
   <p>Open Your Stats in the Reputation section to see your current streak, longest streak, today's status, REP multiplier, and milestone progress. Each milestone card shows the reward it unlocks. The status badge shows either <strong>Streak secured today</strong> (green) or <strong>Today not completed</strong> (orange) — use it as a daily reminder to stay active.</p>
 
