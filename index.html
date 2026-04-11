@@ -148,6 +148,7 @@ footer a:hover{color:var(--accent2)}
   <a class="sidebar-link" onclick="showSection('dao-chat')" data-section="dao-chat"><span class="icon">💬</span> DAO Chat</a>
   <a class="sidebar-link" onclick="showSection('oracle-draw')" data-section="oracle-draw"><span class="icon">🎭</span> Oracle Draw</a>
   <a class="sidebar-link" onclick="showSection('reputation')" data-section="reputation"><span class="icon">⭐</span> Reputation</a>
+  <a class="sidebar-link" onclick="showSection('streak')" data-section="streak"><span class="icon">🔥</span> Daily Streak</a>
   <a class="sidebar-link" onclick="showSection('treasury')" data-section="treasury"><span class="icon">💰</span> Treasury</a>
   <div class="sidebar-footer">
     <a href="https://nft.lunc.tools/" target="_blank">🖼 Mint NFTs</a>
@@ -409,6 +410,59 @@ footer a:hover{color:var(--accent2)}
 </section>
 
 <!-- TREASURY -->
+<!-- DAILY STREAK -->
+<section class="doc-section" id="section-streak">
+  <h1 class="doc-title">Daily <span>Streak</span></h1>
+  <p>The Daily Streak system rewards consistent protocol activity. Every day you interact with Terra Oracle Classic through a paid action, your streak grows — unlocking REP multipliers, fee discounts, and exclusive Draw bonuses.</p>
+
+  <h2>What counts as a streak day</h2>
+  <p>Your streak advances by 1 each day you complete at least one of the following paid actions:</p>
+  <table class="doc-table">
+    <thead><tr><th>Action</th><th>Cost</th></tr></thead>
+    <tbody>
+      <tr><td>Ask a question (Oracle Q&A)</td><td>200,000 LUNC (or discounted price)</td></tr>
+      <tr><td>Send a message (DAO Chat)</td><td>5,000 LUNC</td></tr>
+      <tr><td>Enter Daily Draw</td><td>NFT mint fee</td></tr>
+      <tr><td>Enter Weekly Draw</td><td>NFT mint fee</td></tr>
+    </tbody>
+  </table>
+  <p>Free actions such as answering questions, voting, or poll voting do not count toward your streak.</p>
+
+  <h2>Grace period</h2>
+  <p>Missing one day every 7 days does not break your streak. The system automatically applies a grace period — the missed day is skipped and your streak continues as normal. However, only one grace is allowed per 7-day rolling window. Missing two or more days in a row always resets the streak to 1.</p>
+
+  <h2>Streak milestones & rewards</h2>
+  <p>Reaching a milestone unlocks permanent bonuses that apply as long as your streak is active. The REP multiplier is applied to all reputation points you earn.</p>
+  <table class="doc-table">
+    <thead><tr><th>Milestone</th><th>REP Multiplier</th><th>Bonus</th></tr></thead>
+    <tbody>
+      <tr><td>3 days</td><td>×1.1</td><td>—</td></tr>
+      <tr><td>5 days</td><td>×1.2</td><td>—</td></tr>
+      <tr><td>7 days</td><td>×1.3</td><td>25% discount on Oracle Q&A questions (150,000 LUNC)</td></tr>
+      <tr><td>14 days</td><td>×1.5</td><td>2 free Weekly Draw entries — 50,000 LUNC sent automatically from Reserve wallet to Weekly Draw pool</td></tr>
+      <tr><td>30 days</td><td>×2.0</td><td>Trusted User status · Golden profile border (permanent) · +1 bonus entry on every Draw participation</td></tr>
+    </tbody>
+  </table>
+
+  <h2>REP multiplier</h2>
+  <p>The streak multiplier applies to your total base REP score. For example, at a 14-day streak (×1.5), if your base REP is 1,000 your displayed reputation becomes 1,500. The multiplier is only active while your streak is running — if your streak resets, your REP returns to the base value.</p>
+
+  <h2>Question discount</h2>
+  <p>At 7+ days streak, the question fee drops from 200,000 LUNC to 150,000 LUNC (25% off). This discount stacks with your rank discount — the system always applies whichever discount is higher. For example, an ARCHON rank user (20% off) with a 7-day streak receives 25% off, not 20%.</p>
+
+  <h2>14-day free entries</h2>
+  <p>When you first reach a 14-day streak, 50,000 LUNC is automatically transferred from the Protocol Reserve wallet to the Weekly Draw pool. This corresponds to 2 free entries (25,000 LUNC each — the price of a Common NFT). The transfer is processed by an automated script that runs every hour.</p>
+
+  <h2>Trusted User status (30 days)</h2>
+  <p>Reaching 30 consecutive days unlocks Trusted User status. This is a permanent achievement — even if your streak resets, the status and golden profile border remain. As a Trusted User, every Draw entry you make receives an automatic +1 bonus entry at no extra cost, as long as your current streak is 30 or more days.</p>
+
+  <h2>Streak in Your Stats</h2>
+  <p>Open Your Stats in the Reputation section to see your current streak, longest streak, today's status, REP multiplier, and milestone progress. Each milestone card shows the reward it unlocks. The status badge shows either <strong>Streak secured today</strong> (green) or <strong>Today not completed</strong> (orange) — use it as a daily reminder to stay active.</p>
+
+  <h2>Streak reset</h2>
+  <p>If you miss more than one day (outside the grace period), your streak resets to 1 on your next active day. Milestones already reached are never removed — one-time rewards such as the 14-day LUNC transfer and the Trusted User golden border are permanent. Only the active REP multiplier and Draw bonuses depend on your current streak length.</p>
+</section>
+
 <section class="doc-section" id="section-treasury">
   <div class="doc-tag">Protocol</div>
   <h1 class="doc-title">Protocol <span>Treasury</span></h1>
@@ -526,7 +580,7 @@ function showSection(id){
   document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
   document.getElementById('section-'+id).classList.add('active');
   document.querySelector('[data-section="'+id+'"]').classList.add('active');
-  const names={overview:'Overview','get-started':'Get Started','oracle-qa':'Oracle Q&A','dao-chat':'DAO Chat','oracle-draw':'Oracle Draw',reputation:'Reputation',treasury:'Treasury'};
+  const names={overview:'Overview','get-started':'Get Started','oracle-qa':'Oracle Q&A','dao-chat':'DAO Chat','oracle-draw':'Oracle Draw',reputation:'Reputation',streak:'Daily Streak',treasury:'Treasury'};
   document.getElementById('breadcrumb-text').textContent=names[id]||id;
   window.scrollTo({top:0,behavior:'smooth'});
   document.getElementById('sidebar').classList.remove('open');
