@@ -253,6 +253,13 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
    sheet than the media query above, and a media query adds no specificity,
    so the show rule has to come last or the button stays hidden on mobile. */
 @media(max-width:1024px){.nav-toggle{display:flex}}
+/* .layout has position:relative + z-index:1, which makes it a stacking context.
+   The sidebar lives inside it, so its z-index:90 only competes with its siblings
+   — at the root level the browser compares .layout (1) against .nav-scrim (80)
+   and the scrim wins, dimming the open drawer along with the page. Dropping the
+   z-index on mobile removes that stacking context, so the drawer (90) correctly
+   sits above the scrim (80) and the topnav (10). */
+@media(max-width:1024px){.layout{z-index:auto}}
 </style>
 </head>
 <body>
