@@ -196,8 +196,6 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible}
 .search-btn{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);
   border-radius:10px;padding:7px 12px;color:var(--muted);font:inherit;font-size:13px;cursor:pointer;transition:all .2s}
 .search-btn:hover{color:var(--text);border-color:var(--accent);box-shadow:0 0 16px rgba(123,92,255,.18)}
-.search-btn kbd{font-family:inherit;font-size:10.5px;letter-spacing:.04em;padding:2px 6px;border-radius:5px;
-  border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--muted)}
 .search-modal{position:fixed;inset:0;z-index:130;display:none}
 .search-modal.open{display:block}
 .search-scrim{position:absolute;inset:0;background:rgba(4,7,14,.76);backdrop-filter:blur(4px)}
@@ -250,7 +248,11 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 .faq-body code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--accent2);word-break:break-all}
 .faq-body a{color:var(--accent2);text-decoration:none}
 .faq-body a:hover{text-decoration:underline}
-@media(max-width:1024px){.search-btn span{display:none}.search-btn kbd{display:none}.search-panel{margin-top:5vh}}
+@media(max-width:1024px){.search-btn span{display:none}.search-panel{margin-top:5vh}}
+/* The base .nav-toggle{display:none} rule below is declared later in this
+   sheet than the media query above, and a media query adds no specificity,
+   so the show rule has to come last or the button stays hidden on mobile. */
+@media(max-width:1024px){.nav-toggle{display:flex}}
 </style>
 </head>
 <body>
@@ -261,7 +263,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <button class="nav-toggle" id="nav-toggle" onclick="toggleNav()" aria-label="Menu" aria-expanded="false" aria-controls="sidebar"><span class="bars"><i></i><i></i><i></i></span></button>
   <div class="topnav-breadcrumb">Docs <span style="opacity:0.4">›</span> <span id="breadcrumb-text">Overview</span></div>
   <div class="topnav-links">
-    <button class="search-btn" onclick="openSearch()" aria-label="Search docs"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Search</span><kbd id="sk">Ctrl K</kbd></button>
+    <button class="search-btn" onclick="openSearch()" aria-label="Search docs"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Search</span></button>
     <a href="https://baydashaaa.github.io/terra-oracle/" class="back-btn">← Back to site</a>
   </div>
 </nav>
@@ -1126,7 +1128,6 @@ window.addEventListener('hashchange',handleHash);
 (function(){
   addAnchors();
   buildIndex();
-  if(/Mac|iPhone|iPad/.test(navigator.platform)){var k=document.getElementById('sk'); if(k) k.textContent='\u2318K';}
   if(location.hash) handleHash(); else buildTOC('overview');
 })();
 </script>
