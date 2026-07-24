@@ -275,14 +275,14 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <div class="topnav-breadcrumb">Docs <span style="opacity:0.4">›</span> <span id="breadcrumb-text">Overview</span></div>
   <div class="topnav-links">
     <button class="search-btn" onclick="openSearch()" aria-label="Search docs"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Search</span></button>
-    <a href="https://baydashaaa.github.io/terra-oracle/" class="back-btn">← Back to site</a>
+    <a href="https://terraoracle.io/" class="back-btn" id="back-btn">← Back to site</a>
   </div>
 </nav>
 
 <div class="layout">
 <aside class="sidebar" id="sidebar">
   <a class="sidebar-logo" href="#" onclick="showSection('overview');return false;">
-    <img src="https://baydashaaa.github.io/terra-oracle/v1.gif" width="34" height="34" style="mix-blend-mode:lighten;flex-shrink:0;" onerror="this.style.display='none'">
+    <img src="https://terraoracle.io/v1.gif" width="34" height="34" style="mix-blend-mode:lighten;flex-shrink:0;" onerror="this.style.display='none'">
     <div>
       <div class="sidebar-logo-text">Terra Oracle <span>Classic</span></div>
       <div class="sidebar-logo-sub">Documentation</div>
@@ -1140,6 +1140,44 @@ window.addEventListener('hashchange',handleHash);
   addAnchors();
   buildIndex();
   if(location.hash) handleHash(); else buildTOC('overview');
+})();
+</script>
+<script>
+/* ── Кнопка «Back to site» возвращает туда, откуда пришли ──────────────────
+   Раньше она вела жёстко на Terra Oracle, поэтому переход из Oracle Draw в
+   документацию был билетом в один конец. Источник определяем по трём
+   уровням надёжности:
+     1) ?from=draw|oracle в адресе — ставится ссылкой в футере сайта;
+     2) document.referrer — работает не всегда: во встроенных браузерах
+        кошельков и при переходе по HTTPS→HTTPS с политикой no-referrer он
+        приходит пустым;
+     3) sessionStorage — чтобы источник не терялся при переключении разделов
+        документации, ведь showSection() меняет hash и параметр может уйти.  */
+(function () {
+  var SITES = {
+    draw:   { url: 'https://draw.terraoracle.io/', label: '← Oracle Draw'  },
+    oracle: { url: 'https://terraoracle.io/',      label: '← Terra Oracle' }
+  };
+  var KEY = 'docs_origin';
+
+  function detect() {
+    try {
+      var p = new URLSearchParams(location.search).get('from');
+      if (p && SITES[p]) return p;
+    } catch (e) {}
+    var r = document.referrer || '';
+    if (/draw\.terraoracle\.io/i.test(r)) return 'draw';
+    if (/terraoracle\.io/i.test(r))          return 'oracle';
+    return null;
+  }
+
+  var from = detect();
+  if (from) { try { sessionStorage.setItem(KEY, from); } catch (e) {} }
+  else      { try { from = sessionStorage.getItem(KEY); } catch (e) {} }
+
+  var site = SITES[from] || SITES.oracle;
+  var btn  = document.getElementById('back-btn');
+  if (btn) { btn.href = site.url; btn.textContent = site.label; }
 })();
 </script>
 </body>
