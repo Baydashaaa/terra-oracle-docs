@@ -481,14 +481,19 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <p>Free entries are tracked automatically via on-chain transaction history, updated every hour, and combined with paid NFT entries into a single pool.</p>
 
   <h2>How winners are selected</h2>
-  <p>Winners are selected using the <strong>on-chain block hash</strong> at draw time - fully transparent and verifiable by anyone on Terra Classic.</p>
+  <p>Winners are selected from a single Terra Classic <strong>block hash</strong> - a value produced by validators that no one, including the operator, can predict or influence.</p>
   <div class="info-box" style="font-family:monospace;font-size:13px;letter-spacing:0.05em;">winner_index = BigInt(block_hash) % BigInt(total_entries)</div>
+  <p>Entries weight the odds, they do not guarantee a win. A Legendary holder puts 10 tickets in the pool and a Common holder puts 1 - but a single ticket can still be the one drawn. More entries mean better odds, never certainty.</p>
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="m9 11.5 2 2 4-4.5"/></svg>
+    <div><strong>Which block?</strong> Not "whatever block is latest when the draw runs." The draw uses the <strong>first block at or after the round deadline</strong> (the most recent 20:00 UTC). That block is fixed by the deadline, so the winner is the same no matter when - or how many times - the draw is triggered. Re-running the draw cannot change the outcome, which removes any incentive to retry for a better result.</div>
+  </div>
 
   <h2>Daily Draw - step by step</h2>
   <ol style="margin:8px 0 16px 20px;line-height:2.2;">
     <li>All Oracle Mask mints registered to the <strong>Daily</strong> pool since the last draw are collected from the contract’s on-chain mint events</li>
     <li>Ticket array is built: Common = 1 ticket, Rare = 5, Legendary = 10</li>
-    <li>Latest on-chain block hash is fetched at 20:00 UTC</li>
+    <li>The first Terra Classic block at or after the <strong>20:00 UTC</strong> deadline is located, and its hash is read - the same block regardless of when the draw actually runs</li>
     <li><code>winner_index = BigInt(block_hash) % BigInt(total_tickets)</code></li>
     <li>Winner receives <strong>80%</strong> of the prize pool automatically on-chain</li>
     <li><strong>10%</strong> → Protocol Treasury · <strong>10%</strong> stays as seeds for next round</li>
@@ -499,7 +504,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <ol style="margin:8px 0 16px 20px;line-height:2.2;">
     <li>All Oracle Mask mints registered to the <strong>Weekly</strong> pool in the last <strong>7 days</strong> are collected from the contract’s on-chain mint events</li>
     <li>Free entries from Oracle Q&A and DAO Chat are added to the pool</li>
-    <li>Three unique winners are selected using the block hash:
+    <li>Three unique winners are selected from the same deadline-block hash (chained through SHA-256 so one wallet cannot take two places):
       <div class="info-box" style="font-family:monospace;font-size:12px;letter-spacing:0.04em;margin-top:8px;line-height:2;">
         1st: sha256(block_hash + "0") % total → 48%<br>
         2nd: sha256(block_hash + "1") % total → 20%<br>
@@ -509,6 +514,15 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <li><strong>10%</strong> → Protocol Treasury · <strong>10%</strong> stays as seeds for next round</li>
     <li>If fewer than 5 entries - draw is skipped, all funds carry to next week</li>
   </ol>
+
+  <h2>Verify it yourself</h2>
+  <p>Every draw records everything needed to reproduce the result. From <a href="https://github.com/Baydashaaa/oracle-draw/blob/main/winners.json" target="_blank" style="color:var(--accent2)">winners.json</a>, for any round:</p>
+  <ol style="margin:8px 0 16px 20px;line-height:2.2;">
+    <li>Take <code>block_height</code> and fetch that block from any Terra Classic LCD (its <code>block_id.hash</code>, base64 &rarr; hex uppercase, must equal the recorded <code>block_hash</code>)</li>
+    <li>Rebuild the ticket list: each participant repeats <code>entries</code> times, ordered by mint time</li>
+    <li>Compute <code>BigInt("0x" + block_hash) % total_entries</code> - it must equal the recorded <code>winner_index</code></li>
+  </ol>
+  <div class="info-box"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg> Because the block is chosen by the deadline and not by run time, anyone can repeat this check and reach the same winner the protocol did.</div>
 
   <h2>Verify results</h2>
   <div class="info-box"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg> <a href="https://finder.terraport.finance/mainnet" target="_blank">finder.terraport.finance/mainnet</a> - verify any transaction on-chain</div>
