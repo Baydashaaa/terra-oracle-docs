@@ -295,10 +295,13 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <a class="sidebar-link" onclick="showSection('oracle-qa')" data-section="oracle-qa"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.2a2.7 2.7 0 1 1 3.4 3.3c-.6.2-.9.7-.9 1.3v.4"/><circle cx="12" cy="17" r=".9" style="fill:currentColor;stroke:none"/></svg> Oracle Q&A</a>
   <a class="sidebar-link" onclick="showSection('dao-chat')" data-section="dao-chat"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A2.5 2.5 0 0 1 17.5 17H9l-4 3.5V6.5A2.5 2.5 0 0 1 7.5 4h10A2.5 2.5 0 0 1 20 6.5z"/><path d="M9 9h7M9 12.5h4.5"/></svg> DAO Chat</a>
   <a class="sidebar-link" onclick="showSection('oracle-draw')" data-section="oracle-draw"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5V7a1.5 1.5 0 0 1 1.5-1.5h14A1.5 1.5 0 0 1 20.5 7v2.5a2.5 2.5 0 0 0 0 5V17a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 17v-2.5a2.5 2.5 0 0 0 0-5z"/><path d="M12 8.5v1.5M12 13.5v2"/></svg> Oracle Draw</a>
-  <a class="sidebar-link" onclick="showSection('contract')" data-section="contract"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2.5"/><path d="M9.5 9.5h5M9.5 12.5h5M9.5 15.5h3"/><path d="M9 2.5v2M15 2.5v2M9 19.5v2M15 19.5v2M2.5 9h2M2.5 15h2M19.5 9h2M19.5 15h2"/></svg> Smart Contract</a>
   <a class="sidebar-link" onclick="showSection('reputation')" data-section="reputation"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.8 2.5 5.2 5.7.8-4.1 4 1 5.7L12 16.8 6.9 19.5l1-5.7-4.1-4 5.7-.8z"/></svg> Reputation</a>
   <a class="sidebar-link" onclick="showSection('streak')" data-section="streak"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s5.5 4.2 5.5 9a5.5 5.5 0 0 1-11 0c0-2 1-3.6 2-4.7 0 1.7.9 2.6 1.8 2.6 1.4 0 1.9-1.4 1.7-3.3-.1-1.4-.4-2.6 0-3.6z"/></svg> Daily Streak</a>
   <a class="sidebar-link" onclick="showSection('treasury')" data-section="treasury"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M12 8.8v-1M12 16.2v1M15.2 12h1M7.8 12h-1"/></svg> Treasury</a>
+  <div class="sidebar-section">On-chain</div>
+  <a class="sidebar-link" onclick="showSection('architecture')" data-section="architecture"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg> Contracts</a>
+  <a class="sidebar-link" onclick="showSection('contract')" data-section="contract"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2.5"/><path d="M9.5 9.5h5M9.5 12.5h5M9.5 15.5h3"/><path d="M9 2.5v2M15 2.5v2M9 19.5v2M15 19.5v2M2.5 9h2M2.5 15h2M19.5 9h2M19.5 15h2"/></svg> Oracle Mask NFT</a>
+  <a class="sidebar-link" onclick="showSection('oracle-score')" data-section="oracle-score"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg> Oracle Score</a>
   <div class="sidebar-section">Help</div>
   <a class="sidebar-link" onclick="showSection('faq')" data-section="faq"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.2a2.7 2.7 0 1 1 3.4 3.3c-.6.2-.9.7-.9 1.3v.4"/><circle cx="12" cy="17" r=".9" style="fill:currentColor;stroke:none"/></svg> FAQ</a>
   <div class="sidebar-footer">
@@ -544,8 +547,8 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
 <!-- SMART CONTRACT -->
 <section class="doc-section" id="section-contract">
-  <div class="doc-tag">Protocol</div>
-  <h1>Smart Contract</h1>
+  <div class="doc-tag">On-chain</div>
+  <h1>Oracle Mask NFT</h1>
   <p class="lead">Oracle Mask NFTs live in a CW721 contract owned by the protocol. Minting, ownership and pool routing are settled on Terra Classic &mdash; no marketplace, no custodian, no off-chain step.</p>
 
   <div class="contract-card">
@@ -671,6 +674,189 @@ terrad query wasm code-info 11546 \
   <p>The contract keeps a migration admin so that new mechanics &mdash; NFT crafting is next &mdash; can be added without
   changing the contract address. Existing NFTs, balances and metadata are preserved across a migration. Any upgrade is
   published here and remains verifiable through the code checksum.</p>
+</section>
+
+
+<!-- ARCHITECTURE -->
+<section class="doc-section" id="section-architecture">
+  <div class="doc-tag">On-chain</div>
+  <h1>Contracts &amp; architecture</h1>
+  <p class="lead">Everything the protocol promises is either enforced by a contract on Terra Classic or it is not. This page draws that line honestly: what the chain settles, what a server still does, and how to check either one for yourself.</p>
+
+  <h2>Contracts</h2>
+  <table class="spec">
+    <tr><td>Oracle Mask NFT</td><td>CW721 · mints, ownership, pool routing<br><code>terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</code></td></tr>
+    <tr><td>Oracle Score</td><td>Reputation · accrual, ranks, decay, payment split<br><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td></tr>
+  </table>
+  <p>Both are CosmWasm contracts on <code>columbus-5</code>, both are built reproducibly, and both publish their source. Neither can be silently swapped: a migration is a transaction on the chain like any other.</p>
+
+  <h2>Protocol wallets</h2>
+  <p>These are ordinary addresses, not contracts. Every transfer in and out is public.</p>
+  <table class="spec">
+    <tr><td>Protocol Treasury</td><td><code>terra1549z8zd9hkggzlwf0rcuszhc9rs9fxqfy2kagt</code><br>Question fees and 100% of DAO Chat fees</td></tr>
+    <tr><td>Weekly Pool</td><td><code>terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz</code><br>Backs Weekly Draw entries at 25,000 LUNC per entry</td></tr>
+    <tr><td>Reserve</td><td><code>terra10q6syec2e27x8g76a0mvm3frgvarl5dz27a2jz</code><br>Streak rewards and pool seeding</td></tr>
+    <tr><td>REP Rewards</td><td><code>terra1ty6fxd9u0jzae5lpzcs56rfclxg4q32hw5x4ce</code><br>Weekly payouts to the top 20% by REP</td></tr>
+    <tr><td>Liquidity</td><td><code>terra1gukarslv6c8n0s2259822l7059putpqxz405su</code></td></tr>
+    <tr><td>Development</td><td><code>terra17g55uzkm6cr5fcl3vzcrmu73v8as4yvf2kktzr</code></td></tr>
+  </table>
+
+  <h2>What the chain settles</h2>
+  <div class="callout good">
+    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
+    <div><b>NFT mints.</b> Payment, token creation and the pool transfer are one atomic transaction. A wallet cannot be charged without receiving the NFT.</div>
+  </div>
+  <div class="callout good">
+    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
+    <div><b>Reputation.</b> Balances, the degressive answer ladder, daily limits and decay all live in the Oracle Score contract. Nobody can edit a score in a database.</div>
+  </div>
+  <div class="callout good">
+    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
+    <div><b>Every payment.</b> Questions, chat messages, mints, draw prizes and treasury distributions are transfers you can look up in an explorer.</div>
+  </div>
+
+  <h2>What is still off-chain</h2>
+  <p>Being straight about this matters more than sounding decentralised.</p>
+  <table class="spec">
+    <tr><td>Questions &amp; answers</td><td>Stored in <code>questions.json</code>, committed to a public Git repository. Every edit is a commit with a timestamp, so the history is auditable even though the store is not a chain.</td></tr>
+    <tr><td>Free actions</td><td>Answers and upvotes cannot be paid for on-chain by the author, so a Cloudflare Worker verifies them and an attestor key writes them into the contract on a schedule. That key can only touch actions the contract has explicitly opted in, and every grant is a public transaction.</td></tr>
+    <tr><td>Streaks</td><td>Day counting and grace days stay in storage; the multiplier is applied for display. Nothing about a streak moves money on its own.</td></tr>
+    <tr><td>Draw execution</td><td>Winner selection runs as a scheduled job, publishes its inputs, and pays out on-chain. The payout is verifiable; the selection is currently trusted.</td></tr>
+    <tr><td>Payment routing</td><td>The frontend splits a question payment between the Weekly pool and the Treasury. The contract can enforce this split itself, and that is a planned step &mdash; today the amounts are simply fixed and public.</td></tr>
+  </table>
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div><b>One admin key.</b> Contract parameters and migrations are controlled by a single key held by the developer. It is not a multisig, and calling it one would be dishonest at the current size of the community. Moving to a multisig is planned as the protocol grows.</div>
+  </div>
+
+  <h2>Verify any of it</h2>
+  <p>Contract state is public. These calls need no wallet and no key.</p>
+  <div class="code"><div class="code-head"><span>LCD · contract info</span><button class="copy-btn" onclick="copyCode(this,'a-verify')">Copy</button></div><pre id="a-verify"><span class="c"># which code a contract runs</span>
+https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/contract/&lt;contract&gt;
+
+<span class="c"># the checksum of that code — compare it to your own build</span>
+https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/&lt;code_id&gt;
+
+<span class="c"># any wallet's balance</span>
+https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;address&gt;</pre></div>
+</section>
+
+
+<!-- ORACLE SCORE -->
+<section class="doc-section" id="section-oracle-score">
+  <div class="doc-tag">On-chain</div>
+  <h1>Oracle Score</h1>
+  <p class="lead">Reputation is a contract, not a database row. It decides ranks, fee discounts, draw weight and the weekly reward split &mdash; so the rules that produce it are executed by Terra Classic and readable by anyone.</p>
+
+  <div class="contract-card">
+    <div class="contract-label">Oracle Score · columbus-5</div>
+    <div class="addr">
+      <code id="os-addr">terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code>
+      <button class="copy-btn" onclick="copyCode(this,'os-addr')">Copy</button>
+    </div>
+    <div class="badge-row">
+      <span class="badge live">CosmWasm</span>
+      <span class="badge ok"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg> Reproducible build</span>
+      <span class="badge">Code ID 11552</span>
+      <span class="badge">Migratable</span>
+    </div>
+  </div>
+
+  <h2>Specification</h2>
+  <table class="spec">
+    <tr><td>Chain</td><td>Terra Classic · columbus-5</td></tr>
+    <tr><td>Contract</td><td><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td></tr>
+    <tr><td>Code ID</td><td><code>11552</code></td></tr>
+    <tr><td>Code checksum</td><td><code>99c6cd4e79ea7e0adc3c9c9f301fdfac450a64f49b9236f543e0c2e64421f9ff</code></td></tr>
+    <tr><td>Source</td><td><a href="https://github.com/Baydashaaa/oracle-score" target="_blank">github.com/Baydashaaa/oracle-score</a></td></tr>
+    <tr><td>Half-life</td><td>90 days (weight only)</td></tr>
+    <tr><td>Epoch</td><td>7 days</td></tr>
+    <tr><td>Units</td><td>Micro-units, like <code>uluna</code> &mdash; 40 REP is stored as <code>40000000</code></td></tr>
+  </table>
+
+  <h2>Two numbers, one score</h2>
+  <p>A single figure cannot serve both purposes, so the contract keeps two and returns both from one query.</p>
+  <table class="spec">
+    <tr><td><code>lifetime_earned</code><br>Rank</td><td>Never decays. Drives your rank, fee discount and reward multiplier. Taking a break does not cost you the status you earned &mdash; all-time REP never resets.</td></tr>
+    <tr><td><code>effective</code><br>Weight</td><td>Decays with a 90-day half-life. Drives draw weight, vote weight and gated features. Influence has to be maintained: a single burst of activity does not buy permanent standing.</td></tr>
+  </table>
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div>A third figure, the <b>epoch score</b>, buckets each 7-day week and never decays. It decides weekly reward shares, where the fair basis is what you contributed that week.</div>
+  </div>
+
+  <h2>What earns REP</h2>
+  <table class="spec">
+    <tr><td>Ask a question</td><td>+40</td></tr>
+    <tr><td>Write an answer</td><td>+40 for your first three of the day, +10 for the next seven, then 0</td></tr>
+    <tr><td>Receive an upvote</td><td>+20</td></tr>
+    <tr><td>Send a chat message</td><td>+5</td></tr>
+    <tr><td>Mint an NFT</td><td>+25 / +125 / +250 by tier</td></tr>
+  </table>
+  <p>The answer ladder counts <strong>per wallet per UTC day, across all questions</strong>. It exists to stop one person farming answers, so answering a busy thread late never costs you the full rate. A separate hard limit allows at most three answers to the same question per day.</p>
+
+  <h2>Fees and the payment split</h2>
+  <p>A paid action carries two amounts: a fixed pool leg that backs a draw entry, and whatever is left, which goes to the Treasury. Rank and streak discounts reduce the Treasury leg only, so a draw entry is always fully funded no matter who pays.</p>
+  <table class="spec">
+    <tr><td>Priority question</td><td>200,000 LUNC &mdash; 100,000 to the Weekly pool, +4 entries, 24h pin</td></tr>
+    <tr><td>Basic question</td><td>50,000 LUNC &mdash; 25,000 to the Weekly pool, +1 entry</td></tr>
+    <tr><td>Chat message</td><td>5,000 LUNC &mdash; 100% Treasury</td></tr>
+  </table>
+
+  <h2>How an action reaches the chain</h2>
+  <p>Paid actions are verified against the chain before anything is recorded; free ones cannot be, so they take a different route.</p>
+  <table class="spec">
+    <tr><td>1 · Act</td><td>You ask, answer, upvote or send a message.</td></tr>
+    <tr><td>2 · Verify</td><td>For paid actions the payment transaction is checked on-chain: sender, recipient and amount. The hash is registered so it can never be reused.</td></tr>
+    <tr><td>3 · Queue</td><td>The grant is queued. Queueing started before reputation moved on-chain, so nothing was lost in the transition.</td></tr>
+    <tr><td>4 · Record</td><td>An hourly job submits the queued grants to the contract as a batch. Records are cleared only after the transaction is confirmed in a block, so a failed run retries rather than dropping grants.</td></tr>
+  </table>
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div><b>The attestor key is deliberately weak.</b> It can record actions and nothing else &mdash; it cannot change parameters, migrate the contract or slash anyone, and every grant it makes is capped and publicly visible. It holds gas and nothing more.</div>
+  </div>
+
+  <h2>Read your score</h2>
+  <p>A public LCD call, no wallet needed. Values are in micro-units: divide by 1,000,000.</p>
+  <div class="code"><div class="code-head"><span>Query · score</span><button class="copy-btn" onclick="copyCode(this,'os-q')">Copy</button></div><pre id="os-q">{ <span class="k">"score"</span>: { <span class="k">"address"</span>: <span class="s">"terra1..."</span> } }
+
+<span class="c">// returns</span>
+{
+  <span class="k">"effective"</span>: <span class="s">"568510823"</span>,        <span class="c">// weight, decayed</span>
+  <span class="k">"lifetime_earned"</span>: <span class="s">"570000000"</span>,  <span class="c">// rank, never decays</span>
+  <span class="k">"actions"</span>: 12,
+  <span class="k">"last_update"</span>: 1785538524
+}</pre></div>
+
+  <h2>Other queries</h2>
+  <table class="spec">
+    <tr><td><code>config</code></td><td>Admin, attestor, treasury and pool addresses, half-life, epoch length, current day</td></tr>
+    <tr><td><code>epoch_score</code></td><td>Your REP inside a given weekly epoch</td></tr>
+    <tr><td><code>tier_count</code></td><td>How many times you did an action today and what the next one is worth</td></tr>
+    <tr><td><code>leaderboard</code></td><td>Paginated epoch scores</td></tr>
+  </table>
+
+  <h2>The starting balances</h2>
+  <p>Reputation earned before the contract existed was carried over, not reset. The snapshot was computed from public data &mdash; the Q&amp;A part is reproducible from the question history in Git &mdash; and its hash was published before anything was written to the chain, so the seeding can be checked rather than trusted.</p>
+  <table class="spec">
+    <tr><td>Snapshot</td><td>2026-08-01T14:47:53Z · 4 wallets · 1,890 REP</td></tr>
+    <tr><td>Snapshot hash</td><td><code>e02fd7a59c38060ca6924856c9f01b9af7acefd59e94e96b3e721cbd01392f2c</code></td></tr>
+  </table>
+  <p>Seeding is still open while the frontend is being switched over to read from the contract. Once it closes it closes permanently: after that, not even the admin key can rewrite a balance.</p>
+
+  <h2>Build it yourself</h2>
+  <p>The checksum on the chain is produced by a reproducible build, so you can confirm the deployed contract is the published source rather than take our word for it.</p>
+  <div class="code"><div class="code-head"><span>Reproducible build</span><button class="copy-btn" onclick="copyCode(this,'os-build')">Copy</button></div><pre id="os-build">git clone https://github.com/Baydashaaa/oracle-score
+cd oracle-score
+
+docker run --rm -v "$(pwd)":/code \
+  --mount type=volume,source="$(basename "$(pwd)")_cache",target=/target \
+  --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
+  cosmwasm/optimizer:0.17.0
+
+cat artifacts/checksums.txt
+<span class="c"># compare with the chain:</span>
+curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11552</pre></div>
 </section>
 
 
