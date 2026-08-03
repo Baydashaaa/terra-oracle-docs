@@ -316,31 +316,47 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 <main class="main">
 
 <!-- OVERVIEW -->
+<!-- OVERVIEW -->
 <section class="doc-section active" id="section-overview">
   <div class="doc-tag">Documentation</div>
   <h1 class="doc-title">Terra Oracle <span>Classic</span></h1>
-  <p class="doc-subtitle">A decentralized Q&A, governance and draw protocol built on Terra Classic - powered by LUNC.</p>
-  <p>Terra Oracle Classic allows community members, validators, and developers to surface privileged knowledge anonymously, participate in governance draws, and engage in on-chain communication. The protocol operates entirely on Terra Classic (columbus-5) with no centralized backend. All payments, draws, and messages are verifiable on-chain.</p>
-  <h2>What's included</h2>
+  <p class="doc-subtitle">A Q&amp;A, reputation and draw protocol on Terra Classic, paid for in LUNC.</p>
+
+  <p>Ask the community a question and pay for it in LUNC. Answer someone else's and earn reputation. Every fee, every draw and every point of reputation is settled on Terra Classic, where you can check it without asking us to confirm anything.</p>
+
+  <p>Your wallet is never attached to what you post. You pay from it, and that payment is what proves the question was bought - but the question itself carries no link back to you.</p>
+
+  <h2>What you can do</h2>
   <div class="cards-grid">
-    <a class="doc-card" onclick="showSection('oracle-qa')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Q&A</div><div class="doc-card-desc">Ask questions about Terra Classic governance, validators and market. 200,000 LUNC per question.</div></a>
-    <a class="doc-card" onclick="showSection('oracle-draw')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Draw</div><div class="doc-card-desc">Daily & Weekly on-chain draws. Mint Oracle Mask NFTs to enter. Fully verifiable.</div></a>
-    <a class="doc-card" onclick="showSection('treasury')"><div class="doc-card-icon"></div><div class="doc-card-title">Treasury</div><div class="doc-card-desc">Protocol treasury funded by Q&A, Chat, and Draw fees. Transparent on-chain.</div></a>
-    <a class="doc-card" onclick="showSection('get-started')"><div class="doc-card-icon"></div><div class="doc-card-title">Get Started</div><div class="doc-card-desc">Connect your wallet and start using the protocol in minutes.</div></a>
+    <a class="doc-card" onclick="showSection('oracle-qa')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Q&amp;A</div><div class="doc-card-desc">Ask anonymously about governance, validators or the market. From 50,000 LUNC.</div></a>
+    <a class="doc-card" onclick="showSection('dao-chat')"><div class="doc-card-icon"></div><div class="doc-card-title">DAO Chat</div><div class="doc-card-desc">Messages written to the chain itself. 5,000 LUNC each, and every tenth earns a draw entry.</div></a>
+    <a class="doc-card" onclick="showSection('oracle-draw')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Draw</div><div class="doc-card-desc">Daily and Weekly draws. The winner comes from a block hash, so anyone can recheck it.</div></a>
+    <a class="doc-card" onclick="showSection('reputation')"><div class="doc-card-icon"></div><div class="doc-card-title">Reputation</div><div class="doc-card-desc">Seven ranks, earned by contributing. Held in a smart contract, not our database.</div></a>
+    <a class="doc-card" onclick="showSection('streak')"><div class="doc-card-icon"></div><div class="doc-card-title">Daily Streak</div><div class="doc-card-desc">Show up regularly for a REP multiplier, cheaper questions and free entries.</div></a>
+    <a class="doc-card" onclick="showSection('treasury')"><div class="doc-card-icon"></div><div class="doc-card-title">Treasury</div><div class="doc-card-desc">Where the fees go, split on a fixed schedule to public wallets.</div></a>
   </div>
-  <h2>Protocol info</h2>
+
+  <h2>Start here</h2>
+  <p>If you are new, read <a onclick="showSection('get-started')">Get Started</a> - wallet, first question, what things cost. If you want to check the protocol rather than use it, <a onclick="showSection('architecture')">Contracts &amp; architecture</a> maps what the chain enforces and what it does not.</p>
+
+  <h2>Protocol facts</h2>
   <table>
     <tr><th>Parameter</th><th>Value</th></tr>
     <tr><td><strong>Blockchain</strong></td><td>Terra Classic · columbus-5</td></tr>
-    <tr><td><strong>Native token</strong></td><td>LUNC</td></tr>
+    <tr><td><strong>Payment token</strong></td><td>LUNC</td></tr>
     <tr><td><strong>Future token</strong></td><td>TCO (coming soon)</td></tr>
-    <tr><td><strong>Backend</strong></td><td>None - fully on-chain</td></tr>
-    <tr><td><strong>Draw verification</strong></td><td>On-chain block hash</td></tr>
-    <tr><td><strong>Terra Oracle</strong></td><td><a href="https://terraoracle.io/">Terraoracle.io</a></td></tr>
-    <tr><td><strong>Oracle Draw</strong></td><td><a href="https://draw.terraoracle.io/">Draw.terraoracle.io</a></td></tr>
-    <tr><td><strong>NFT standard</strong></td><td>CW721 · own contract, no third-party marketplace</td></tr>
-    <tr><td><strong>Mask contract</strong></td><td><code style="font-size:11.5px;color:var(--accent2);word-break:break-all">terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</code></td></tr>
+    <tr><td><strong>Contracts</strong></td><td>Oracle Mask NFT · Oracle Score - see <a onclick="showSection('architecture')">Contracts</a></td></tr>
+    <tr><td><strong>Draw selection</strong></td><td>Block hash from the round deadline - see <a onclick="showSection('oracle-draw')">Oracle Draw</a></td></tr>
+    <tr><td><strong>Question history</strong></td><td>Public Git repository, every edit a timestamped commit</td></tr>
+    <tr><td><strong>Off-chain parts</strong></td><td>Listed in full under <a onclick="showSection('architecture')">Contracts &amp; architecture</a></td></tr>
+    <tr><td><strong>Terra Oracle</strong></td><td><a href="https://terraoracle.io/">terraoracle.io</a></td></tr>
+    <tr><td><strong>Oracle Draw</strong></td><td><a href="https://draw.terraoracle.io/">draw.terraoracle.io</a></td></tr>
   </table>
+
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div><b>Not everything runs on the chain, and this documentation says which parts do not.</b> Reputation, mints, payments and draw payouts are settled on Terra Classic. Question text, streak counting and the job that records free actions run on servers we operate. Where a page makes a claim you can verify, it tells you how.</div>
+  </div>
 </section>
 
 <!-- GET STARTED -->
@@ -371,6 +387,11 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <tr><td><strong>Oracle Draw - Rare NFT</strong></td><td>125,000 LUNC</td></tr>
     <tr><td><strong>Oracle Draw - Legendary NFT</strong></td><td>250,000 LUNC</td></tr>
   </table>
+
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div>Question prices above are the full rate. A rank or a seven-day streak takes up to 25% off, and the two do not stack - the larger applies. See <a onclick="showSection('reputation')">Reputation</a> and <a onclick="showSection('streak')">Daily Streak</a>. The share that funds your Draw entry is never discounted, so an entry is always fully backed.</div>
+  </div>
   <div class="callout warn">
     <svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5 21 19.5H3z"/><path d="M12 10v4"/><circle cx="12" cy="16.8" r=".9" style="fill:currentColor;stroke:none"/></svg>
     <div><b>Where to mint</b><br>
@@ -544,8 +565,333 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <div class="info-box"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7.5A1.5 1.5 0 0 1 5 6h4l2 2.5h8a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 19 18.5H5A1.5 1.5 0 0 1 3.5 17z"/></svg> <a href="https://github.com/Baydashaaa/oracle-draw/blob/main/winners.json" target="_blank">github.com/Baydashaaa/oracle-draw · winners.json</a> - all draw results</div>
 </section>
 
+<!-- REPUTATION -->
+<section class="doc-section" id="section-reputation">
+  <div class="doc-tag">Protocol</div>
+  <h1 class="doc-title">Oracle <span>Reputation</span></h1>
+  <p class="doc-subtitle">Earn REP through activity. Unlock ranks, fee discounts, and weekly rewards.</p>
 
-<!-- SMART CONTRACT -->
+  <h2>What is Oracle Reputation?</h2>
+  <p>Oracle Reputation (REP) measures what you have contributed to the protocol - asking, answering, being upvoted, taking part. It is not a token: it cannot be bought, sent or sold, and it belongs to the wallet that earned it. What it does is unlock ranks, fee discounts and a share of the weekly reward pool.</p>
+  <p>REP is held in a smart contract on Terra Classic, not in our database. Your profile reads the figure from a public node, so the number you see is the number the chain holds - and you can check it without asking us. How that works, and what the contract does and does not enforce, is under <a onclick="showSection('oracle-score')">Oracle Score</a>.</p>
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div><b>Two figures, one score.</b> Your <b>rank</b> is based on all-time REP and never decays - take a month off and your status is where you left it. Your <b>weight</b>, which counts for draw entries and voting, decays with a 90-day half-life, so influence over what happens now reflects what you are contributing now. Both are shown on your profile.</div>
+  </div>
+
+  <h2>How REP is earned</h2>
+  <div class="rep-list">
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.2a2.7 2.7 0 1 1 3.4 3.3c-.6.2-.9.7-.9 1.3v.4"/><circle cx="12" cy="17" r=".9" style="fill:currentColor;stroke:none"/></svg></div><div style="flex:1"><div class="rep-title">Ask a question</div><div class="rep-req">+40 REP per question submitted</div></div><div class="rep-discount" style="color:var(--accent);border-color:rgba(84,147,247,0.3);background:rgba(84,147,247,0.08);">+40 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13.5A2.5 2.5 0 0 1 17.5 16H10l-4.5 3.5V6.5A2.5 2.5 0 0 1 8 4h9.5A2.5 2.5 0 0 1 20 6.5z"/></svg></div><div style="flex:1"><div class="rep-title">Answer a question</div><div class="rep-req">+40 REP per answer &middot; degressive after the 3rd answer of the day</div></div><div class="rep-discount" style="color:#66ffaa;border-color:rgba(102,255,170,0.3);background:rgba(102,255,170,0.08);">+40 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10.5 11 3a2.2 2.2 0 0 1 2.2 2.2V9h4.3a2 2 0 0 1 2 2.4l-1.3 6A2 2 0 0 1 16.2 19H7z"/><rect x="3.5" y="10.5" width="3.5" height="8.5" rx="1"/></svg></div><div style="flex:1"><div class="rep-title">Upvote received</div><div class="rep-req">+20 REP per upvote on your answers &middot; from wallets with paid history</div></div><div class="rep-discount" style="color:#ffd700;border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.08);">+20 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13.5A2.5 2.5 0 0 1 17.5 16H10l-4.5 3.5V6.5A2.5 2.5 0 0 1 8 4h9.5A2.5 2.5 0 0 1 20 6.5z"/></svg></div><div style="flex:1"><div class="rep-title">Chat message</div><div class="rep-req">+5 REP per message · no daily limit</div></div><div class="rep-discount" style="color:#c084fc;border-color:rgba(192,132,252,0.3);background:rgba(192,132,252,0.08);">+5 REP</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-violet" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v6a7.5 7.5 0 0 1-8 7.5 7.5 7.5 0 0 1-8-7.5z"/><circle cx="9" cy="11.5" r="1.3" style="fill:currentColor;stroke:none"/><circle cx="15" cy="11.5" r="1.3" style="fill:currentColor;stroke:none"/><path d="M10 15.8c1.3.8 2.7.8 4 0"/></svg></div><div style="flex:1"><div class="rep-title">Oracle Draw mint</div><div class="rep-req">Common=+25 REP · Rare=+125 REP · Legendary=+250 REP</div></div><div class="rep-discount" style="color:#ff8844;border-color:rgba(255,136,68,0.3);background:rgba(255,136,68,0.08);">+25/125/250 REP</div></div>
+  </div>
+  <div class="info-box">
+    <strong>Anti-abuse limits:</strong> Answers are limited to 3 per question per day per wallet. Voting is capped at 20 votes per day per wallet. Self-votes are blocked. Answer authors can delete their own answers.<br><br>
+    <strong>Degressive answer REP.</strong> Answering is the only free way to earn REP, so the rate decreases within a day: answers 1&ndash;3 earn +40 each, answers 4&ndash;10 earn +10 each, and later answers earn 0. You are never blocked from answering &mdash; only the REP stops accruing, and the counter resets daily.<br><br>
+    <strong>Upvote source check.</strong> An upvote grants REP to the answer author only when it comes from a wallet with paid on-chain history &mdash; a chat message, an NFT mint, or a question. Creating a wallet costs only gas, so ungated upvotes would be REP with no spend behind them. Anyone can still vote; the vote count on the answer always goes up.
+  </div>
+
+  <h2>Oracle Ascension - 7 Ranks</h2>
+  <p>As your REP grows, you ascend through 7 ranks. Higher ranks unlock question fee discounts and weekly reward multipliers.</p>
+  <p>The reward multiplier is capped at <strong>×1.5</strong> on purpose. Your share of the weekly pool is already proportional to your weekly REP, so a large multiplier on top would reward the same seniority twice and put the top of the table out of reach for newcomers.</p>
+  <div class="rep-list">
+    <div class="rep-item"><div class="rep-emoji" style="color:#6b82a8;font-size:15px;min-width:20px;"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 20 12l-8 8-8-8z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#6b82a8;">INITIATE</div><div class="rep-req">Starting rank · 0 REP · ×1.0 multiplier</div></div><div class="rep-discount" style="color:var(--muted);border-color:rgba(255,255,255,0.1);background:transparent;">No discount</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5V11"/><path d="M12 11C12 7 9 4 5 4c0 4 3 7 7 7z"/><path d="M12 13c0-3.3 2.5-6 6-6 0 3.3-2.5 6-6 6z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#66ffaa;">SEEKER</div><div class="rep-req">500 REP · ×1.0 multiplier</div></div><div class="rep-discount" style="color:var(--muted);border-color:rgba(255,255,255,0.1);background:transparent;">No discount</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="3" style="fill:currentColor;stroke:none"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#7eb8ff;">ADEPT</div><div class="rep-req">1,500 REP · ×1.1 multiplier</div></div><div class="rep-discount">−5% · Basic 47,500 · Priority 190,000</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-violet" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 4.5v15M4.5 12h15"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#c084fc;">ANALYST</div><div class="rep-req">4,000 REP · ×1.2 multiplier</div></div><div class="rep-discount">−10% · Basic 45,000 · Priority 180,000</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3 5.5 13.5H11l-.5 7.5 8-10.5H13z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#ffd700;">ORACLE</div><div class="rep-req">8,000 REP · ×1.3 multiplier</div></div><div class="rep-discount">−15% · Basic 42,500 · Priority 170,000</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s5.5 4.2 5.5 9a5.5 5.5 0 0 1-11 0c0-2 1-3.6 2-4.7 0 1.7.9 2.6 1.8 2.6 1.4 0 1.9-1.4 1.7-3.3-.1-1.4-.4-2.6 0-3.6z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#ff8844;">ARCHON</div><div class="rep-req">15,000 REP · ×1.4 multiplier</div></div><div class="rep-discount">−20% · Basic 40,000 · Priority 160,000</div></div>
+    <div class="rep-item"><div class="rep-emoji" style="color:#00ffff;font-size:15px;min-width:20px;"><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 14 10l7.5 2-7.5 2-2 7.5-2-7.5L2.5 12 10 10z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#00ffff;">ASCENDED</div><div class="rep-req">30,000 REP · ×1.5 multiplier</div></div><div class="rep-discount">−25% · Basic 37,500 · Priority 150,000</div></div>
+  </div>
+
+  <h2>Weekly Reward Pool</h2>
+  <p>Each week, <strong>25% of Protocol Treasury income</strong> is automatically transferred to the dedicated <strong>REP Rewards Pool</strong> wallet. The full pool balance is then distributed to the <strong>top 20% of contributors</strong> ranked by their REP earned in the last 7 days.</p>
+  <table>
+    <tr><th>Detail</th><th>Value</th></tr>
+    <tr><td>Pool size</td><td>Full balance of REP Rewards Pool wallet (funded weekly from Treasury)</td></tr>
+    <tr><td>Eligible contributors</td><td>Top 20% by 7-day REP score</td></tr>
+    <tr><td>Distribution</td><td>Proportional to weekly REP × rank multiplier</td></tr>
+    <tr><td>Activation threshold</td><td>Minimum 10 active contributors per week</td></tr>
+    <tr><td>If threshold not met</td><td>Pool carries over to the following week</td></tr>
+  </table>
+  <div class="info-box success">
+    <strong>All-time REP</strong> determines your rank and fee discounts - it never resets.<br>
+    <strong>Weekly REP</strong> (last 7 days only) is used exclusively for reward distribution and resets each week.
+  </div>
+
+  <h2>Where to see your Reputation</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Connect your wallet on Terra Oracle Classic</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Click <strong>Reputation</strong> in the navigation bar</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">View <strong>Your Stats</strong> for a full breakdown of your REP, rank, and estimated weekly reward</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Check the <strong>Leaderboard</strong> to see your position among all contributors</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text">On your profile, use <strong>verify</strong> next to the on-chain figure to look the same number up in an explorer</div></div>
+  </div>
+
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div>Free actions - answers and upvotes - are written to the chain by a scheduled job rather than by you, so they can take up to an hour to appear. Your profile shows how many are still queued, and nothing is lost in the meantime. See <a onclick="showSection('oracle-score')">Oracle Score</a> for why it works that way.</div>
+  </div>
+</section>
+
+<!-- DAILY STREAK -->
+<section class="doc-section" id="section-streak">
+  <h1 class="doc-title">Daily <span>Streak</span></h1>
+  <p>The Daily Streak system rewards consistent protocol activity. Every day you interact with Terra Oracle Classic through a paid action, your streak grows - unlocking REP multipliers, fee discounts, and exclusive Draw bonuses.</p>
+
+  <h2>What counts as a streak day</h2>
+  <p>Your streak advances by 1 each day you complete at least one of the following paid actions:</p>
+  <table class="doc-table">
+    <thead><tr><th>Action</th><th>Cost</th></tr></thead>
+    <tbody>
+      <tr><td>Ask a question (Oracle Q&A)</td><td>200,000 LUNC (or discounted price)</td></tr>
+      <tr><td>Send a message (DAO Chat)</td><td>5,000 LUNC</td></tr>
+      <tr><td>Enter Daily Draw</td><td>NFT mint fee</td></tr>
+      <tr><td>Enter Weekly Draw</td><td>NFT mint fee</td></tr>
+    </tbody>
+  </table>
+  <p>Free actions such as answering questions, voting, or poll voting do not count toward your streak.</p>
+
+  <h2>Grace period</h2>
+  <p>Missing one day every 7 days does not break your streak. The system automatically applies a grace period - the missed day is skipped and your streak continues as normal. However, only one grace is allowed per 7-day rolling window. Missing two or more days in a row always resets the streak to 1.</p>
+
+  <h2>Streak milestones & rewards</h2>
+  <p>Reaching a milestone unlocks permanent bonuses that apply as long as your streak is active. The REP multiplier is applied to all reputation points you earn.</p>
+  <table class="doc-table">
+    <thead><tr><th>Milestone</th><th>REP Multiplier</th><th>Bonus</th></tr></thead>
+    <tbody>
+      <tr><td>3 days</td><td>×1.1</td><td>-</td></tr>
+      <tr><td>5 days</td><td>×1.2</td><td>-</td></tr>
+      <tr><td>7 days</td><td>×1.3</td><td>25% discount on Oracle Q&A questions (150,000 LUNC)</td></tr>
+      <tr><td>14 days</td><td>×1.5</td><td>2 free Weekly Draw entries - 50,000 LUNC sent automatically from Reserve wallet to Weekly Draw pool</td></tr>
+      <tr><td>30 days</td><td>×2.0</td><td>Trusted User status · Golden profile border (permanent) · +1 free Weekly Draw entry every round while the streak is running</td></tr>
+    </tbody>
+  </table>
+
+  <h2>REP multiplier</h2>
+  <p>The streak multiplier applies to your total base REP score. For example, at a 14-day streak (×1.5), if your base REP is 1,000 your displayed reputation becomes 1,500. The multiplier is only active while your streak is running - if your streak resets, your REP returns to the base value.</p>
+
+  <h2>Question discount</h2>
+  <p>At 7+ days streak you get 25% off any question tariff - Basic drops from 50,000 to 37,500 LUNC, Priority from 200,000 to 150,000 LUNC. The discount comes out of the Treasury half only, so your free Weekly Draw entries are unaffected. It does <strong>not</strong> stack with your rank discount - the system always applies whichever discount is higher. For example, an ARCHON rank user (20% off) with a 7-day streak receives 25% off, not 45%.</p>
+
+  <h2>14-day free entries</h2>
+  <p>When you first reach a 14-day streak, 50,000 LUNC is automatically transferred from the Protocol Reserve wallet to the Weekly Draw pool. This corresponds to 2 free entries (25,000 LUNC each - the price of a Common NFT). The transfer is processed by an automated script that runs every hour.</p>
+
+  <h2>Trusted User status (30 days)</h2>
+  <p>Reaching 30 consecutive days unlocks Trusted User status. This is a permanent achievement - even if your streak resets, the status and golden profile border remain. As a Trusted User, every Draw entry you make receives an automatic +1 bonus entry at no extra cost, as long as your current streak is 30 or more days.</p>
+
+  <div style="display:flex;align-items:center;gap:32px;margin:20px 0;padding:20px 24px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Regular user</div>
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(84,147,247,0.1);border:2px solid rgba(84,147,247,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:26px;"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Trusted User · 30d streak</div>
+      <div style="
+        width:72px;height:72px;border-radius:50%;
+        background:linear-gradient(var(--bg),var(--bg)) padding-box,
+                   linear-gradient(135deg,#ffd700,#ffaa00,#ffe566,#ffd700) border-box;
+        border:2.5px solid transparent;
+        display:flex;align-items:center;justify-content:center;
+        margin:0 auto;font-size:26px;
+        box-shadow:0 0 14px rgba(255,215,0,0.55),0 0 28px rgba(255,170,0,0.25);
+        animation:trustedDocGlow 2s ease-in-out infinite;"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></div>
+      <div style="margin-top:8px;font-size:10px;font-weight:700;letter-spacing:0.08em;
+        background:linear-gradient(90deg,#ffd700,#ffaa00);
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;"><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 14 10l7.5 2-7.5 2-2 7.5-2-7.5L2.5 12 10 10z"/></svg> TRUSTED USER</div>
+    </div>
+    <div style="flex:1;min-width:200px;">
+      <div style="font-size:11px;color:var(--text);line-height:1.8;">
+        <div><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s5.5 4.2 5.5 9a5.5 5.5 0 0 1-11 0c0-2 1-3.6 2-4.7 0 1.7.9 2.6 1.8 2.6 1.4 0 1.9-1.4 1.7-3.3-.1-1.4-.4-2.6 0-3.6z"/></svg> <strong style="color:#ffd700;">Permanent</strong> golden border - even after streak reset</div>
+        <div><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3 5.5 13.5H11l-.5 7.5 8-10.5H13z"/></svg> <strong style="color:#ffd700;">×2.0 REP</strong> multiplier while streak is active</div>
+        <div><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5V7a1.5 1.5 0 0 1 1.5-1.5h14A1.5 1.5 0 0 1 20.5 7v2.5a2.5 2.5 0 0 0 0 5V17a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 17v-2.5a2.5 2.5 0 0 0 0-5z"/></svg> <strong style="color:#ffd700;">+1 bonus entry</strong> on every Draw (while streak ≥ 30d)</div>
+      </div>
+    </div>
+  </div>
+  <style>
+    @keyframes trustedDocGlow {
+      0%   { box-shadow:0 0 10px rgba(255,215,0,0.4),0 0 20px rgba(255,170,0,0.2); }
+      50%  { box-shadow:0 0 20px rgba(255,215,0,0.8),0 0 40px rgba(255,170,0,0.45); }
+      100% { box-shadow:0 0 10px rgba(255,215,0,0.4),0 0 20px rgba(255,170,0,0.2); }
+    }
+  </style>
+
+  <h2>Streak in Your Stats</h2>
+  <p>Open Your Stats in the Reputation section to see your current streak, longest streak, today's status, REP multiplier, and milestone progress. Each milestone card shows the reward it unlocks. The status badge shows either <strong>Streak secured today</strong> (green) or <strong>Today not completed</strong> (orange) - use it as a daily reminder to stay active.</p>
+
+  <h2>Streak reset</h2>
+  <p>If you miss more than one day (outside the grace period), your streak resets to 1 on your next active day. Milestones already reached are never removed - one-time rewards such as the 14-day LUNC transfer and the Trusted User golden border are permanent. Only the active REP multiplier and Draw bonuses depend on your current streak length.</p>
+</section>
+
+<!-- TREASURY -->
+<section class="doc-section" id="section-treasury">
+  <div class="doc-tag">Protocol</div>
+  <h1 class="doc-title">Protocol <span>Treasury</span></h1>
+  <p class="doc-subtitle">All protocol fees flow on-chain. Fully transparent - every wallet is publicly verifiable on Terra Classic.</p>
+
+  <h2>Revenue Sources</h2>
+  <table>
+    <tr><th>Source</th><th>Amount</th><th>Destination</th></tr>
+    <tr><td><strong>Oracle Q&A - Basic</strong></td><td>50,000 LUNC/question<br><small style="color:var(--muted)">Rank discount applies to Treasury portion only</small></td><td>25,000 LUNC → Weekly Draw Pool<br>25,000 LUNC (minus discount) → Protocol Treasury</td></tr>
+    <tr><td><strong>Oracle Q&A - Priority</strong></td><td>200,000 LUNC/question<br><small style="color:var(--muted)">Rank discount applies to Treasury portion only</small></td><td>100,000 LUNC → Weekly Draw Pool<br>100,000 LUNC (minus discount) → Protocol Treasury</td></tr>
+    <tr><td><strong>DAO Chat</strong></td><td>5,000 LUNC/message</td><td>100% → Protocol Treasury</td></tr>
+    <tr><td><strong>Daily Draw</strong></td><td>NFT mint fees</td><td>90% prizes · 10% → Protocol Treasury</td></tr>
+    <tr><td><strong>Weekly Draw</strong></td><td>NFT mint fees</td><td>90% prizes · 10% → Protocol Treasury</td></tr>
+    <tr><td><strong>Oracle Mask NFTs</strong></td><td>25,000 – 250,000 LUNC</td><td>Minted on-chain via the Oracle Mask contract · 100% routed to the chosen Draw pool</td></tr>
+  </table>
+
+  <h2>Treasury Distribution</h2>
+  <p>Protocol Treasury funds are distributed weekly across four wallets according to fixed percentages. Distribution runs automatically every <strong>Wednesday at 20:00 UTC</strong> via GitHub Actions.</p>
+
+  <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;margin:16px 0 10px;">
+    <div style="width:25%;background:#66ffaa;border-radius:6px 0 0 6px;"></div>
+    <div style="width:15%;background:#5493f7;"></div>
+    <div style="width:50%;background:#ffd700;"></div>
+    <div style="width:10%;background:#c084fc;border-radius:0 6px 6px 0;"></div>
+  </div>
+  <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:24px;">
+    <span><span style="color:#66ffaa;">■</span> REP Rewards 25%</span>
+    <span><span style="color:#5493f7;">■</span> Reserve 15%</span>
+    <span><span style="color:#ffd700;">■</span> Liquidity 50%</span>
+    <span><span style="color:#c084fc;">■</span> Development 10%</span>
+  </div>
+
+  <table>
+    <tr><th>Wallet</th><th>%</th><th>Purpose</th></tr>
+    <tr><td><strong style="color:#66ffaa;">REP Rewards</strong></td><td>25%</td><td>Weekly payouts to top 20% contributors by 7-day REP score</td></tr>
+    <tr><td><strong style="color:#5493f7;">Reserve</strong></td><td>15%</td><td>Protocol stability buffer - used only if protocol revenue drops</td></tr>
+    <tr><td><strong style="color:#ffd700;">Liquidity</strong></td><td>50%</td><td>Manual liquidity provision across selected trading pairs on Terra Classic DEXes</td></tr>
+    <tr><td><strong style="color:#c084fc;">Development</strong></td><td>10%</td><td>Protocol development, maintenance, and operations</td></tr>
+  </table>
+
+  <h2>Protocol Wallets</h2>
+  <p>All wallets are publicly visible on Terra Classic. Every transaction is on-chain and verifiable.</p>
+
+  <div class="wallet-list">
+
+    <div class="wallet-item">
+      <div class="wallet-name">Protocol Treasury</div>
+      <div class="wallet-desc">Main inflow wallet. Receives all Q&A and Chat fees. Distributes weekly to the 4 protocol wallets.</div>
+      <div class="wallet-addr">terra1549z8zd9hkggzlwf0rcuszhc9rs9fxqfy2kagt</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name" style="color:#66ffaa;">REP Rewards Wallet</div>
+      <div class="wallet-desc">Receives 25% of Treasury weekly. Used exclusively to pay out weekly REP rewards to top contributors.</div>
+      <div class="wallet-addr">terra1ty6fxd9u0jzae5lpzcs56rfclxg4q32hw5x4ce</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name" style="color:#5493f7;">Reserve Wallet</div>
+      <div class="wallet-desc">Receives 15% of Treasury weekly. Protocol stability buffer - not used in normal operations.</div>
+      <div class="wallet-addr">terra10q6syec2e27x8g76a0mvm3frgvarl5dz27a2jz</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name" style="color:#ffd700;">Liquidity Wallet</div>
+      <div class="wallet-desc">Receives 50% of Treasury weekly. Manually deployed as liquidity across selected trading pairs on Terra Classic DEXes.</div>
+      <div class="wallet-addr">terra1gukarslv6c8n0s2259822l7059putpqxz405su</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name" style="color:#c084fc;">Development Wallet</div>
+      <div class="wallet-desc">Receives 10% of Treasury weekly. Covers protocol development, maintenance, and operational costs.</div>
+      <div class="wallet-addr">terra17g55uzkm6cr5fcl3vzcrmu73v8as4yvf2kktzr</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name">Daily Draw Pool</div>
+      <div class="wallet-desc">Accumulates NFT mint fees for the Daily Draw. 90% distributed to winner, 10% goes to Protocol Treasury.</div>
+      <div class="wallet-addr">terra1amp68zg7vph3nq84ummnfma4dz753ezxfqa9px</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name">Weekly Draw Pool</div>
+      <div class="wallet-desc">Accumulates NFT mint fees for the Weekly Draw. Also receives 100,000 LUNC per Q&A question. 90% distributed to winner, 10% goes to Protocol Treasury.</div>
+      <div class="wallet-addr">terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz</div>
+    </div>
+
+    <div class="wallet-item">
+      <div class="wallet-name">Oracle Mask Contract</div>
+      <div class="wallet-desc">CW721 collection contract. Mint payments pass straight through to the Daily or Weekly pool in the same transaction &mdash; the contract holds no balance.</div>
+      <div class="wallet-addr">terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</div>
+    </div>
+
+  </div>
+
+  <h2>Verify On-chain</h2>
+  <div class="info-box">
+    All wallets and transactions are publicly visible on <a href="https://finder.terraport.finance/mainnet" target="_blank">finder.terraport.finance/mainnet</a>
+  </div>
+
+</section>
+
+<!-- CONTRACTS & ARCHITECTURE -->
+<section class="doc-section" id="section-architecture">
+  <div class="doc-tag">On-chain</div>
+  <h1>Contracts &amp; architecture</h1>
+  <p class="lead">Everything the protocol promises is either enforced by a contract on Terra Classic or it is not. This page draws that line honestly: what the chain settles, what a server still does, and how to check either one for yourself.</p>
+
+  <h2>Contracts</h2>
+  <table class="spec">
+    <tr><td>Oracle Mask NFT</td><td>CW721 · mints, ownership, pool routing<br><code>terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</code></td></tr>
+    <tr><td>Oracle Score</td><td>Reputation · accrual, ranks, decay, payment split<br><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td></tr>
+  </table>
+  <p>Both are CosmWasm contracts on <code>columbus-5</code>, both are built reproducibly, and both publish their source. Neither can be silently swapped: a migration is a transaction on the chain like any other.</p>
+
+  <h2>Protocol wallets</h2>
+  <p>Six ordinary addresses, not contracts. Every transfer in and out is public, and the full list with each wallet's purpose and share of revenue is under <a onclick="showSection('treasury')">Treasury</a>.</p>
+
+  <h2>What the chain settles</h2>
+  <div class="callout good">
+    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
+    <div><b>NFT mints.</b> Payment, token creation and the pool transfer are one atomic transaction. A wallet cannot be charged without receiving the NFT.</div>
+  </div>
+  <div class="callout good">
+    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
+    <div><b>Reputation.</b> Balances, the degressive answer ladder, daily limits and decay all live in the Oracle Score contract. Nobody can edit a score in a database.</div>
+  </div>
+  <div class="callout good">
+    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
+    <div><b>Every payment.</b> Questions, chat messages, mints, draw prizes and treasury distributions are transfers you can look up in an explorer.</div>
+  </div>
+
+  <h2>What is still off-chain</h2>
+  <p>Being straight about this matters more than sounding decentralised.</p>
+  <table class="spec">
+    <tr><td>Questions &amp; answers</td><td>Stored in <code>questions.json</code>, committed to a public Git repository. Every edit is a commit with a timestamp, so the history is auditable even though the store is not a chain.</td></tr>
+    <tr><td>Free actions</td><td>Answers and upvotes cannot be paid for on-chain by the author, so a Cloudflare Worker verifies them and an attestor key writes them into the contract on a schedule. That key can only touch actions the contract has explicitly opted in, and every grant is a public transaction.</td></tr>
+    <tr><td>Streaks</td><td>Day counting and grace days stay in storage; the multiplier is applied for display. Nothing about a streak moves money on its own.</td></tr>
+    <tr><td>Draw execution</td><td>The winner is derived from a block hash on Terra Classic, not from a random number the operator controls, and the payout is an ordinary transfer. What remains off-chain is the list of participants, which is assembled from mint activations before the deadline. See <a onclick="showSection('oracle-draw')">Oracle Draw</a> for how to check a past draw yourself.</td></tr>
+    <tr><td>Payment routing</td><td>The frontend splits a question payment between the Weekly pool and the Treasury. The contract can enforce this split itself, and that is a planned step &mdash; today the amounts are simply fixed and public.</td></tr>
+  </table>
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div><b>One admin key.</b> Contract parameters and migrations are controlled by a single key held by the developer. It is not a multisig, and calling it one would be dishonest at the current size of the community. Moving to a multisig is planned as the protocol grows.</div>
+  </div>
+
+  <h2>How the draw winner is chosen</h2>
+  <p>Not by the script that runs the draw. The winner is derived from the hash of the first block at or after the round deadline, so re-running the draw cannot change the outcome - the full rule, and how to recheck a past draw yourself, is under <a onclick="showSection('oracle-draw')">Oracle Draw</a>.</p>
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div><b>What still requires trust.</b> The randomness is verifiable; the <em>ticket list</em> is not yet. Participants are assembled off-chain from mint activations ordered by use, so reproducing an old draw end to end depends on that ordering being reported honestly. Publishing the ticket list before each deadline would close this, and is the natural next step.</div>
+  </div>
+
+  <h2>Verify any of it</h2>
+  <p>Contract state is public. These calls need no wallet and no key.</p>
+  <div class="code"><div class="code-head"><span>LCD · contract info</span><button class="copy-btn" onclick="copyCode(this,'a-verify')">Copy</button></div><pre id="a-verify"><span class="c"># which code a contract runs</span>
+https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/contract/&lt;contract&gt;
+
+<span class="c"># the checksum of that code - compare it to your own build</span>
+https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/&lt;code_id&gt;
+
+<span class="c"># any wallet's balance</span>
+https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;address&gt;</pre></div>
+</section>
+
+<!-- ORACLE MASK NFT -->
 <section class="doc-section" id="section-contract">
   <div class="doc-tag">On-chain</div>
   <h1>Oracle Mask NFT</h1>
@@ -676,89 +1022,6 @@ terrad query wasm code-info 11546 \
   published here and remains verifiable through the code checksum.</p>
 </section>
 
-
-<!-- ARCHITECTURE -->
-<section class="doc-section" id="section-architecture">
-  <div class="doc-tag">On-chain</div>
-  <h1>Contracts &amp; architecture</h1>
-  <p class="lead">Everything the protocol promises is either enforced by a contract on Terra Classic or it is not. This page draws that line honestly: what the chain settles, what a server still does, and how to check either one for yourself.</p>
-
-  <h2>Contracts</h2>
-  <table class="spec">
-    <tr><td>Oracle Mask NFT</td><td>CW721 · mints, ownership, pool routing<br><code>terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</code></td></tr>
-    <tr><td>Oracle Score</td><td>Reputation · accrual, ranks, decay, payment split<br><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td></tr>
-  </table>
-  <p>Both are CosmWasm contracts on <code>columbus-5</code>, both are built reproducibly, and both publish their source. Neither can be silently swapped: a migration is a transaction on the chain like any other.</p>
-
-  <h2>Protocol wallets</h2>
-  <p>These are ordinary addresses, not contracts. Every transfer in and out is public.</p>
-  <table class="spec">
-    <tr><td>Protocol Treasury</td><td><code>terra1549z8zd9hkggzlwf0rcuszhc9rs9fxqfy2kagt</code><br>Question fees and 100% of DAO Chat fees</td></tr>
-    <tr><td>Weekly Pool</td><td><code>terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz</code><br>Backs Weekly Draw entries at 25,000 LUNC per entry</td></tr>
-    <tr><td>Reserve</td><td><code>terra10q6syec2e27x8g76a0mvm3frgvarl5dz27a2jz</code><br>Streak rewards and pool seeding</td></tr>
-    <tr><td>REP Rewards</td><td><code>terra1ty6fxd9u0jzae5lpzcs56rfclxg4q32hw5x4ce</code><br>Weekly payouts to the top 20% by REP</td></tr>
-    <tr><td>Liquidity</td><td><code>terra1gukarslv6c8n0s2259822l7059putpqxz405su</code></td></tr>
-    <tr><td>Development</td><td><code>terra17g55uzkm6cr5fcl3vzcrmu73v8as4yvf2kktzr</code></td></tr>
-  </table>
-
-  <h2>What the chain settles</h2>
-  <div class="callout good">
-    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
-    <div><b>NFT mints.</b> Payment, token creation and the pool transfer are one atomic transaction. A wallet cannot be charged without receiving the NFT.</div>
-  </div>
-  <div class="callout good">
-    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
-    <div><b>Reputation.</b> Balances, the degressive answer ladder, daily limits and decay all live in the Oracle Score contract. Nobody can edit a score in a database.</div>
-  </div>
-  <div class="callout good">
-    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
-    <div><b>Every payment.</b> Questions, chat messages, mints, draw prizes and treasury distributions are transfers you can look up in an explorer.</div>
-  </div>
-
-  <h2>What is still off-chain</h2>
-  <p>Being straight about this matters more than sounding decentralised.</p>
-  <table class="spec">
-    <tr><td>Questions &amp; answers</td><td>Stored in <code>questions.json</code>, committed to a public Git repository. Every edit is a commit with a timestamp, so the history is auditable even though the store is not a chain.</td></tr>
-    <tr><td>Free actions</td><td>Answers and upvotes cannot be paid for on-chain by the author, so a Cloudflare Worker verifies them and an attestor key writes them into the contract on a schedule. That key can only touch actions the contract has explicitly opted in, and every grant is a public transaction.</td></tr>
-    <tr><td>Streaks</td><td>Day counting and grace days stay in storage; the multiplier is applied for display. Nothing about a streak moves money on its own.</td></tr>
-    <tr><td>Draw execution</td><td>The winner is derived from a block hash on Terra Classic, not from a random number the operator controls, and the payout is an ordinary transfer. What remains off-chain is the list of participants, which is assembled from mint activations before the deadline. See <a onclick="showSection('oracle-draw')">Oracle Draw</a> for how to check a past draw yourself.</td></tr>
-    <tr><td>Payment routing</td><td>The frontend splits a question payment between the Weekly pool and the Treasury. The contract can enforce this split itself, and that is a planned step &mdash; today the amounts are simply fixed and public.</td></tr>
-  </table>
-  <div class="callout info">
-    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
-    <div><b>One admin key.</b> Contract parameters and migrations are controlled by a single key held by the developer. It is not a multisig, and calling it one would be dishonest at the current size of the community. Moving to a multisig is planned as the protocol grows.</div>
-  </div>
-
-  <h2>How the draw winner is chosen</h2>
-  <p>The winner is not drawn by the script. It is derived from the chain, and the derivation is fixed before the draw runs:</p>
-  <div class="code"><div class="code-head"><span>Selection rule</span><button class="copy-btn" onclick="copyCode(this,'a-draw')">Copy</button></div><pre id="a-draw">winner_index = BigInt("0x" + block_hash) % total_tickets
-
-<span class="c">// block_hash is the hash of the FIRST block at or after the round</span>
-<span class="c">// deadline - the most recent 20:00 UTC - not whatever block happened</span>
-<span class="c">// to be latest when the job ran.</span></pre></div>
-  <div class="callout good">
-    <svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6v6c0 4.4-3.1 7.6-7.5 9-4.4-1.4-7.5-4.6-7.5-9V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.6"/></svg>
-    <div><b>Re-running the draw cannot change the winner.</b> Because the block is pinned to the deadline rather than to the moment of execution, every run inside the round lands on the same block and therefore the same result. An operator who dislikes an outcome gains nothing by trying again.</div>
-  </div>
-  <p>Every draw record in <code>winners.json</code> carries <code>block_height</code>, <code>block_hash</code>, <code>entries</code> and <code>winner_index</code>, which is everything needed to redo the arithmetic. Fetch that block from any Terra Classic LCD, convert its hash from base64 to uppercase hex, take it modulo the entry count, and you should land on the published index.</p>
-  <div class="callout info">
-    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
-    <div><b>What still requires trust.</b> The randomness is verifiable; the <em>ticket list</em> is not yet. Participants are assembled off-chain from mint activations ordered by use, so reproducing an old draw end to end depends on that ordering being reported honestly. Publishing the ticket list before each deadline would close this, and is the natural next step.</div>
-  </div>
-
-  <h2>Verify any of it</h2>
-  <p>Contract state is public. These calls need no wallet and no key.</p>
-  <div class="code"><div class="code-head"><span>LCD · contract info</span><button class="copy-btn" onclick="copyCode(this,'a-verify')">Copy</button></div><pre id="a-verify"><span class="c"># which code a contract runs</span>
-https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/contract/&lt;contract&gt;
-
-<span class="c"># the checksum of that code - compare it to your own build</span>
-https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/&lt;code_id&gt;
-
-<span class="c"># any wallet's balance</span>
-https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;address&gt;</pre></div>
-</section>
-
-
 <!-- ORACLE SCORE -->
 <section class="doc-section" id="section-oracle-score">
   <div class="doc-tag">On-chain</div>
@@ -774,7 +1037,7 @@ https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;addres
     <div class="badge-row">
       <span class="badge live">CosmWasm</span>
       <span class="badge ok"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg> Reproducible build</span>
-      <span class="badge">Code ID 11552</span>
+      <span class="badge">Code ID 11556</span>
       <span class="badge">Migratable</span>
     </div>
   </div>
@@ -783,8 +1046,8 @@ https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;addres
   <table class="spec">
     <tr><td>Chain</td><td>Terra Classic · columbus-5</td></tr>
     <tr><td>Contract</td><td><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td></tr>
-    <tr><td>Code ID</td><td><code>11552</code></td></tr>
-    <tr><td>Code checksum</td><td><code>99c6cd4e79ea7e0adc3c9c9f301fdfac450a64f49b9236f543e0c2e64421f9ff</code></td></tr>
+    <tr><td>Code ID</td><td><code>11556</code></td></tr>
+    <tr><td>Code checksum</td><td><code>8bec505dc36f6a414783ca956621eb3437fb6208b13381d06cc8dbeb6139238c</code></td></tr>
     <tr><td>Source</td><td><a href="https://github.com/Baydashaaa/oracle-score" target="_blank">github.com/Baydashaaa/oracle-score</a></td></tr>
     <tr><td>Half-life</td><td>90 days (weight only)</td></tr>
     <tr><td>Epoch</td><td>7 days</td></tr>
@@ -802,22 +1065,11 @@ https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;addres
     <div>A third figure, the <b>epoch score</b>, buckets each 7-day week and never decays. It decides weekly reward shares, where the fair basis is what you contributed that week.</div>
   </div>
 
-  <h2>What earns REP</h2>
+  <h2>How much each action grants</h2>
+  <p>The amounts and the answer ladder are documented under <a onclick="showSection('reputation')">Reputation</a>; the contract holds the same figures as configuration. Two of its rules are worth stating here because they are enforced rather than described:</p>
   <table class="spec">
-    <tr><td>Ask a question</td><td>+40</td></tr>
-    <tr><td>Write an answer</td><td>+40 for your first three of the day, +10 for the next seven, then 0</td></tr>
-    <tr><td>Receive an upvote</td><td>+20</td></tr>
-    <tr><td>Send a chat message</td><td>+5</td></tr>
-    <tr><td>Mint an NFT</td><td>+25 / +125 / +250 by tier</td></tr>
-  </table>
-  <p>The answer ladder counts <strong>per wallet per UTC day, across all questions</strong>. It exists to stop one person farming answers, so answering a busy thread late never costs you the full rate. A separate hard limit allows at most three answers to the same question per day.</p>
-
-  <h2>Fees and the payment split</h2>
-  <p>A paid action carries two amounts: a fixed pool leg that backs a draw entry, and whatever is left, which goes to the Treasury. Rank and streak discounts reduce the Treasury leg only, so a draw entry is always fully funded no matter who pays.</p>
-  <table class="spec">
-    <tr><td>Priority question</td><td>200,000 LUNC &mdash; 100,000 to the Weekly pool, +4 entries, 24h pin</td></tr>
-    <tr><td>Basic question</td><td>50,000 LUNC &mdash; 25,000 to the Weekly pool, +1 entry</td></tr>
-    <tr><td>Chat message</td><td>5,000 LUNC &mdash; 100% Treasury</td></tr>
+    <tr><td>Ladder scope</td><td>Counted <strong>per wallet per UTC day, across all questions</strong>. Answering a busy thread late never costs you the full rate - the limit is on how much one person earns in a day, not on how popular a question is.</td></tr>
+    <tr><td>Variable grants</td><td>Most actions are worth a fixed amount set in the config. An NFT mint is worth 25, 125 or 250 by tier, so the <code>draw</code> action is marked <code>variable_amount</code> and the figure is supplied with the record. Every other action rejects a supplied amount outright, which is what stops the recording key from deciding its own rewards.</td></tr>
   </table>
 
   <h2>How an action reaches the chain</h2>
@@ -859,7 +1111,7 @@ https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;addres
     <tr><td>Snapshot</td><td>2026-08-01T14:47:53Z · 4 wallets · 1,890 REP</td></tr>
     <tr><td>Snapshot hash</td><td><code>e02fd7a59c38060ca6924856c9f01b9af7acefd59e94e96b3e721cbd01392f2c</code></td></tr>
   </table>
-  <p>Seeding is still open while the frontend is being switched over to read from the contract. Once it closes it closes permanently: after that, not even the admin key can rewrite a balance.</p>
+  <p>Seeding is now closed, permanently. Balances can no longer be written in bulk by anyone, including the admin key - from here reputation only moves by being earned, or by a <code>Slash</code> that records its reason on the chain.</p>
 
   <h2>Build it yourself</h2>
   <p>The checksum on the chain is produced by a reproducible build, so you can confirm the deployed contract is the published source rather than take our word for it.</p>
@@ -873,9 +1125,8 @@ docker run --rm -v "$(pwd)":/code \
 
 cat artifacts/checksums.txt
 <span class="c"># compare with the chain:</span>
-curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11552</pre></div>
+curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11556</pre></div>
 </section>
-
 
 <!-- FAQ -->
 <section class="doc-section" id="section-faq">
@@ -893,259 +1144,15 @@ curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11552</pr
 <details class="faq"><summary>Can I transfer or sell my Oracle Mask?</summary><div class="faq-body">Yes. The collection follows the standard CW721 interface, so transfers, approvals and marketplace listings all work the same way as with any other Terra Classic NFT.</div></details><details class="faq"><summary>What do the token numbers mean?</summary><div class="faq-body">Token IDs are sequential per tier - <code>common-1</code>, <code>rare-7</code>, <code>legendary-2</code> - and are displayed as <b>Common #1</b>, <b>Rare #7</b> and so on. The number is assigned by the contract and can never repeat.</div></details><details class="faq"><summary>Can the contract be changed after deployment?</summary><div class="faq-body">The contract keeps a migration admin so new mechanics can be added later - NFT crafting is next on the roadmap. A migration preserves the contract address, all existing NFTs and their metadata. Every upgrade is documented here and stays verifiable through the published code checksum.</div></details><details class="faq"><summary>Can anyone mint an NFT for free?</summary><div class="faq-body">No. The contract itself is the CW721 minter, so the standard mint entry point is rejected for every external caller - including the protocol admin. Paying the exact tier price is the only path to an Oracle Mask.</div></details>
 
   <h2>Reputation &amp; general</h2>
-<details class="faq"><summary>Does REP cost anything? Can I buy it?</summary><div class="faq-body">REP is not a token and cannot be bought, sold or transferred. It is earned purely through activity - asking and answering questions, chat messages, upvotes received, and NFT mints - and it determines your rank, fee discounts and weekly reward share.</div></details><details class="faq"><summary>Which wallets are supported?</summary><div class="faq-body">Keplr, Galaxy Station, Terra Station, Luncdash and other Terra Classic compatible wallets. You need LUNC in the wallet for both the action itself and the network gas fee.</div></details><details class="faq"><summary>Where can I verify everything myself?</summary><div class="faq-body">Every wallet, mint and payout is public. Use <a href="https://finder.terraport.finance/mainnet" target="_blank">Terra Finder</a> for transactions, the <a href="#" onclick="showSection('contract');return false;">Smart Contract</a> section for direct chain queries and the reproducible build steps, and the <a href="#" onclick="showSection('treasury');return false;">Treasury</a> section for the full wallet list.</div></details>
-</section>
+<details class="faq"><summary>Does REP cost anything? Can I buy it?</summary><div class="faq-body">REP is not a token and cannot be bought, sold or transferred. It is earned purely through activity - asking and answering questions, chat messages, upvotes received, and NFT mints - and it determines your rank, fee discounts and weekly reward share.</div></details>
 
-<!-- REPUTATION -->
-<section class="doc-section" id="section-reputation">
-  <div class="doc-tag">Protocol</div>
-  <h1 class="doc-title">Oracle <span>Reputation</span></h1>
-  <p class="doc-subtitle">Earn REP through activity. Unlock ranks, fee discounts, and weekly rewards.</p>
+<details class="faq"><summary>Where is my REP actually stored?</summary><div class="faq-body">In a smart contract on Terra Classic, not in our database. Your profile reads the figure straight from a public node and shows a <strong>verify</strong> link so you can look up the same number in an explorer. See <a onclick="showSection('oracle-score')">Oracle Score</a>.</div></details>
 
-  <h2>What is Oracle Reputation?</h2>
-  <p>Oracle Reputation (REP) measures your contribution to the Terra Oracle protocol. It is not a token or balance - it reflects your <strong>activity, quality, and engagement</strong> across all protocol modules. REP accumulates over time and unlocks ranks, fee discounts, and weekly rewards.</p>
+<details class="faq"><summary>Why did my REP not go up immediately after answering?</summary><div class="faq-body">Answers and upvotes are free, so you cannot pay for them on-chain yourself - a scheduled job records them instead, and it runs about once an hour. Your profile shows how many actions are still queued. Nothing is lost while you wait; the grant is recorded whether or not you are looking.</div></details>
 
-  <h2>How REP is earned</h2>
-  <div class="rep-list">
-    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.2a2.7 2.7 0 1 1 3.4 3.3c-.6.2-.9.7-.9 1.3v.4"/><circle cx="12" cy="17" r=".9" style="fill:currentColor;stroke:none"/></svg></div><div style="flex:1"><div class="rep-title">Ask a question</div><div class="rep-req">+40 REP per question submitted</div></div><div class="rep-discount" style="color:var(--accent);border-color:rgba(84,147,247,0.3);background:rgba(84,147,247,0.08);">+40 REP</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13.5A2.5 2.5 0 0 1 17.5 16H10l-4.5 3.5V6.5A2.5 2.5 0 0 1 8 4h9.5A2.5 2.5 0 0 1 20 6.5z"/></svg></div><div style="flex:1"><div class="rep-title">Answer a question</div><div class="rep-req">+40 REP per answer &middot; degressive after the 3rd answer of the day</div></div><div class="rep-discount" style="color:#66ffaa;border-color:rgba(102,255,170,0.3);background:rgba(102,255,170,0.08);">+40 REP</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10.5 11 3a2.2 2.2 0 0 1 2.2 2.2V9h4.3a2 2 0 0 1 2 2.4l-1.3 6A2 2 0 0 1 16.2 19H7z"/><rect x="3.5" y="10.5" width="3.5" height="8.5" rx="1"/></svg></div><div style="flex:1"><div class="rep-title">Upvote received</div><div class="rep-req">+20 REP per upvote on your answers &middot; from wallets with paid history</div></div><div class="rep-discount" style="color:#ffd700;border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.08);">+20 REP</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13.5A2.5 2.5 0 0 1 17.5 16H10l-4.5 3.5V6.5A2.5 2.5 0 0 1 8 4h9.5A2.5 2.5 0 0 1 20 6.5z"/></svg></div><div style="flex:1"><div class="rep-title">Chat message</div><div class="rep-req">+5 REP per message · no daily limit</div></div><div class="rep-discount" style="color:#c084fc;border-color:rgba(192,132,252,0.3);background:rgba(192,132,252,0.08);">+5 REP</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-violet" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v6a7.5 7.5 0 0 1-8 7.5 7.5 7.5 0 0 1-8-7.5z"/><circle cx="9" cy="11.5" r="1.3" style="fill:currentColor;stroke:none"/><circle cx="15" cy="11.5" r="1.3" style="fill:currentColor;stroke:none"/><path d="M10 15.8c1.3.8 2.7.8 4 0"/></svg></div><div style="flex:1"><div class="rep-title">Oracle Draw mint</div><div class="rep-req">Common=+25 REP · Rare=+125 REP · Legendary=+250 REP</div></div><div class="rep-discount" style="color:#ff8844;border-color:rgba(255,136,68,0.3);background:rgba(255,136,68,0.08);">+25/125/250 REP</div></div>
-  </div>
-  <div class="info-box">
-    <strong>Anti-abuse limits:</strong> Answers are limited to 3 per question per day per wallet. Voting is capped at 20 votes per day per wallet. Self-votes are blocked. Answer authors can delete their own answers.<br><br>
-    <strong>Degressive answer REP.</strong> Answering is the only free way to earn REP, so the rate decreases within a day: answers 1&ndash;3 earn +40 each, answers 4&ndash;10 earn +10 each, and later answers earn 0. You are never blocked from answering &mdash; only the REP stops accruing, and the counter resets daily.<br><br>
-    <strong>Upvote source check.</strong> An upvote grants REP to the answer author only when it comes from a wallet with paid on-chain history &mdash; a chat message, an NFT mint, or a question. Creating a wallet costs only gas, so ungated upvotes would be REP with no spend behind them. Anyone can still vote; the vote count on the answer always goes up.
-  </div>
+<details class="faq"><summary>My rank stayed but my draw weight dropped. Why?</summary><div class="faq-body">They are two different figures on purpose. Rank uses all-time REP and never decays, so your status and fee discount survive a break. Weight decays with a 90-day half-life, because influence over what happens now should reflect what you are contributing now. Both are shown on your profile.</div></details>
 
-  <h2>Oracle Ascension - 7 Ranks</h2>
-  <p>As your REP grows, you ascend through 7 ranks. Higher ranks unlock question fee discounts and weekly reward multipliers.</p>
-  <p>The reward multiplier is capped at <strong>×1.5</strong> on purpose. Your share of the weekly pool is already proportional to your weekly REP, so a large multiplier on top would reward the same seniority twice and put the top of the table out of reach for newcomers.</p>
-  <div class="rep-list">
-    <div class="rep-item"><div class="rep-emoji" style="color:#6b82a8;font-size:15px;min-width:20px;"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 20 12l-8 8-8-8z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#6b82a8;">INITIATE</div><div class="rep-req">Starting rank · 0 REP · ×1.0 multiplier</div></div><div class="rep-discount" style="color:var(--muted);border-color:rgba(255,255,255,0.1);background:transparent;">No discount</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5V11"/><path d="M12 11C12 7 9 4 5 4c0 4 3 7 7 7z"/><path d="M12 13c0-3.3 2.5-6 6-6 0 3.3-2.5 6-6 6z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#66ffaa;">SEEKER</div><div class="rep-req">500 REP · ×1.0 multiplier</div></div><div class="rep-discount" style="color:var(--muted);border-color:rgba(255,255,255,0.1);background:transparent;">No discount</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="3" style="fill:currentColor;stroke:none"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#7eb8ff;">ADEPT</div><div class="rep-req">1,500 REP · ×1.1 multiplier</div></div><div class="rep-discount">−5% · Basic 47,500 · Priority 190,000</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-violet" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 4.5v15M4.5 12h15"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#c084fc;">ANALYST</div><div class="rep-req">4,000 REP · ×1.2 multiplier</div></div><div class="rep-discount">−10% · Basic 45,000 · Priority 180,000</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3 5.5 13.5H11l-.5 7.5 8-10.5H13z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#ffd700;">ORACLE</div><div class="rep-req">8,000 REP · ×1.3 multiplier</div></div><div class="rep-discount">−15% · Basic 42,500 · Priority 170,000</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:15px;min-width:20px;"><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s5.5 4.2 5.5 9a5.5 5.5 0 0 1-11 0c0-2 1-3.6 2-4.7 0 1.7.9 2.6 1.8 2.6 1.4 0 1.9-1.4 1.7-3.3-.1-1.4-.4-2.6 0-3.6z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#ff8844;">ARCHON</div><div class="rep-req">15,000 REP · ×1.4 multiplier</div></div><div class="rep-discount">−20% · Basic 40,000 · Priority 160,000</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="color:#00ffff;font-size:15px;min-width:20px;"><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 14 10l7.5 2-7.5 2-2 7.5-2-7.5L2.5 12 10 10z"/></svg></div><div style="flex:1"><div class="rep-title" style="color:#00ffff;">ASCENDED</div><div class="rep-req">30,000 REP · ×1.5 multiplier</div></div><div class="rep-discount">−25% · Basic 37,500 · Priority 150,000</div></div>
-  </div>
-
-  <h2>Weekly Reward Pool</h2>
-  <p>Each week, <strong>25% of Protocol Treasury income</strong> is automatically transferred to the dedicated <strong>REP Rewards Pool</strong> wallet. The full pool balance is then distributed to the <strong>top 20% of contributors</strong> ranked by their REP earned in the last 7 days.</p>
-  <table>
-    <tr><th>Detail</th><th>Value</th></tr>
-    <tr><td>Pool size</td><td>Full balance of REP Rewards Pool wallet (funded weekly from Treasury)</td></tr>
-    <tr><td>Eligible contributors</td><td>Top 20% by 7-day REP score</td></tr>
-    <tr><td>Distribution</td><td>Proportional to weekly REP × rank multiplier</td></tr>
-    <tr><td>Activation threshold</td><td>Minimum 10 active contributors per week</td></tr>
-    <tr><td>If threshold not met</td><td>Pool carries over to the following week</td></tr>
-  </table>
-  <div class="info-box success">
-    <strong>All-time REP</strong> determines your rank and fee discounts - it never resets.<br>
-    <strong>Weekly REP</strong> (last 7 days only) is used exclusively for reward distribution and resets each week.
-  </div>
-
-  <h2>Where to see your Reputation</h2>
-  <div class="steps">
-    <div class="step"><div class="step-num">1</div><div class="step-text">Connect your wallet on Terra Oracle Classic</div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-text">Click <strong>Reputation</strong> in the navigation bar</div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-text">View <strong>Your Stats</strong> for a full breakdown of your REP, rank, and estimated weekly reward</div></div>
-    <div class="step"><div class="step-num">4</div><div class="step-text">Check the <strong>Leaderboard</strong> to see your position among all contributors</div></div>
-  </div>
-</section>
-
-<!-- TREASURY -->
-<!-- DAILY STREAK -->
-<section class="doc-section" id="section-streak">
-  <h1 class="doc-title">Daily <span>Streak</span></h1>
-  <p>The Daily Streak system rewards consistent protocol activity. Every day you interact with Terra Oracle Classic through a paid action, your streak grows - unlocking REP multipliers, fee discounts, and exclusive Draw bonuses.</p>
-
-  <h2>What counts as a streak day</h2>
-  <p>Your streak advances by 1 each day you complete at least one of the following paid actions:</p>
-  <table class="doc-table">
-    <thead><tr><th>Action</th><th>Cost</th></tr></thead>
-    <tbody>
-      <tr><td>Ask a question (Oracle Q&A)</td><td>200,000 LUNC (or discounted price)</td></tr>
-      <tr><td>Send a message (DAO Chat)</td><td>5,000 LUNC</td></tr>
-      <tr><td>Enter Daily Draw</td><td>NFT mint fee</td></tr>
-      <tr><td>Enter Weekly Draw</td><td>NFT mint fee</td></tr>
-    </tbody>
-  </table>
-  <p>Free actions such as answering questions, voting, or poll voting do not count toward your streak.</p>
-
-  <h2>Grace period</h2>
-  <p>Missing one day every 7 days does not break your streak. The system automatically applies a grace period - the missed day is skipped and your streak continues as normal. However, only one grace is allowed per 7-day rolling window. Missing two or more days in a row always resets the streak to 1.</p>
-
-  <h2>Streak milestones & rewards</h2>
-  <p>Reaching a milestone unlocks permanent bonuses that apply as long as your streak is active. The REP multiplier is applied to all reputation points you earn.</p>
-  <table class="doc-table">
-    <thead><tr><th>Milestone</th><th>REP Multiplier</th><th>Bonus</th></tr></thead>
-    <tbody>
-      <tr><td>3 days</td><td>×1.1</td><td>-</td></tr>
-      <tr><td>5 days</td><td>×1.2</td><td>-</td></tr>
-      <tr><td>7 days</td><td>×1.3</td><td>25% discount on Oracle Q&A questions (150,000 LUNC)</td></tr>
-      <tr><td>14 days</td><td>×1.5</td><td>2 free Weekly Draw entries - 50,000 LUNC sent automatically from Reserve wallet to Weekly Draw pool</td></tr>
-      <tr><td>30 days</td><td>×2.0</td><td>Trusted User status · Golden profile border (permanent) · +1 free Weekly Draw entry every round while the streak is running</td></tr>
-    </tbody>
-  </table>
-
-  <h2>REP multiplier</h2>
-  <p>The streak multiplier applies to your total base REP score. For example, at a 14-day streak (×1.5), if your base REP is 1,000 your displayed reputation becomes 1,500. The multiplier is only active while your streak is running - if your streak resets, your REP returns to the base value.</p>
-
-  <h2>Question discount</h2>
-  <p>At 7+ days streak you get 25% off any question tariff - Basic drops from 50,000 to 37,500 LUNC, Priority from 200,000 to 150,000 LUNC. The discount comes out of the Treasury half only, so your free Weekly Draw entries are unaffected. It does <strong>not</strong> stack with your rank discount - the system always applies whichever discount is higher. For example, an ARCHON rank user (20% off) with a 7-day streak receives 25% off, not 45%.</p>
-
-  <h2>14-day free entries</h2>
-  <p>When you first reach a 14-day streak, 50,000 LUNC is automatically transferred from the Protocol Reserve wallet to the Weekly Draw pool. This corresponds to 2 free entries (25,000 LUNC each - the price of a Common NFT). The transfer is processed by an automated script that runs every hour.</p>
-
-  <h2>Trusted User status (30 days)</h2>
-  <p>Reaching 30 consecutive days unlocks Trusted User status. This is a permanent achievement - even if your streak resets, the status and golden profile border remain. As a Trusted User, every Draw entry you make receives an automatic +1 bonus entry at no extra cost, as long as your current streak is 30 or more days.</p>
-
-  <div style="display:flex;align-items:center;gap:32px;margin:20px 0;padding:20px 24px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;flex-wrap:wrap;">
-    <div style="text-align:center;">
-      <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Regular user</div>
-      <div style="width:72px;height:72px;border-radius:50%;background:rgba(84,147,247,0.1);border:2px solid rgba(84,147,247,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:26px;"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></div>
-    </div>
-    <div style="text-align:center;">
-      <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Trusted User · 30d streak</div>
-      <div style="
-        width:72px;height:72px;border-radius:50%;
-        background:linear-gradient(var(--bg),var(--bg)) padding-box,
-                   linear-gradient(135deg,#ffd700,#ffaa00,#ffe566,#ffd700) border-box;
-        border:2.5px solid transparent;
-        display:flex;align-items:center;justify-content:center;
-        margin:0 auto;font-size:26px;
-        box-shadow:0 0 14px rgba(255,215,0,0.55),0 0 28px rgba(255,170,0,0.25);
-        animation:trustedDocGlow 2s ease-in-out infinite;"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></div>
-      <div style="margin-top:8px;font-size:10px;font-weight:700;letter-spacing:0.08em;
-        background:linear-gradient(90deg,#ffd700,#ffaa00);
-        -webkit-background-clip:text;-webkit-text-fill-color:transparent;"><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 14 10l7.5 2-7.5 2-2 7.5-2-7.5L2.5 12 10 10z"/></svg> TRUSTED USER</div>
-    </div>
-    <div style="flex:1;min-width:200px;">
-      <div style="font-size:11px;color:var(--text);line-height:1.8;">
-        <div><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s5.5 4.2 5.5 9a5.5 5.5 0 0 1-11 0c0-2 1-3.6 2-4.7 0 1.7.9 2.6 1.8 2.6 1.4 0 1.9-1.4 1.7-3.3-.1-1.4-.4-2.6 0-3.6z"/></svg> <strong style="color:#ffd700;">Permanent</strong> golden border - even after streak reset</div>
-        <div><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3 5.5 13.5H11l-.5 7.5 8-10.5H13z"/></svg> <strong style="color:#ffd700;">×2.0 REP</strong> multiplier while streak is active</div>
-        <div><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5V7a1.5 1.5 0 0 1 1.5-1.5h14A1.5 1.5 0 0 1 20.5 7v2.5a2.5 2.5 0 0 0 0 5V17a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 17v-2.5a2.5 2.5 0 0 0 0-5z"/></svg> <strong style="color:#ffd700;">+1 bonus entry</strong> on every Draw (while streak ≥ 30d)</div>
-      </div>
-    </div>
-  </div>
-  <style>
-    @keyframes trustedDocGlow {
-      0%   { box-shadow:0 0 10px rgba(255,215,0,0.4),0 0 20px rgba(255,170,0,0.2); }
-      50%  { box-shadow:0 0 20px rgba(255,215,0,0.8),0 0 40px rgba(255,170,0,0.45); }
-      100% { box-shadow:0 0 10px rgba(255,215,0,0.4),0 0 20px rgba(255,170,0,0.2); }
-    }
-  </style>
-
-  <h2>Streak in Your Stats</h2>
-  <p>Open Your Stats in the Reputation section to see your current streak, longest streak, today's status, REP multiplier, and milestone progress. Each milestone card shows the reward it unlocks. The status badge shows either <strong>Streak secured today</strong> (green) or <strong>Today not completed</strong> (orange) - use it as a daily reminder to stay active.</p>
-
-  <h2>Streak reset</h2>
-  <p>If you miss more than one day (outside the grace period), your streak resets to 1 on your next active day. Milestones already reached are never removed - one-time rewards such as the 14-day LUNC transfer and the Trusted User golden border are permanent. Only the active REP multiplier and Draw bonuses depend on your current streak length.</p>
-</section>
-
-<section class="doc-section" id="section-treasury">
-  <div class="doc-tag">Protocol</div>
-  <h1 class="doc-title">Protocol <span>Treasury</span></h1>
-  <p class="doc-subtitle">All protocol fees flow on-chain. Fully transparent - every wallet is publicly verifiable on Terra Classic.</p>
-
-  <h2>Revenue Sources</h2>
-  <table>
-    <tr><th>Source</th><th>Amount</th><th>Destination</th></tr>
-    <tr><td><strong>Oracle Q&A - Basic</strong></td><td>50,000 LUNC/question<br><small style="color:var(--muted)">Rank discount applies to Treasury portion only</small></td><td>25,000 LUNC → Weekly Draw Pool<br>25,000 LUNC (minus discount) → Protocol Treasury</td></tr>
-    <tr><td><strong>Oracle Q&A - Priority</strong></td><td>200,000 LUNC/question<br><small style="color:var(--muted)">Rank discount applies to Treasury portion only</small></td><td>100,000 LUNC → Weekly Draw Pool<br>100,000 LUNC (minus discount) → Protocol Treasury</td></tr>
-    <tr><td><strong>DAO Chat</strong></td><td>5,000 LUNC/message</td><td>100% → Protocol Treasury</td></tr>
-    <tr><td><strong>Daily Draw</strong></td><td>NFT mint fees</td><td>90% prizes · 10% → Protocol Treasury</td></tr>
-    <tr><td><strong>Weekly Draw</strong></td><td>NFT mint fees</td><td>90% prizes · 10% → Protocol Treasury</td></tr>
-    <tr><td><strong>Oracle Mask NFTs</strong></td><td>25,000 – 250,000 LUNC</td><td>Minted on-chain via the Oracle Mask contract · 100% routed to the chosen Draw pool</td></tr>
-  </table>
-
-  <h2>Treasury Distribution</h2>
-  <p>Protocol Treasury funds are distributed weekly across four wallets according to fixed percentages. Distribution runs automatically every <strong>Wednesday at 20:00 UTC</strong> via GitHub Actions.</p>
-
-  <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;margin:16px 0 10px;">
-    <div style="width:25%;background:#66ffaa;border-radius:6px 0 0 6px;"></div>
-    <div style="width:15%;background:#5493f7;"></div>
-    <div style="width:50%;background:#ffd700;"></div>
-    <div style="width:10%;background:#c084fc;border-radius:0 6px 6px 0;"></div>
-  </div>
-  <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:24px;">
-    <span><span style="color:#66ffaa;">■</span> REP Rewards 25%</span>
-    <span><span style="color:#5493f7;">■</span> Reserve 15%</span>
-    <span><span style="color:#ffd700;">■</span> Liquidity 50%</span>
-    <span><span style="color:#c084fc;">■</span> Development 10%</span>
-  </div>
-
-  <table>
-    <tr><th>Wallet</th><th>%</th><th>Purpose</th></tr>
-    <tr><td><strong style="color:#66ffaa;">REP Rewards</strong></td><td>25%</td><td>Weekly payouts to top 20% contributors by 7-day REP score</td></tr>
-    <tr><td><strong style="color:#5493f7;">Reserve</strong></td><td>15%</td><td>Protocol stability buffer - used only if protocol revenue drops</td></tr>
-    <tr><td><strong style="color:#ffd700;">Liquidity</strong></td><td>50%</td><td>Manual liquidity provision across selected trading pairs on Terra Classic DEXes</td></tr>
-    <tr><td><strong style="color:#c084fc;">Development</strong></td><td>10%</td><td>Protocol development, maintenance, and operations</td></tr>
-  </table>
-
-  <h2>Protocol Wallets</h2>
-  <p>All wallets are publicly visible on Terra Classic. Every transaction is on-chain and verifiable.</p>
-
-  <div class="wallet-list">
-
-    <div class="wallet-item">
-      <div class="wallet-name">Protocol Treasury</div>
-      <div class="wallet-desc">Main inflow wallet. Receives all Q&A and Chat fees. Distributes weekly to the 4 protocol wallets.</div>
-      <div class="wallet-addr">terra1549z8zd9hkggzlwf0rcuszhc9rs9fxqfy2kagt</div>
-    </div>
-
-    <div class="wallet-item">
-      <div class="wallet-name" style="color:#66ffaa;">REP Rewards Wallet</div>
-      <div class="wallet-desc">Receives 25% of Treasury weekly. Used exclusively to pay out weekly REP rewards to top contributors.</div>
-      <div class="wallet-addr">terra1ty6fxd9u0jzae5lpzcs56rfclxg4q32hw5x4ce</div>
-    </div>
-
-    <div class="wallet-item">
-      <div class="wallet-name" style="color:#5493f7;">Reserve Wallet</div>
-      <div class="wallet-desc">Receives 15% of Treasury weekly. Protocol stability buffer - not used in normal operations.</div>
-      <div class="wallet-addr">terra10q6syec2e27x8g76a0mvm3frgvarl5dz27a2jz</div>
-    </div>
-
-    <div class="wallet-item">
-      <div class="wallet-name" style="color:#ffd700;">Liquidity Wallet</div>
-      <div class="wallet-desc">Receives 50% of Treasury weekly. Manually deployed as liquidity across selected trading pairs on Terra Classic DEXes.</div>
-      <div class="wallet-addr">terra1gukarslv6c8n0s2259822l7059putpqxz405su</div>
-    </div>
-
-    <div class="wallet-item">
-      <div class="wallet-name" style="color:#c084fc;">Development Wallet</div>
-      <div class="wallet-desc">Receives 10% of Treasury weekly. Covers protocol development, maintenance, and operational costs.</div>
-      <div class="wallet-addr">terra17g55uzkm6cr5fcl3vzcrmu73v8as4yvf2kktzr</div>
-    </div>
-
-    <div class="wallet-item">
-      <div class="wallet-name">Daily Draw Pool</div>
-      <div class="wallet-desc">Accumulates NFT mint fees for the Daily Draw. 90% distributed to winner, 10% goes to Protocol Treasury.</div>
-      <div class="wallet-addr">terra1amp68zg7vph3nq84ummnfma4dz753ezxfqa9px</div>
-    </div>
-
-    <div class="wallet-item">
-      <div class="wallet-name">Weekly Draw Pool</div>
-      <div class="wallet-desc">Accumulates NFT mint fees for the Weekly Draw. Also receives 100,000 LUNC per Q&A question. 90% distributed to winner, 10% goes to Protocol Treasury.</div>
-      <div class="wallet-addr">terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz</div>
-    </div>
-
-    <div class="wallet-item">
-      <div class="wallet-name">Oracle Mask Contract</div>
-      <div class="wallet-desc">CW721 collection contract. Mint payments pass straight through to the Daily or Weekly pool in the same transaction &mdash; the contract holds no balance.</div>
-      <div class="wallet-addr">terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</div>
-    </div>
-
-  </div>
-
-  <h2>Verify On-chain</h2>
-  <div class="info-box">
-    All wallets and transactions are publicly visible on <a href="https://finder.terraport.finance/mainnet" target="_blank">finder.terraport.finance/mainnet</a>
-  </div>
-
+<details class="faq"><summary>Can you change my REP?</summary><div class="faq-body">Not by rewriting it. Bulk seeding was used once to carry over reputation earned before the contract existed, and it has since been closed permanently - the contract will refuse it from any caller, including the admin key. What remains is a <code>Slash</code> for abuse, which is a public transaction with its reason recorded on the chain.</div></details><details class="faq"><summary>Which wallets are supported?</summary><div class="faq-body">Keplr, Galaxy Station, Terra Station, Luncdash and other Terra Classic compatible wallets. You need LUNC in the wallet for both the action itself and the network gas fee.</div></details><details class="faq"><summary>Where can I verify everything myself?</summary><div class="faq-body">Every wallet, mint and payout is public. Use <a href="https://finder.terraport.finance/mainnet" target="_blank">Terra Finder</a> for transactions, the <a href="#" onclick="showSection('contract');return false;">Smart Contract</a> section for direct chain queries and the reproducible build steps, and the <a href="#" onclick="showSection('treasury');return false;">Treasury</a> section for the full wallet list.</div></details>
 </section>
 
 </main>
