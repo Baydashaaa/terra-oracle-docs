@@ -457,7 +457,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <p>Active participation in DAO Chat is rewarded with Weekly Draw entries:</p>
   <div class="info-box">
     Every <strong>10th message sent</strong> = <strong>1 free Weekly Draw entry</strong><br>
-    Capped at <strong>20 entries per weekly round</strong>. Entries reset every Monday at 20:00 UTC together with the draw.
+    Capped at <strong>20 entries per weekly round</strong>. Entries reset once a Weekly Draw has actually taken place - normally Monday 20:00 UTC. If a draw is skipped or fails, entries carry over to the next round instead of being lost.
   </div>
   <h2>How to send a message</h2>
   <div class="steps">
@@ -489,7 +489,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <div class="tier-card legendary"><div class="tier-name">Legendary</div><div class="tier-price">250,000 LUNC</div><div class="tier-detail">10 entries<br>Daily & Weekly Draw</div></div>
   </div>
   <h2>Daily Draw</h2>
-  <p>Happens every day at <strong>20:00 UTC</strong>. All NFT tiers participate.</p>
+  <p>Happens at <strong>20:00 UTC every day except Monday</strong> - Monday 20:00 UTC belongs to the Weekly Draw, and only one draw runs per day. All NFT tiers participate.</p>
   <div class="prize-bar">
     <div class="prize-row"><div class="prize-label"><svg class="nicon i-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h10v4a5 5 0 0 1-10 0z"/><path d="M7 6H4.5v1.5A3 3 0 0 0 7.3 10.5M17 6h2.5v1.5a3 3 0 0 1-2.8 3"/><path d="M12 13.5V17M8.5 20h7"/></svg> Winner</div><div class="prize-fill-wrap"><div class="prize-fill" style="width:80%;background:linear-gradient(90deg,#3B1FCC,#7B5CFF)"></div></div><div class="prize-pct">80%</div></div>
     <div class="prize-row"><div class="prize-label"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5V11"/><path d="M12 11C12 7 9 4 5 4c0 4 3 7 7 7z"/><path d="M12 13c0-3.3 2.5-6 6-6 0 3.3-2.5 6-6 6z"/></svg> Seeds Next Round</div><div class="prize-fill-wrap"><div class="prize-fill" style="width:10%;background:var(--green)"></div></div><div class="prize-pct">10%</div></div>
@@ -538,25 +538,35 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
   <h2>Weekly Draw - step by step</h2>
   <ol style="margin:8px 0 16px 20px;line-height:2.2;">
-    <li>All Oracle Mask mints registered to the <strong>Weekly</strong> pool in the last <strong>7 days</strong> are collected from the contract’s on-chain mint events</li>
+    <li>All Oracle Mask mints registered to the <strong>Weekly</strong> pool that have not yet been used in a completed draw are collected - if a draw is skipped, those entries carry over instead of expiring</li>
     <li>Free entries from Oracle Q&A and DAO Chat are added to the pool</li>
-    <li>Three unique winners are selected from the same deadline-block hash (chained through SHA-256 so one wallet cannot take two places):
+    <li>Up to three winners are selected from the same deadline-block hash. Each place uses a seed derived from the
+      <em>previous</em> one, so the chain has to be replayed in order - the seed for 2nd place is not built from the block hash directly:
       <div class="info-box" style="font-family:monospace;font-size:12px;letter-spacing:0.04em;margin-top:8px;line-height:2;">
-        1st: sha256(block_hash + "0") % total → 48%<br>
-        2nd: sha256(block_hash + "1") % total → 20%<br>
-        3rd: sha256(block_hash + "2") % total → 12%
+        seed&#8320; = block_hash<br>
+        1st: seed&#8321; = sha256(seed&#8320; + "0") &nbsp;→&nbsp; index = BigInt("0x" + seed&#8321;) % total &nbsp;→&nbsp; 48%<br>
+        2nd: seed&#8322; = sha256(seed&#8321; + "1") &nbsp;→&nbsp; index = BigInt("0x" + seed&#8322;) % total &nbsp;→&nbsp; 20%<br>
+        3rd: seed&#8323; = sha256(seed&#8322; + "2") &nbsp;→&nbsp; index = BigInt("0x" + seed&#8323;) % total &nbsp;→&nbsp; 12%
       </div>
     </li>
+    <li><strong>One wallet cannot take two places.</strong> This is a separate rule, not a property of the hash chain:
+      if the drawn index belongs to a wallet that already won a place, the index moves forward one ticket at a time
+      until it lands on a wallet that has not won yet, wrapping around to index 0 at the end of the list</li>
+    <li><strong>Fewer than three participants means fewer places.</strong> With two unique wallets only 1st and 2nd are
+      paid; with one, only 1st. The share of an unfilled place is not paid out - it stays in the pool wallet and
+      becomes part of next week's pool</li>
     <li><strong>10%</strong> → Protocol Treasury · <strong>10%</strong> stays as seeds for next round</li>
     <li>If fewer than 5 entries - draw is skipped, all funds carry to next week</li>
+    <li>If the pool balance is below <strong>500,000 LUNC</strong> - draw is skipped as well, and the pool carries to next week</li>
   </ol>
 
   <h2>Verify it yourself</h2>
   <p>Every draw records everything needed to reproduce the result. From <a href="https://github.com/Baydashaaa/oracle-draw/blob/main/winners.json" target="_blank" style="color:var(--accent2)">winners.json</a>, for any round:</p>
   <ol style="margin:8px 0 16px 20px;line-height:2.2;">
     <li>Take <code>block_height</code> and fetch that block from any Terra Classic LCD (its <code>block_id.hash</code>, base64 &rarr; hex uppercase, must equal the recorded <code>block_hash</code>)</li>
-    <li>Rebuild the ticket list: each participant repeats <code>entries</code> times, ordered by mint time</li>
-    <li>Compute <code>BigInt("0x" + block_hash) % total_entries</code> - it must equal the recorded <code>winner_index</code></li>
+    <li>Rebuild the ticket list. You do not have to reconstruct it by hand: every draw also writes a frozen snapshot to <code>rounds/&lt;round_id&gt;.json</code> in the same repository - the exact ticket order used, as pairs of <code>[wallet, ticket count]</code></li>
+    <li>For a <strong>Daily</strong> round: compute <code>BigInt("0x" + block_hash) % total_entries</code> - it must equal the recorded <code>winner_index</code></li>
+    <li>For a <strong>Weekly</strong> round: replay the seed chain above in order, applying the duplicate-skip rule after each place. Each resulting index must equal the <code>winner_index</code> recorded for that place</li>
   </ol>
   <div class="info-box"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg> Because the block is chosen by the deadline and not by run time, anyone can repeat this check and reach the same winner the protocol did.</div>
 
