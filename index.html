@@ -848,8 +848,17 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <table class="spec">
     <tr><td>Oracle Mask NFT</td><td>CW721 · mints, ownership, pool routing<br><code>terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</code></td></tr>
     <tr><td>Oracle Score</td><td>Reputation · accrual, ranks, decay, payment split<br><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td></tr>
+    <tr><td>Draw Pool · Daily</td><td>Entries, rounds, winner selection, payout<br><code>terra1d9ga3dzhg63v6rmm8ahts55ekjpwlm6dusw5cwhpt60s6t0actqqsul6tm</code></td></tr>
+    <tr><td>Draw Pool · Weekly</td><td>Same contract, separate instance and separate funds<br><code>terra19w39c3qz6kc756hap92x374reptah9kp5825f5c67hmquy383r5qd7dmd8</code></td></tr>
   </table>
-  <p>Both are CosmWasm contracts on <code>columbus-5</code>, both are built reproducibly, and both publish their source. Neither can be silently swapped: a migration is a transaction on the chain like any other.</p>
+  <p>All four are CosmWasm contracts on <code>columbus-5</code>, built reproducibly, with published source. None can be silently swapped: a migration is a transaction on the chain like any other.</p>
+  <div class="callout info">
+    <div><b>The pool contracts are not paying yet.</b> Every Daily mint already records an entry
+    in one, and it selects a winner of its own each round &mdash; but the prize is still held in a
+    wallet and paid by a scheduled script. The contract runs alongside that script until its
+    results have been checked against it, and only then do the funds move across. Until they do,
+    a round settled by the contract shows a pot of zero, and that is expected rather than broken.</div>
+  </div>
 
   <h2>Protocol wallets</h2>
   <p>Six ordinary addresses, not contracts. Every transfer in and out is public, and the full list with each wallet's purpose and share of revenue is under <a onclick="showSection('treasury')">Treasury</a>.</p>
@@ -873,8 +882,8 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <table class="spec">
     <tr><td>Questions &amp; answers</td><td>Stored in <code>questions.json</code>, committed to a public Git repository. Every edit is a commit with a timestamp, so the history is auditable even though the store is not a chain.</td></tr>
     <tr><td>Free actions</td><td>Answers and upvotes cannot be paid for on-chain by the author, so a Cloudflare Worker verifies them and an attestor key writes them into the contract on a schedule. That key can only touch actions the contract has explicitly opted in, and every grant is a public transaction.</td></tr>
-    <tr><td>Streaks</td><td>Day counting and grace days stay in storage; the multiplier is applied for display. Nothing about a streak moves money on its own.</td></tr>
-    <tr><td>Draw execution</td><td>The winner is derived from a block hash on Terra Classic, not from a random number the operator controls, and the payout is an ordinary transfer. What remains off-chain is the list of participants, which is assembled from mint activations before the deadline. See <a onclick="showSection('oracle-draw')">Oracle Draw</a> for how to check a past draw yourself.</td></tr>
+    <tr><td>Streaks</td><td>Day counting and grace days stay in storage. A streak no longer changes your rank or the REP figure you see &mdash; both come from the contract alone, so they can be checked against it. The multiplier still applies to your weekly reward share, and a seven-day streak still carries its own question discount.</td></tr>
+    <tr><td>Draw execution</td><td>The winner is derived from a block hash on Terra Classic, not from a random number the operator controls, and the payout is an ordinary transfer. The list of participants is rebuilt from the NFT contract by a published rule, so it no longer depends on us reporting it correctly. What is still off-chain is the payout itself, signed by a scheduled script, and &mdash; for the Weekly draw only &mdash; the free entries earned by chatting and asking. See <a onclick="showSection('oracle-draw')">Oracle Draw</a> for how to check a past draw yourself.</td></tr>
     <tr><td>Payment routing</td><td>The frontend splits a question payment between the Weekly pool and the Treasury. The contract can enforce this split itself, and that is a planned step &mdash; today the amounts are simply fixed and public.</td></tr>
   </table>
   <div class="callout info">
@@ -886,7 +895,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <p>Not by the script that runs the draw. The winner is derived from the hash of the first block at or after the round deadline, so re-running the draw cannot change the outcome - the full rule, and how to recheck a past draw yourself, is under <a onclick="showSection('oracle-draw')">Oracle Draw</a>.</p>
   <div class="callout info">
     <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
-    <div><b>What still requires trust.</b> The randomness is verifiable; the <em>ticket list</em> is not yet. Participants are assembled off-chain from mint activations ordered by use, so reproducing an old draw end to end depends on that ordering being reported honestly. Publishing the ticket list before each deadline would close this, and is the natural next step.</div>
+    <div><b>What still requires trust.</b> The randomness and the ticket list are both reproducible now: every Daily entry is an NFT held by the contract, and the rule that turns those into tickets is published &mdash; mint time decides order, tier decides weight, and the owner is read at the deadline block. What remains is the <em>payout</em>, which a scheduled script signs with a key we hold, and the Weekly free entries, which are earned off-chain. A pool contract that holds the prize and pays on its own is already deployed and recording entries; it runs beside the script until its results have been checked.</div>
   </div>
 
   <h2>Verify any of it</h2>
@@ -916,7 +925,7 @@ https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;addres
     <div class="badge-row">
       <span class="badge live"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2.5"/><path d="M9.5 9.5h5M9.5 12.5h5M9.5 15.5h3"/><path d="M9 2.5v2M15 2.5v2M9 19.5v2M15 19.5v2M2.5 9h2M2.5 15h2M19.5 9h2M19.5 15h2"/></svg> CW721</span>
       <span class="badge ok"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg> Reproducible build</span>
-      <span class="badge">Code ID 11546</span>
+      <span class="badge">Code ID 11559</span>
       <span class="badge">Migratable</span>
     </div>
   </div>
@@ -926,8 +935,8 @@ https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;addres
     <tr><td>Standard</td><td>CW721 (CosmWasm NFT) · <code>cw721-base 0.18</code></td></tr>
     <tr><td>Chain</td><td>Terra Classic · columbus-5</td></tr>
     <tr><td>Contract</td><td><code>terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</code></td></tr>
-    <tr><td>Code ID</td><td><code>11546</code></td></tr>
-    <tr><td>Code checksum</td><td><code>638497e5fc9f3e957ad0fefe2b037b6e7c73b47d0445bdc536f2b1a71a6dc62d</code></td></tr>
+    <tr><td>Code ID</td><td><code>11559</code></td></tr>
+    <tr><td>Code checksum</td><td><code>b176ac50afa1a88c22d915bef460f832eca7ae6459963f0815adb82d0b9ada98</code></td></tr>
     <tr><td>Payment denom</td><td><code>uluna</code> (LUNC)</td></tr>
     <tr><td>Metadata</td><td>Stored on-chain · tier, entries, pool, mint price, mint time, image</td></tr>
     <tr><td>Token ID</td><td><code>{tier}-{n}</code> - e.g. <code>common-1</code>, <code>legendary-4</code></td></tr>
@@ -957,12 +966,17 @@ https://terra-classic-lcd.publicnode.com/cosmos/bank/v1beta1/balances/&lt;addres
 
   <h2>Mint message</h2>
   <p>A mint is a single <code>MsgExecuteContract</code> carrying the exact tier price as funds.</p>
+  <p><code>entropy</code> is 32 random bytes generated in your browser. The pool contract folds
+  it into the round, which is what stops whoever holds the round's secret from minting until the
+  result points at them &mdash; they cannot know what later minters will add. It is required for
+  any pool that records entries on-chain, and ignored for one that does not.</p>
   <div class="code"><div class="code-head"><span>Execute · mint</span><button class="copy-btn" onclick="copyCode(this,'q-mint')">Copy</button></div><pre id="q-mint">{
   <span class="k">"extension"</span>: {
     <span class="k">"msg"</span>: {
       <span class="k">"mint"</span>: {
         <span class="k">"tier"</span>: <span class="s">"common"</span>,   <span class="c">// common | rare | legendary</span>
-        <span class="k">"pool"</span>: <span class="s">"daily"</span>     <span class="c">// daily | weekly</span>
+        <span class="k">"pool"</span>: <span class="s">"daily"</span>,    <span class="c">// daily | weekly</span>
+        <span class="k">"entropy"</span>: <span class="s">"base64, 32 bytes"</span>  <span class="c">// random, from your browser</span>
       }
     }
   }
@@ -1015,11 +1029,11 @@ docker run --rm -v <span class="s">"$(pwd)"</span>:/code \
   cosmwasm/optimizer:0.16.0
 
 <span class="c"># 2 · compare with the checksum published on-chain</span>
-terrad query wasm code-info 11546 \
+terrad query wasm code-info 11559 \
   --node https://terra-classic-rpc.publicnode.com:443
 
 <span class="c"># expected checksum</span>
-<span class="s">638497e5fc9f3e957ad0fefe2b037b6e7c73b47d0445bdc536f2b1a71a6dc62d</span></pre></div>
+<span class="s">b176ac50afa1a88c22d915bef460f832eca7ae6459963f0815adb82d0b9ada98</span></pre></div>
   <div class="callout info">
     <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
     <div>Inspect the contract, every mint and every pool transfer on
