@@ -818,7 +818,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </table>
 
   <h2>Treasury Distribution</h2>
-  <p>Protocol Treasury funds are distributed weekly across four wallets according to fixed percentages. Distribution runs automatically every <strong>Wednesday at 20:00 UTC</strong> via GitHub Actions.</p>
+  <p>Protocol Treasury funds are distributed weekly across four wallets according to fixed percentages. Distribution runs automatically every <strong>Wednesday at 21:00 UTC</strong> via GitHub Actions &mdash; an hour after the draws, so the two never touch the treasury wallet at the same time.</p>
 
   <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;margin:16px 0 10px;">
     <div style="width:25%;background:#66ffaa;border-radius:6px 0 0 6px;"></div>
@@ -1127,7 +1127,7 @@ terrad query wasm code-info 11559 \
     <div class="badge-row">
       <span class="badge live">CosmWasm</span>
       <span class="badge ok"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg> Reproducible build</span>
-      <span class="badge">Code ID 11556</span>
+      <span class="badge">Code ID 11571</span>
       <span class="badge">Migratable</span>
     </div>
   </div>
@@ -1136,8 +1136,9 @@ terrad query wasm code-info 11559 \
   <table class="spec">
     <tr><td>Chain</td><td>Terra Classic · columbus-5</td></tr>
     <tr><td>Contract</td><td><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td></tr>
-    <tr><td>Code ID</td><td><code>11556</code></td></tr>
-    <tr><td>Code checksum</td><td><code>8bec505dc36f6a414783ca956621eb3437fb6208b13381d06cc8dbeb6139238c</code></td></tr>
+    <tr><td>Code ID</td><td><code>11571</code></td></tr>
+    <tr><td>Version</td><td><code>0.8.0</code></td></tr>
+    <tr><td>Code checksum</td><td><code>af9ad9eb7ad46700d29c56da97b42da27b4085c270113cfd3a5bf21b6f72af58</code></td></tr>
     <tr><td>Source</td><td><a href="https://github.com/Baydashaaa/oracle-score" target="_blank">github.com/Baydashaaa/oracle-score</a></td></tr>
     <tr><td>Half-life</td><td>90 days (weight only)</td></tr>
     <tr><td>Epoch</td><td>7 days</td></tr>
@@ -1215,7 +1216,7 @@ docker run --rm -v "$(pwd)":/code \
 
 cat artifacts/checksums.txt
 <span class="c"># compare with the chain:</span>
-curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11556</pre></div>
+curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11571</pre></div>
 </section>
 
 <!-- FAQ -->
