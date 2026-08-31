@@ -658,7 +658,6 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.2a2.7 2.7 0 1 1 3.4 3.3c-.6.2-.9.7-.9 1.3v.4"/><circle cx="12" cy="17" r=".9" style="fill:currentColor;stroke:none"/></svg></div><div style="flex:1"><div class="rep-title">Ask a question</div><div class="rep-req">+40 REP per question submitted</div></div><div class="rep-discount" style="color:var(--accent);border-color:rgba(84,147,247,0.3);background:rgba(84,147,247,0.08);">+40 REP</div></div>
     <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13.5A2.5 2.5 0 0 1 17.5 16H10l-4.5 3.5V6.5A2.5 2.5 0 0 1 8 4h9.5A2.5 2.5 0 0 1 20 6.5z"/></svg></div><div style="flex:1"><div class="rep-title">Answer a question</div><div class="rep-req">+40 REP per answer &middot; degressive after the 3rd answer of the day</div></div><div class="rep-discount" style="color:#66ffaa;border-color:rgba(102,255,170,0.3);background:rgba(102,255,170,0.08);">+40 REP</div></div>
     <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.3 2.4 2.4 4.6-5"/></svg></div><div style="flex:1"><div class="rep-title">Answer accepted</div><div class="rep-req">+60 REP when the question&rsquo;s author marks your answer as the one that solved it &middot; once per question, permanently</div></div><div class="rep-discount" style="color:#66ffaa;border-color:rgba(102,255,170,0.3);background:rgba(102,255,170,0.08);">+60 REP</div></div>
-    <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon" style="stroke:#38d9d0;" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></div><div style="flex:1"><div class="rep-title">Circuit round</div><div class="rep-req">For taking part in a round that drew, not for winning it &middot; 2 REP for the round plus 0.5 for each of your first five zones and 0.2 for the next ten, up to 6.5 &middot; a round that falls short of 20 zones carries over instead of drawing, and grants nothing</div></div><div class="rep-discount" style="color:#38d9d0;border-color:rgba(56,217,208,0.3);background:rgba(56,217,208,0.08);">+2&ndash;6.5</div></div>
     <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10.5 11 3a2.2 2.2 0 0 1 2.2 2.2V9h4.3a2 2 0 0 1 2 2.4l-1.3 6A2 2 0 0 1 16.2 19H7z"/><rect x="3.5" y="10.5" width="3.5" height="8.5" rx="1"/></svg></div><div style="flex:1"><div class="rep-title">Upvote received</div><div class="rep-req">+20 REP per upvote on your answers &middot; from wallets with paid history</div></div><div class="rep-discount" style="color:#ffd700;border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.08);">+20 REP</div></div>
     <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13.5A2.5 2.5 0 0 1 17.5 16H10l-4.5 3.5V6.5A2.5 2.5 0 0 1 8 4h9.5A2.5 2.5 0 0 1 20 6.5z"/></svg></div><div style="flex:1"><div class="rep-title">Chat message</div><div class="rep-req">+5 REP per message · no daily limit</div></div><div class="rep-discount" style="color:#c084fc;border-color:rgba(192,132,252,0.3);background:rgba(192,132,252,0.08);">+5 REP</div></div>
     <div class="rep-item"><div class="rep-emoji" style="font-size:16px;min-width:20px;"><svg class="nicon i-violet" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v6a7.5 7.5 0 0 1-8 7.5 7.5 7.5 0 0 1-8-7.5z"/><circle cx="9" cy="11.5" r="1.3" style="fill:currentColor;stroke:none"/><circle cx="15" cy="11.5" r="1.3" style="fill:currentColor;stroke:none"/><path d="M10 15.8c1.3.8 2.7.8 4 0"/></svg></div><div style="flex:1"><div class="rep-title">Oracle Draw mint</div><div class="rep-req">Common=+25 REP · Rare=+125 REP · Legendary=+250 REP</div></div><div class="rep-discount" style="color:#ff8844;border-color:rgba(255,136,68,0.3);background:rgba(255,136,68,0.08);">+25/125/250 REP</div></div>
@@ -819,7 +818,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </table>
 
   <h2>Treasury Distribution</h2>
-  <p>Protocol Treasury funds are distributed weekly across four wallets according to fixed percentages. Distribution runs automatically every <strong>Wednesday at 21:00 UTC</strong> via GitHub Actions &mdash; an hour after the draws, so the two never touch the treasury wallet at the same time.</p>
+  <p>Protocol Treasury funds are distributed weekly across four wallets according to fixed percentages. Distribution runs automatically every <strong>Wednesday at 20:00 UTC</strong> via GitHub Actions.</p>
 
   <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;margin:16px 0 10px;">
     <div style="width:25%;background:#66ffaa;border-radius:6px 0 0 6px;"></div>
@@ -879,14 +878,14 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
     <div class="wallet-item">
       <div class="wallet-name">Daily Draw Pool</div>
-      <div class="wallet-desc">oracle-pool contract holding the Daily prize funds. Each mint records an entry and pays the pool in the same transaction. At settlement the round&rsquo;s pot is the sum of its recorded entries (capped by the contract balance): 80% to the winner, 10% to Protocol Treasury, 0.1% to whoever triggers the draw. Anything left over rolls into the next round.</div>
-      <div class="wallet-addr">terra1d9ga3dzhg63v6rmm8ahts55ekjpwlm6dusw5cwhpt60s6t0actqqsul6tm</div>
+      <div class="wallet-desc">Accumulates NFT mint fees for the Daily Draw. 90% distributed to winner, 10% goes to Protocol Treasury.</div>
+      <div class="wallet-addr">terra1amp68zg7vph3nq84ummnfma4dz753ezxfqa9px</div>
     </div>
 
     <div class="wallet-item">
       <div class="wallet-name">Weekly Draw Pool</div>
-      <div class="wallet-desc">oracle-pool contract holding the Weekly prize funds. Each mint records an entry and pays the pool in the same transaction. At settlement the round&rsquo;s pot is the sum of its recorded entries (capped by the contract balance): 80% to the winner, 10% to Protocol Treasury, 0.1% to whoever triggers the draw. Anything left over rolls into the next round. The 100,000 LUNC Q&A leg still goes to the previous Weekly wallet terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz and is moved into the pool manually.</div>
-      <div class="wallet-addr">terra19w39c3qz6kc756hap92x374reptah9kp5825f5c67hmquy383r5qd7dmd8</div>
+      <div class="wallet-desc">Accumulates NFT mint fees for the Weekly Draw. Also receives 100,000 LUNC per Q&A question. 90% distributed to winner, 10% goes to Protocol Treasury.</div>
+      <div class="wallet-addr">terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz</div>
     </div>
 
     <div class="wallet-item">
@@ -1128,7 +1127,7 @@ terrad query wasm code-info 11559 \
     <div class="badge-row">
       <span class="badge live">CosmWasm</span>
       <span class="badge ok"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg> Reproducible build</span>
-      <span class="badge">Code ID 11571</span>
+      <span class="badge">Code ID 11556</span>
       <span class="badge">Migratable</span>
     </div>
   </div>
@@ -1137,9 +1136,8 @@ terrad query wasm code-info 11559 \
   <table class="spec">
     <tr><td>Chain</td><td>Terra Classic · columbus-5</td></tr>
     <tr><td>Contract</td><td><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td></tr>
-    <tr><td>Code ID</td><td><code>11571</code></td></tr>
-    <tr><td>Version</td><td><code>0.8.0</code></td></tr>
-    <tr><td>Code checksum</td><td><code>af9ad9eb7ad46700d29c56da97b42da27b4085c270113cfd3a5bf21b6f72af58</code></td></tr>
+    <tr><td>Code ID</td><td><code>11556</code></td></tr>
+    <tr><td>Code checksum</td><td><code>8bec505dc36f6a414783ca956621eb3437fb6208b13381d06cc8dbeb6139238c</code></td></tr>
     <tr><td>Source</td><td><a href="https://github.com/Baydashaaa/oracle-score" target="_blank">github.com/Baydashaaa/oracle-score</a></td></tr>
     <tr><td>Half-life</td><td>90 days (weight only)</td></tr>
     <tr><td>Epoch</td><td>7 days</td></tr>
@@ -1217,7 +1215,7 @@ docker run --rm -v "$(pwd)":/code \
 
 cat artifacts/checksums.txt
 <span class="c"># compare with the chain:</span>
-curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11571</pre></div>
+curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11556</pre></div>
 </section>
 
 <!-- FAQ -->
