@@ -885,7 +885,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
     <div class="wallet-item">
       <div class="wallet-name">Weekly Draw Pool</div>
-      <div class="wallet-desc">oracle-pool contract holding the Weekly prize funds. Each mint records an entry and pays the pool in the same transaction. At settlement the round&rsquo;s pot is the sum of its recorded entries (capped by the contract balance): 80% to the winner, 10% to Protocol Treasury, 0.1% to whoever triggers the draw. Anything left over rolls into the next round. The 100,000 LUNC Q&A leg still goes to the previous Weekly wallet terra1p5l6q95kfl3hes7edy76tywav9f79n6xlkz6qz and is moved into the pool manually.</div>
+      <div class="wallet-desc">oracle-pool contract holding the Weekly prize funds. Each mint records an entry and pays the pool in the same transaction. At settlement the round&rsquo;s pot is the sum of its recorded entries (capped by the contract balance): 80% to the winner, 10% to Protocol Treasury, 0.1% to whoever triggers the draw. Anything left over rolls into the next round. The Q&A pool leg is paid straight to this contract. Money arriving outside a mint is not part of the current round&rsquo;s pot: at the next settlement it becomes carry, and carry is added to the pot of the round after that.</div>
       <div class="wallet-addr">terra19w39c3qz6kc756hap92x374reptah9kp5825f5c67hmquy383r5qd7dmd8</div>
     </div>
 
