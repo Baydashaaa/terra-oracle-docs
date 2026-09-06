@@ -537,10 +537,11 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="m9 11.5 2 2 4-4.5"/></svg>
     <div><strong>What the commitment guarantees.</strong> Once the hash is published, the secret
     behind it is fixed: the result cannot be steered afterwards, and re-running the reveal always
-    gives the same winner. The part that stays with us is the timing - the secret is ours to
-    publish, and a round left unrevealed rolls over to the next one, entries and prize intact.
-    Nobody loses a ticket that way, but it does mean the schedule depends on us keeping to it.
-    Moving to a source of randomness that nobody derives is on our list.</div>
+    gives the same winner. And a round no longer depends on us publishing the secret at all - if
+    it is not revealed in time, anyone can settle the round from data that was already fixed when
+    entries closed, and the prize is paid. So the schedule is ours to keep, but the round
+    happening is not ours to decide. What we do still know is the outcome, as soon as entries
+    close; moving to a source of randomness that nobody derives is on our list.</div>
   </div>
 
   <h2>Daily Draw - step by step</h2>
@@ -606,6 +607,18 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <p style="font-size:13px;color:var(--muted);"><code>entropy</code> is folded over the round's entries in
   order and is recorded with the round, so you can take it as given for this check - or rebuild it from the
   contract's entry list if you want the whole chain.</p>
+
+  <h3>Rounds settled without a reveal</h3>
+  <p><code>randomness: "oracle-pool-stale-fallback"</code>, and <code>secret</code> is empty. The
+  secret was never published, so after a waiting period anyone was able to settle the round from
+  what was already fixed when it closed:</p>
+  <div class="info-box" style="font-family:monospace;font-size:12px;letter-spacing:0.04em;line-height:2;">
+    result = sha256("oracle-pool:stale" &middot; entropy &middot; round_id<sub>be8</sub> &middot; seed_hash)
+  </div>
+  <p>From there the places are picked exactly as above. Every input was public before the
+  settlement, so this outcome is the same no matter when it is triggered - waiting for a better
+  moment gains nothing. A round marked this way means the reveal did not arrive on time, not that
+  anything about the entries changed.</p>
 
   <h3>Rounds drawn before the move to the contract</h3>
   <p>Any other value of <code>randomness</code>, with <code>ticket_rule</code> <code>chain-v1</code> or
