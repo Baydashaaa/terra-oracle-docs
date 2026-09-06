@@ -325,13 +325,17 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
   <p>Ask the community a question and pay for it in LUNC. Answer someone else's and earn reputation. Every fee, every draw and every point of reputation is settled on Terra Classic, where you can check it without asking us to confirm anything.</p>
 
-  <p>Your wallet is never attached to what you post. You pay from it, and that payment is what proves the question was bought - but the question itself carries no link back to you.</p>
+  <p>You post under your wallet address, not under a name. The address is stored with the
+  question, with every answer and with every vote, and it stays publicly readable - that is
+  what lets anyone verify a question was paid for and that a vote was cast once. So this is
+  pseudonymity, not anonymity: nothing here ties the address to your identity, but everything
+  you do from one address can be linked together, on this site and on the chain.</p>
 
   <h2>What you can do</h2>
   <div class="cards-grid">
-    <a class="doc-card" onclick="showSection('oracle-qa')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Q&amp;A</div><div class="doc-card-desc">Ask anonymously about governance, validators or the market. From 50,000 LUNC.</div></a>
+    <a class="doc-card" onclick="showSection('oracle-qa')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Q&amp;A</div><div class="doc-card-desc">Ask under your wallet address, not your name. Governance, validators or the market. From 50,000 LUNC.</div></a>
     <a class="doc-card" onclick="showSection('dao-chat')"><div class="doc-card-icon"></div><div class="doc-card-title">DAO Chat</div><div class="doc-card-desc">Messages written to the chain itself. 5,000 LUNC each, and every tenth earns a draw entry.</div></a>
-    <a class="doc-card" onclick="showSection('oracle-draw')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Draw</div><div class="doc-card-desc">Daily and Weekly draws. The winner comes from a block hash, so anyone can recheck it.</div></a>
+    <a class="doc-card" onclick="showSection('oracle-draw')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Draw</div><div class="doc-card-desc">Daily and Weekly draws. The winner is computed from a secret committed before entries close, published afterwards so anyone can recheck it.</div></a>
     <a class="doc-card" onclick="showSection('reputation')"><div class="doc-card-icon"></div><div class="doc-card-title">Reputation</div><div class="doc-card-desc">Seven ranks, earned by contributing. Held in a smart contract, not our database.</div></a>
     <a class="doc-card" onclick="showSection('streak')"><div class="doc-card-icon"></div><div class="doc-card-title">Daily Streak</div><div class="doc-card-desc">Show up regularly for a REP multiplier, cheaper questions and free entries.</div></a>
     <a class="doc-card" onclick="showSection('treasury')"><div class="doc-card-icon"></div><div class="doc-card-title">Treasury</div><div class="doc-card-desc">Where the fees go, split on a fixed schedule to public wallets.</div></a>
