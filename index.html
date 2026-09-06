@@ -519,10 +519,16 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <tr><td>14-day streak milestone</td><td>+2 Weekly entries</td><td>One-time</td></tr>
     <tr><td>Trusted User (30-day streak)</td><td>+1 Weekly entry</td><td>Once per round, while the streak lasts</td></tr>
   </table>
-  <p>Free entries are tracked automatically via on-chain transaction history and updated every
-  hour. <strong>They are not in the draw at the moment:</strong> weekly rounds now settle in the
-  pool contract, which only counts entries registered by the NFT contract. They are still
-  counted and shown, and they will start counting again once the contract can accept them.</p>
+  <p>Free entries are tracked automatically via on-chain transaction history, updated every hour
+  into a file committed to a public repository, and sent into the pool contract before the round
+  closes. From there they weigh the odds exactly like a minted ticket.</p>
+  <p>The contract refuses them once the round has closed. That refusal is the point: after the
+  close the operator can already tell where the result points, so a ticket added then would be a
+  ticket aimed. What you can check yourself is the file's commit history against what the
+  contract holds - both are public, and they should say the same thing.</p>
+  <p>These entries carry no money into the pot, and they do not need to: the fees for the
+  messages and questions that earn them already go to the same pool. They are free to the
+  participant, not to the protocol.</p>
 
   <h2>How winners are selected</h2>
   <p>Winners are selected by a commit-reveal scheme in the pool contract. Before a round starts
@@ -558,7 +564,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <h2>Weekly Draw - step by step</h2>
   <ol style="margin:8px 0 16px 20px;line-height:2.2;">
     <li>All Oracle Mask mints registered to the <strong>Weekly</strong> pool that have not yet been used in a completed draw are collected - if a draw is skipped, those entries carry over instead of expiring</li>
-    <li>Free entries from Oracle Q&A and DAO Chat are added to the pool</li>
+    <li>Free entries from Oracle Q&amp;A, DAO Chat and streaks are sent into the contract before the round closes, and join the same ticket list</li>
     <li>Up to three winners are selected from the same deadline-block hash. Each place uses a seed derived from the
       <em>previous</em> one, so the chain has to be replayed in order - the seed for 2nd place is not built from the block hash directly:
       <div class="info-box" style="font-family:monospace;font-size:12px;letter-spacing:0.04em;margin-top:8px;line-height:2;">
@@ -1031,8 +1037,9 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     hash of each round's secret goes on-chain before the round opens, so the result is fixed
     from that moment and anyone can recompute it once the secret is published. Publishing it on
     time is our part of the deal; a round that goes unrevealed carries over with its entries and
-    prize rather than being lost. Weekly free entries are earned off-chain and the pool contract
-    does not accept them yet, so they are counted and shown but do not affect the odds.</div>
+    prize rather than being lost. Weekly free entries are earned off-chain, so the count comes from us -
+    what backs it is the hourly commit history of the file they are counted in, and the fact the
+    contract stops accepting them the moment the round closes.</div>
   </div>
 
   <h2>Verify any of it</h2>
