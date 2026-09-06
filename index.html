@@ -547,8 +547,8 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <ol style="margin:8px 0 16px 20px;line-height:2.2;">
     <li>All Oracle Mask mints registered to the <strong>Daily</strong> pool since the last draw are collected from the contract’s on-chain mint events</li>
     <li>Ticket array is built: Common = 1 ticket, Rare = 5, Legendary = 10</li>
-    <li>The first Terra Classic block at or after the <strong>20:00 UTC</strong> deadline is located, and its hash is read - the same block regardless of when the draw actually runs</li>
-    <li><code>winner_index = BigInt(block_hash) % BigInt(total_tickets)</code></li>
+    <li>After the <strong>20:00 UTC</strong> deadline the round is closed and its secret is revealed on-chain, matching the hash committed before the round opened</li>
+    <li>The contract derives the winner from the revealed secret, the round's entry entropy and the round number</li>
     <li>Winner receives <strong>80%</strong> of the prize pool automatically on-chain</li>
     <li><strong>10%</strong> → Protocol Treasury · <strong>10%</strong> stays as seeds for next round</li>
     <li>If fewer than 5 entries - draw is skipped, all funds carry to next round</li>
@@ -579,14 +579,44 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </ol>
 
   <h2>Verify it yourself</h2>
-  <p>Every draw records everything needed to reproduce the result. From <a href="https://github.com/Baydashaaa/oracle-draw/blob/main/winners.json" target="_blank" style="color:var(--accent2)">winners.json</a>, for any round:</p>
+  <p>Every draw records what is needed to reproduce the result in <a href="https://github.com/Baydashaaa/oracle-draw/blob/main/winners.json" target="_blank" style="color:var(--accent2)">winners.json</a>.
+  Two schemes have been used, so start by reading the round's <code>randomness</code> field.</p>
+
+  <h3>Rounds settled by the pool contract</h3>
+  <p><code>randomness: "oracle-pool-commit-reveal"</code>. These rounds record <code>seed_hash</code>,
+  <code>secret</code>, <code>entropy</code> and <code>result</code>. The first check is the important
+  one and needs nothing but a hash function:</p>
+  <ol style="margin:8px 0 16px 20px;line-height:2.2;">
+    <li><code>sha256(secret)</code> must equal <code>seed_hash</code>. The hash was published on-chain
+      before the round opened, so this proves the revealed secret is the one that was committed and
+      could not have been chosen after seeing the entries</li>
+    <li><code>result = sha256(secret || entropy || round_id)</code>, with <code>round_id</code> as
+      8 bytes big-endian. It must equal the recorded <code>result</code></li>
+    <li>Each place walks the seed chain: <code>seed&#8320; = sha256(result || 0)</code>, then
+      <code>seed&#8345; = sha256(seed&#8344; || n)</code>, place number again as 8 bytes big-endian.
+      The index is the first 16 bytes of the seed read as a big-endian integer, modulo the ticket count</li>
+    <li>If that index belongs to a minter who already took a place, it moves forward one ticket at a
+      time, wrapping at the end, until it reaches a new one</li>
+  </ol>
+  <div class="info-box" style="font-family:monospace;font-size:12px;letter-spacing:0.04em;line-height:2;">
+    sha256(secret) == seed_hash<br>
+    result = sha256(secret &middot; entropy &middot; round_id<sub>be8</sub>)<br>
+    seed&#8345; = sha256(seed&#8344; &middot; n<sub>be8</sub>) &nbsp;&rarr;&nbsp; index = u128(seed&#8345;[0..16]) % total_entries
+  </div>
+  <p style="font-size:13px;color:var(--muted);"><code>entropy</code> is folded over the round's entries in
+  order and is recorded with the round, so you can take it as given for this check - or rebuild it from the
+  contract's entry list if you want the whole chain.</p>
+
+  <h3>Rounds drawn before the move to the contract</h3>
+  <p>Any other value of <code>randomness</code>, with <code>ticket_rule</code> <code>chain-v1</code> or
+  <code>chain-v1+free</code>. These used a Terra Classic block hash:</p>
   <ol style="margin:8px 0 16px 20px;line-height:2.2;">
     <li>Take <code>block_height</code> and fetch that block from any Terra Classic LCD (its <code>block_id.hash</code>, base64 &rarr; hex uppercase, must equal the recorded <code>block_hash</code>)</li>
-    <li>Rebuild the ticket list. You do not have to reconstruct it by hand: every draw also writes a frozen snapshot to <code>rounds/&lt;round_id&gt;.json</code> in the same repository - the exact ticket order used, as pairs of <code>[wallet, ticket count]</code></li>
+    <li>Rebuild the ticket list, or use the frozen snapshot in <code>rounds/&lt;round_id&gt;.json</code> - the exact ticket order used, as pairs of <code>[wallet, ticket count]</code></li>
     <li>For a <strong>Daily</strong> round: compute <code>BigInt("0x" + block_hash) % total_entries</code> - it must equal the recorded <code>winner_index</code></li>
-    <li>For a <strong>Weekly</strong> round: replay the seed chain above in order, applying the duplicate-skip rule after each place. Each resulting index must equal the <code>winner_index</code> recorded for that place</li>
+    <li>For a <strong>Weekly</strong> round: replay the seed chain above in order, applying the duplicate-skip rule after each place</li>
   </ol>
-  <div class="info-box"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg> Because the block is chosen by the deadline and not by run time, anyone can repeat this check and reach the same winner the protocol did.</div>
+  <div class="info-box"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg> Both schemes fix the result before it is known to anyone reading the page, and both can be recomputed from public data. Older rounds stay checkable by the rule they were drawn under.</div>
 
   <h2>Verify results</h2>
   <div class="info-box"><svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg> <a href="https://finder.terraport.finance/mainnet" target="_blank">finder.terraport.finance/mainnet</a> - verify any transaction on-chain</div>
