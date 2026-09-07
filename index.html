@@ -531,12 +531,19 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   participant, not to the protocol.</p>
 
   <h2>How winners are selected</h2>
-  <p>Winners are selected by a commit-reveal scheme in the pool contract. Before a round starts
-  taking entries, the operator publishes the <strong>hash</strong> of that round's secret. After
-  entries close, the secret itself is published, and the contract derives the winner from the
-  secret, the entries and the round number. Because the commitment is on the chain before the
-  first entry, the secret cannot be swapped afterwards to pick a different winner, and anyone
-  can recompute the result once it is revealed.</p>
+  <p>Winners are selected by a commit-reveal scheme in the pool contract. A round is meant to be
+  opened - and its secret committed as a <strong>hash</strong> - before it takes a single entry.
+  After entries close the secret itself is published, and the contract derives the winner from the
+  secret, the entries and the round number. Once the hash is on the chain the secret behind it is
+  fixed, so it cannot be swapped afterwards to pick a different winner, and anyone can recompute
+  the result once it is revealed.</p>
+  <p><strong>One honest exception.</strong> The contract allows a round to be opened late rather
+  than refusing entries with no round to hold them - refusing would let the pool deadlock. When
+  that happens the round is flagged <code>has_late_entries</code>, and it means the commitment came
+  after at least one entry already existed. For those entries the pre-commit guarantee above does
+  not hold, because their entropy was already visible when the secret was chosen. Weekly round 4
+  is settled with this flag set. Check the flag on any round you care about; every round carries
+  it, and the answer is public.</p>
   <div class="info-box" style="font-family:monospace;font-size:13px;letter-spacing:0.05em;">commitment = sha256(secret) &nbsp;·&nbsp; published before entries open<br>winner = f(secret, entries, round_id) &nbsp;·&nbsp; recomputable after reveal</div>
   <p>Entries weight the odds, they do not guarantee a win. A Legendary holder puts 10 tickets in the pool and a Common holder puts 1 - but a single ticket can still be the one drawn. More entries mean better odds, never certainty.</p>
   <div class="callout info">
@@ -574,9 +581,16 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
         3rd: seed&#8323; = sha256(seed&#8322; + "2") &nbsp;→&nbsp; index = BigInt("0x" + seed&#8323;) % total &nbsp;→&nbsp; 12%
       </div>
     </li>
-    <li><strong>One wallet cannot take two places.</strong> This is a separate rule, not a property of the hash chain:
-      if the drawn index belongs to a wallet that already won a place, the index moves forward one ticket at a time
-      until it lands on a wallet that has not won yet, wrapping around to index 0 at the end of the list</li>
+    <li><strong>Places are kept distinct by minter, not by current owner.</strong> This is a separate rule, not a
+      property of the seed chain: if the drawn index belongs to a <em>minter</em> who already took a place, the index
+      moves forward one ticket at a time until it reaches a new one, wrapping around to index 0 at the end of the list.
+      The minter is the address recorded when the NFT was minted, which is cheap for the contract to read - the current
+      owner would cost a query per candidate. Two consequences worth stating plainly: one person holding NFTs minted by
+      different addresses can take more than one place, and two NFTs from the same minter stay mutually exclusive even
+      after being transferred to different people</li>
+    <li><strong>The prize follows the token, not the ticket.</strong> Each place is paid to whoever owns the winning NFT
+      at the moment the round is settled. A transfer after entries close but before settlement therefore changes who
+      receives the prize</li>
     <li><strong>Fewer than three participants means fewer places.</strong> With two unique wallets only 1st and 2nd are
       paid; with one, only 1st. The share of an unfilled place is not paid out - it stays in the pool wallet and
       becomes part of next week's pool</li>
@@ -603,7 +617,8 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
       <code>seed&#8345; = sha256(seed&#8344; || n)</code>, place number again as 8 bytes big-endian.
       The index is the first 16 bytes of the seed read as a big-endian integer, modulo the ticket count</li>
     <li>If that index belongs to a minter who already took a place, it moves forward one ticket at a
-      time, wrapping at the end, until it reaches a new one</li>
+      time, wrapping at the end, until it reaches a new one. Uniqueness is by recorded minter, not by
+      current owner, and the prize goes to whoever owns the winning NFT at settlement</li>
   </ol>
   <div class="info-box" style="font-family:monospace;font-size:12px;letter-spacing:0.04em;line-height:2;">
     sha256(secret) == seed_hash<br>
