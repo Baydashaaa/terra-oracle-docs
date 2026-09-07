@@ -773,10 +773,10 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </div>
 
   <h2>Weekly Reward Pool</h2>
-  <p>Each week, <strong>25% of Protocol Treasury income</strong> is automatically transferred to the dedicated <strong>REP Rewards Pool</strong> wallet. The full pool balance is then distributed to the <strong>top 20% of contributors</strong> ranked by their REP earned in the last 7 days.</p>
+  <p>Each week, <strong>25% of Protocol Treasury income</strong> is automatically transferred to the dedicated <strong>REP Rewards Pool</strong> wallet. What the pool holds - less a small gas reserve - is then distributed to the <strong>top 20% of contributors</strong> ranked by their REP earned in the last 7 days.</p>
   <table>
     <tr><th>Detail</th><th>Value</th></tr>
-    <tr><td>Pool size</td><td>Full balance of REP Rewards Pool wallet (funded weekly from Treasury)</td></tr>
+    <tr><td>Pool size</td><td>Balance of the REP Rewards Pool wallet, funded weekly from Treasury, minus the gas reserve the payout script keeps back. Shares that would come to less than 1 LUNC are not sent, and stay in the wallet for the following week.</td></tr>
     <tr><td>Eligible contributors</td><td>Top 20% by 7-day REP score</td></tr>
     <tr><td>Distribution</td><td>Proportional to weekly REP × rank multiplier</td></tr>
     <tr><td>Activation threshold</td><td>Minimum 10 active contributors per week</td></tr>
