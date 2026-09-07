@@ -1017,6 +1017,79 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     the timing is ours.</div>
   </div>
 
+  <h2>Component registry</h2>
+  <p>Everything the protocol runs on, in one place, as it stood on 7 September 2026. Code ids and
+  checksums are what the chain reports; compare them against a local build to confirm the source
+  matches what is deployed. A migration is itself a public transaction, so a change here is visible.</p>
+
+  <table class="spec">
+    <tr><th>Component</th><th>Address</th><th>Code / checksum</th><th>Migration admin</th><th>Source</th></tr>
+    <tr>
+      <td><strong>Oracle Mask NFT</strong><br>CW721, mints and pool routing</td>
+      <td><code>terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</code></td>
+      <td>code <code>11559</code><br><code>075efa002e7400503503cf02db60fdd79044178eb417cdf610203b004eb8e7df7adc5d3cd7900307cd83d01f400c0f7c</code></td>
+      <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
+      <td><a href="https://github.com/Baydashaaa/oracle-mask-nft" target="_blank">oracle-mask-nft</a></td>
+    </tr>
+    <tr>
+      <td><strong>Oracle Score</strong><br>reputation, accrual, paid actions</td>
+      <td><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td>
+      <td>code <code>11571</code><br><code>005f400fd101ec00f8ebbd340f6f42e7a0c0f7b078d83036ec1e34f390b6ef4d75dc2143dc0e41176d41e85ef6005e7c</code></td>
+      <td><code>terra1mfrmllxpccnnawpxn6pn8nl6qmcemdxwnm3g0p</code></td>
+      <td><a href="https://github.com/Baydashaaa/oracle-score" target="_blank">oracle-score</a></td>
+    </tr>
+    <tr>
+      <td><strong>Draw Pool &middot; Daily</strong><br>entries, rounds, settlement, payout</td>
+      <td><code>terra1d9ga3dzhg63v6rmm8ahts55ekjpwlm6dusw5cwhpt60s6t0actqqsul6tm</code></td>
+      <td>code <code>11647</code><br><code>17d134d4003cdba1770c10b9e01f79eb7db50bddfc13aef4e85e040f407813a1750fc17b0bbf3a0f7ebce770b4f35035</code></td>
+      <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
+      <td><a href="https://github.com/Baydashaaa/oracle-pool" target="_blank">oracle-pool</a></td>
+    </tr>
+    <tr>
+      <td><strong>Draw Pool &middot; Weekly</strong><br>same code, separate instance and funds</td>
+      <td><code>terra19w39c3qz6kc756hap92x374reptah9kp5825f5c67hmquy383r5qd7dmd8</code></td>
+      <td>code <code>11647</code><br>same checksum as Daily</td>
+      <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
+      <td><a href="https://github.com/Baydashaaa/oracle-pool" target="_blank">oracle-pool</a></td>
+    </tr>
+    <tr>
+      <td><strong>Circuit Rewards</strong><br>cumulative merkle distributor for the TCO share</td>
+      <td><code>terra18pau9q25ykswgey8ckcfxhdln27nk23qv6af0pjs2vye5r5crmcs7w9fr0</code></td>
+      <td>code <code>11579</code><br><code>eb7e7d082d81f7b0fb17b076f3ddc4ef7ec01360baf3bdb60420fbd44ebb07de76f05e7ae03175d00d79043db7e75d7c</code></td>
+      <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
+      <td><a href="https://github.com/Baydashaaa/circuit-rewards" target="_blank">circuit-rewards</a></td>
+    </tr>
+    <tr>
+      <td><strong>Oracle Prophecy</strong><br><span style="color:#ffb14e;">TEST deployment</span> &middot; prediction markets</td>
+      <td><code>terra1w3f09yqcna09hgc562azuze8x4qdvnzanz429cwycm84m8lygffskwcu58</code></td>
+      <td>code <code>11643</code><br><code>db4eb40fa0bb044e77ebddf5f76140e75ec1df7e36d3aefb0f5e03e3de00d78d3bec1d36e05d81f38077dc0039e77001</code></td>
+      <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
+      <td><a href="https://github.com/Baydashaaa/oracle-prophecy" target="_blank">oracle-prophecy</a></td>
+    </tr>
+  </table>
+
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div><b>One key migrates almost everything.</b> Every contract above except Oracle Score can be
+    migrated by <code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code>; Oracle Score answers to a
+    separate admin. The same address is also the resolver on the Prophecy TEST deployment, which is
+    why that market is labelled a preview rather than a settled one. This is a single point of
+    control, not a multisig, and calling it anything else would be dishonest at our size.</div>
+  </div>
+
+  <h3>Circuit operating wallets</h3>
+  <p>Circuit moves money through three addresses that are not in the Treasury table, because they are
+  operating accounts rather than revenue destinations.</p>
+  <table class="spec">
+    <tr><th>Wallet</th><th>Address</th><th>What it does</th></tr>
+    <tr><td>TCO buyback</td><td><code>terra1x3axkacpes4d8q2svfeneqdtv8rvcvccrn66j5</code></td>
+        <td>Holds the LUNC set aside for the batch buyback until the threshold is reached, then buys TCO</td></tr>
+    <tr><td>TCO burn</td><td><code>terra10zptfez4jdvakrhu58q4nqj2te7mnpewqhu27a</code></td>
+        <td>Receives the burn share after the buyback. The tokens are held here; the burn itself is deferred until the token's whitelist allows it</td></tr>
+    <tr><td>Circuit pool</td><td><code>terra1lkcsxf2et3s64uwemyy257n0dcep0al40a4m55</code></td>
+        <td>Collects zone payments for the round in progress and pays the winner and adjacent zone owners when it settles</td></tr>
+  </table>
+
   <h2>Protocol wallets</h2>
   <p>Six ordinary addresses, not contracts. Every transfer in and out is public, and the full list with each wallet's purpose and share of revenue is under <a onclick="showSection('treasury')">Treasury</a>.</p>
 
