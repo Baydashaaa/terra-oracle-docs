@@ -698,7 +698,16 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </div>
 
   <h2>TCO rewards</h2>
-  <p>Twelve percent of every round becomes TCO - half distributed to everyone who held zones that round, half burned.</p>
+  <p>Twelve percent of every round becomes TCO: half is distributed to everyone who held
+  zones that round, and half goes to the burn side. That half is transferred to
+  <code>terra10zptfez4jdvakrhu58q4nqj2te7mnpewqhu27a</code> and held there - the irreversible burn is deferred until
+  the token's whitelist allows it. Holding tokens at an address is not burning them, and
+  the balance can be checked like any other.</p>
+  <p>The winner's share is the prize bucket, not always the whole of it: by default 5% of
+  that bucket is split between the owners of zones adjacent to the winning one when those
+  zones belong to somebody else. With no eligible neighbour the winner takes it all. This
+  split is an operator setting rather than a contract rule, and every round's snapshot
+  records what was actually paid.</p>
   <div class="callout info">
     <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v9M9.5 10h5M9.5 14h5"/></svg>
     <div><b>Your share is fixed in LUNC the moment a round draws</b>, in proportion to the zones you held - and converted to TCO in a single
