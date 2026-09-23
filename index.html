@@ -432,8 +432,27 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <div class="step"><div class="step-num">2</div><div class="step-text">Go to the <strong>Ask</strong> page</div></div>
     <div class="step"><div class="step-num">3</div><div class="step-text">Select a <strong>category</strong> and write your question</div></div>
     <div class="step"><div class="step-num">4</div><div class="step-text">Pick a tariff - <strong>Basic</strong> or <strong>Priority</strong> - and confirm the transaction</div></div>
-    <div class="step"><div class="step-num">5</div><div class="step-text">Your question appears on the Oracle Board</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text">When you publish, confirm a <strong>signature</strong> in your wallet - no gas, no transaction</div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-text">Your question appears on the Oracle Board</div></div>
   </div>
+  <h2>Why your wallet asks for a signature</h2>
+  <p>Some actions on the Board are not transactions, so nothing on the chain proves who made
+  them. For those the site asks your wallet to sign a short message. It costs no gas and moves no
+  funds; it only proves the action came from your key.</p>
+  <table>
+    <tr><th>Action</th><th>What is signed</th><th>How often</th></tr>
+    <tr><td>Publishing a question</td><td>The question number and a hash of its text, category, tags, poll and evidence link</td><td>Once per question</td></tr>
+    <tr><td>Posting an answer</td><td>The question number and a hash of the answer text and the quote it replies to</td><td>Once per answer</td></tr>
+    <tr><td>Accepting or deleting an answer</td><td>The question and answer numbers</td><td>Once per action</td></tr>
+    <tr><td>Voting and chat reactions</td><td>A session, valid for up to 12 hours</td><td>Once per session</td></tr>
+  </table>
+  <p>Because the text is part of what you sign, a signature cannot be reused to publish different
+  words under your name, and each one is accepted only once. The question signature matters
+  most: a payment is visible on the chain the moment it lands, and without it anyone watching
+  could publish their own text under your paid question before you did.</p>
+  <p>A voting session is revoked on the server when you disconnect your wallet or switch
+  accounts, so a copy of it left in the browser stops working at once rather than at the end of
+  its 12 hours.</p>
   <h2>Categories</h2>
   <table>
     <tr><th>Category</th><th>Topics</th></tr>
@@ -550,18 +569,32 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="m9 11.5 2 2 4-4.5"/></svg>
     <div><strong>What the commitment guarantees.</strong> Once the hash is published, the secret
     behind it is fixed: the result cannot be steered afterwards, and re-running the reveal always
-    gives the same winner. And a round no longer depends on us publishing the secret at all - if
-    it is not revealed in time, anyone can settle the round from data that was already fixed when
-    entries closed, and the prize is paid. So the schedule is ours to keep, but the round
-    happening is not ours to decide. What we do still know is the outcome, as soon as entries
+    gives the same winner. And a round does not depend on us revealing the secret: it has to be
+    published within six hours of the round closing. If it is not, anyone can roll the round
+    over - every entry and every LUNC moves to the next round, which is drawn with its own
+    committed secret. The next round is always set to close after that six-hour deadline, so at
+    the moment a reveal could be withheld, the round it would roll into is still taking entries
+    and its outcome cannot be known yet. Withholding can delay a draw; it cannot pick its
+    winner. The honest limit: that last guarantee relies on other people entering after the
+    deadline, and in a round nobody else enters it is weaker. What we do still know is the outcome, as soon as entries
     close; moving to a source of randomness that nobody derives is on our list.</div>
   </div>
+
+  <h2>What cannot change once a round opens</h2>
+  <p>A round records its own terms when it opens: the payout split, the treasury share and
+  address, the caller reward, the minimum entries and pot, the reveal window and the NFT
+  contract it pays against. Settlement reads those, not the current configuration, so a change
+  to the configuration only affects rounds opened after it.</p>
+  <p>Prizes follow the NFT: each place is paid to whoever owns the winning token when the round
+  settles. If that owner cannot be determined - for example because the token was burned - the
+  prize goes to the address that minted it. Rounds settle strictly in order, so without this one
+  failed lookup would hold up every round after it.</p>
 
   <h2>Daily Draw - step by step</h2>
   <ol style="margin:8px 0 16px 20px;line-height:2.2;">
     <li>All Oracle Mask mints registered to the <strong>Daily</strong> pool since the last draw are collected from the contract’s on-chain mint events</li>
     <li>Ticket array is built: Common = 1 ticket, Rare = 5, Legendary = 10</li>
-    <li>After the <strong>20:00 UTC</strong> deadline the round is closed and its secret is revealed on-chain, matching the hash committed before the round opened</li>
+    <li>After the <strong>20:00 UTC</strong> deadline the round is closed and its secret is revealed on-chain within six hours, matching the hash committed before the round opened</li>
     <li>The contract derives the winner from the revealed secret, the round's entry entropy and the round number</li>
     <li>Winner receives <strong>80%</strong> of the prize pool automatically on-chain</li>
     <li><strong>10%</strong> → Protocol Treasury · <strong>10%</strong> stays as seeds for next round</li>
@@ -634,17 +667,18 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   order and is recorded with the round, so you can take it as given for this check - or rebuild it from the
   contract's entry list if you want the whole chain.</p>
 
-  <h3>Rounds settled without a reveal</h3>
-  <p><code>randomness: "oracle-pool-stale-fallback"</code>, and <code>secret</code> is empty. The
-  secret was never published, so after a waiting period anyone was able to settle the round from
+  <h3>Rounds settled without a reveal (retired)</h3>
+  <p><code>randomness: "oracle-pool-stale-fallback"</code>, and <code>secret</code> is empty. Until
+  22 September 2026 a round whose secret was never published could be settled by anyone from
   what was already fixed when it closed:</p>
   <div class="info-box" style="font-family:monospace;font-size:12px;letter-spacing:0.04em;line-height:2;">
     result = sha256("oracle-pool:stale" &middot; entropy &middot; round_id<sub>be8</sub> &middot; seed_hash)
   </div>
-  <p>From there the places are picked exactly as above. Every input was public before the
-  settlement, so this outcome is the same no matter when it is triggered - waiting for a better
-  moment gains nothing. A round marked this way means the reveal did not arrive on time, not that
-  anything about the entries changed.</p>
+  <p>From there the places were picked exactly as above. This rule is retired: because anyone
+  could compute it, whoever held the secret knew both outcomes - the revealed one and this one -
+  and could choose between them by staying silent. A round that is not revealed within six hours
+  of closing is now rolled over instead, and nothing is drawn by this formula. It stays
+  documented so that any round carrying this marker can still be checked.</p>
 
   <h3>Rounds drawn before the move to the contract</h3>
   <p>Any other value of <code>randomness</code>, with <code>ticket_rule</code> <code>chain-v1</code> or
@@ -1023,63 +1057,73 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </div>
 
   <h2>Component registry</h2>
-  <p>Everything the protocol runs on, in one place, as it stood on 7 September 2026. Code ids and
+  <p>Everything the protocol runs on, in one place, as it stood on 23 September 2026. Code ids and
   checksums are what the chain reports; compare them against a local build to confirm the source
   matches what is deployed. A migration is itself a public transaction, so a change here is visible.</p>
 
   <table class="spec">
-    <tr><th>Component</th><th>Address</th><th>Code / checksum</th><th>Migration admin</th><th>Source</th></tr>
+    <tr><th>Component</th><th>Address</th><th>Code / sha256 checksum</th><th>Migration admin</th><th>Source</th></tr>
+
     <tr>
       <td><strong>Oracle Mask NFT</strong><br>CW721, mints and pool routing</td>
       <td><code>terra1hcsq79vmcqxr97sv720yw6scvyknssx62ufsa4rwlmv02gyft43s46uaqx</code></td>
-      <td>code <code>11559</code><br><code>075efa002e7400503503cf02db60fdd79044178eb417cdf610203b004eb8e7df7adc5d3cd7900307cd83d01f400c0f7c</code></td>
-      <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
+      <td>code <code>11559</code><br><code>b176ac50afa1a88c22d915bef460f832eca7ae6459963f0815adb82d0b9ada98</code></td>
+      <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
       <td><a href="https://github.com/Baydashaaa/oracle-mask-nft" target="_blank">oracle-mask-nft</a></td>
     </tr>
+
     <tr>
       <td><strong>Oracle Score</strong><br>reputation, accrual, paid actions</td>
       <td><code>terra1pj6t6v4czktz7znzq8xk2ny2yh7pdwen4jw8z4zz86zrac6ur9vqqkwcls</code></td>
-      <td>code <code>11571</code><br><code>005f400fd101ec00f8ebbd340f6f42e7a0c0f7b078d83036ec1e34f390b6ef4d75dc2143dc0e41176d41e85ef6005e7c</code></td>
-      <td><code>terra1mfrmllxpccnnawpxn6pn8nl6qmcemdxwnm3g0p</code></td>
+      <td>code <code>11571</code><br><code>af9ad9eb7ad46700d29c56da97b42da27b4085c270113cfd3a5bf21b6f72af58</code></td>
+      <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
       <td><a href="https://github.com/Baydashaaa/oracle-score" target="_blank">oracle-score</a></td>
     </tr>
+
     <tr>
       <td><strong>Draw Pool &middot; Daily</strong><br>entries, rounds, settlement, payout</td>
       <td><code>terra1d9ga3dzhg63v6rmm8ahts55ekjpwlm6dusw5cwhpt60s6t0actqqsul6tm</code></td>
-      <td>code <code>11647</code><br><code>17d134d4003cdba1770c10b9e01f79eb7db50bddfc13aef4e85e040f407813a1750fc17b0bbf3a0f7ebce770b4f35035</code></td>
-      <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
+      <td>code <code>11673</code><br><code>cfbd7d620526b6385dcf62e50d77bfd5e7aa083a227258fae256d1cfcf01950b</code></td>
+      <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
       <td><a href="https://github.com/Baydashaaa/oracle-pool" target="_blank">oracle-pool</a></td>
     </tr>
+
     <tr>
       <td><strong>Draw Pool &middot; Weekly</strong><br>same code, separate instance and funds</td>
       <td><code>terra19w39c3qz6kc756hap92x374reptah9kp5825f5c67hmquy383r5qd7dmd8</code></td>
-      <td>code <code>11647</code><br>same checksum as Daily</td>
-      <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
+      <td>code <code>11673</code><br>same checksum as Daily</td>
+      <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
       <td><a href="https://github.com/Baydashaaa/oracle-pool" target="_blank">oracle-pool</a></td>
     </tr>
+
     <tr>
       <td><strong>Circuit Rewards</strong><br>cumulative merkle distributor for the TCO share</td>
       <td><code>terra18pau9q25ykswgey8ckcfxhdln27nk23qv6af0pjs2vye5r5crmcs7w9fr0</code></td>
-      <td>code <code>11579</code><br><code>eb7e7d082d81f7b0fb17b076f3ddc4ef7ec01360baf3bdb60420fbd44ebb07de76f05e7ae03175d00d79043db7e75d7c</code></td>
-      <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
+      <td>code <code>11579</code><br><code>6359cc2b97d7f7b2893e737ae2c68722bcd71e67b9528f564df10a15bd235118</code></td>
+      <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
       <td><a href="https://github.com/Baydashaaa/circuit-rewards" target="_blank">circuit-rewards</a></td>
     </tr>
+
     <tr>
       <td><strong>Oracle Prophecy</strong><br><span style="color:#ffb14e;">TEST deployment</span> &middot; prediction markets</td>
       <td><code>terra1w3f09yqcna09hgc562azuze8x4qdvnzanz429cwycm84m8lygffskwcu58</code></td>
-      <td>code <code>11643</code><br><code>db4eb40fa0bb044e77ebddf5f76140e75ec1df7e36d3aefb0f5e03e3de00d78d3bec1d36e05d81f38077dc0039e77001</code></td>
+      <td>code <code>11643</code><br><code>2060d6c7be53693192fa517b33420677d14d494a14077b024f2b84b33aa553ab</code></td>
       <td><code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code></td>
       <td><a href="https://github.com/Baydashaaa/oracle-prophecy" target="_blank">oracle-prophecy</a></td>
     </tr>
+
   </table>
 
   <div class="callout info">
     <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
-    <div><b>One key migrates almost everything.</b> Every contract above except Oracle Score can be
-    migrated by <code>terra1744ae9kyj8skflj0l5c3cwdwkcsayh9vw5cxtc</code>; Oracle Score answers to a
-    separate admin. The same address is also the resolver on the Prophecy TEST deployment, which is
-    why that market is labelled a preview rather than a settled one. This is a single point of
-    control, not a multisig, and calling it anything else would be dishonest at our size.</div>
+    <div><b>One key migrates the production contracts.</b> Every contract above except the
+    Prophecy TEST deployment can be migrated by <code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code>.
+    It is a cold key that no automated job holds. Day-to-day work - opening draw rounds,
+    recording free entries, attesting reputation - runs on separate operator keys, and those
+    cannot change payouts, the treasury, contract code or the reveal window. The Prophecy TEST
+    deployment answers to its own test key, which is also its resolver - that is why the market
+    is labelled a preview rather than a settled one. This is still a single point of control,
+    not a multisig, and calling it anything else would be dishonest at our size.</div>
   </div>
 
   <h3>Circuit operating wallets</h3>
@@ -1123,7 +1167,11 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </table>
   <div class="callout info">
     <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
-    <div><b>One admin key.</b> Contract parameters and migrations are controlled by a single key held by the developer. It is not a multisig, and calling it one would be dishonest at the current size of the community. Moving to a multisig is planned as the protocol grows.</div>
+    <div><b>One migration key.</b> Contract code and sensitive parameters - payout splits, the
+    treasury address, the reveal window - are controlled by a single cold key held by the
+    developer. It is not a multisig, and calling it one would be dishonest at the current size
+    of the community. Automated jobs use separate operator keys that can run the schedule but
+    cannot redirect money. Moving to a multisig is planned as the protocol grows.</div>
   </div>
 
   <h2>How the draw winner is chosen</h2>
@@ -1409,7 +1457,7 @@ curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11571</pr
 <details class="faq"><summary>Where do I mint Oracle Mask NFTs?</summary><div class="faq-body">Only on <a href="https://draw.terraoracle.io/" target="_blank">draw.terraoracle.io</a>, directly from the Oracle Mask contract. There is no marketplace step and no address to send LUNC to manually - <b>never send LUNC to a wallet address to mint</b>.</div></details><details class="faq"><summary>What happens if my mint transaction fails?</summary><div class="faq-body">Nothing is charged. Payment, NFT creation and the transfer into the prize pool are a single transaction: if any part fails, the whole thing reverts and the LUNC stays in your wallet. It is not possible to pay and not receive the NFT.</div></details><details class="faq"><summary>I minted but the NFT is not in My Bag yet</summary><div class="faq-body">Give it a few seconds and reload - the page reads directly from the blockchain, so the NFT appears as soon as the block is confirmed. Nothing has to catch up afterwards: the mint, the payment and the entry record in the pool contract are one transaction, so if the entry had failed you would have no NFT and no charge. Your NFT is in your wallet on-chain, and the pool holds a separate entry record pointing at its token id.</div></details><details class="faq"><summary>Is there a limit on how many I can mint?</summary><div class="faq-body">No. You can mint any number of NFTs, in any tier, in the same round. Every NFT adds its own entries to the pool you selected at mint time.</div></details><details class="faq"><summary>Why did the prize pool receive slightly less than I paid?</summary><div class="faq-body">Terra Classic deducts a burn tax from the outgoing transfer. The rate is chain configuration rather than a protocol constant - on the protocol's payouts of 31 August and 7 September 2026 it came to <b>1.5%</b>, so the pool received 98.5% of what was sent. The contract forwards 100% of your payment and keeps nothing for itself; the chain takes its cut in transit.</div></details>
 
   <h2>Draws</h2>
-<details class="faq"><summary>Do I need to do anything after minting to enter the draw?</summary><div class="faq-body">No. The pool you choose at mint time - Daily or Weekly - is written into the NFT itself, and the entry is registered automatically. You will see the NFT marked as active for that draw in My Bag.</div></details><details class="faq"><summary>Is my NFT burned when I enter a draw?</summary><div class="faq-body">No. The NFT stays in your wallet permanently. After the draw runs it is marked as having played, so it no longer counts toward new rounds, but you keep the token - it remains transferable and tradable.</div></details><details class="faq"><summary>What happens if fewer than 5 entries are in a round?</summary><div class="faq-body">The draw is skipped and the entire pool carries over to the next round. Nothing is lost and no partial payout happens.</div></details><details class="faq"><summary>How do I know the draw is not rigged?</summary><div class="faq-body">Each round's secret is committed as a hash before the round opens, and revealed after entries close; the pool contract derives the winner from the revealed secret, the entries and the round number. Because the commitment is fixed first, the result cannot be steered afterwards, and anyone can recompute it - the full formula is in the Oracle Draw section. What this does not give you is unpredictability: we derive the secret, so we know the outcome from the moment entries close. If the reveal never comes, anyone can settle the round by a fallback rule instead, so withholding it does not cancel the draw. Every entry and every payout is an on-chain transaction and can be replayed independently on <a href="https://finder.terraport.finance/mainnet" target="_blank">Terra Finder</a>.</div></details><details class="faq"><summary>Can I win more than once in the same weekly draw?</summary><div class="faq-body">No. The three weekly places go to three distinct <em>minters</em> - the address recorded when each NFT was minted. Two NFTs minted by the same address cannot both win, even after being transferred apart. The flip side: if you hold NFTs that were minted by different addresses, they are treated as different entrants and can take more than one place. Each prize is paid to whoever owns the winning NFT when the round settles.</div></details>
+<details class="faq"><summary>Do I need to do anything after minting to enter the draw?</summary><div class="faq-body">No. The pool you choose at mint time - Daily or Weekly - is written into the NFT itself, and the entry is registered automatically. You will see the NFT marked as active for that draw in My Bag.</div></details><details class="faq"><summary>Is my NFT burned when I enter a draw?</summary><div class="faq-body">No. The NFT stays in your wallet permanently. After the draw runs it is marked as having played, so it no longer counts toward new rounds, but you keep the token - it remains transferable and tradable.</div></details><details class="faq"><summary>What happens if fewer than 5 entries are in a round?</summary><div class="faq-body">The draw is skipped and the entire pool carries over to the next round. Nothing is lost and no partial payout happens.</div></details><details class="faq"><summary>How do I know the draw is not rigged?</summary><div class="faq-body">Each round's secret is committed as a hash before the round opens, and revealed after entries close; the pool contract derives the winner from the revealed secret, the entries and the round number. Because the commitment is fixed first, the result cannot be steered afterwards, and anyone can recompute it - the full formula is in the Oracle Draw section. What this does not give you is unpredictability: we derive the secret, so we know the outcome from the moment entries close. The secret must be revealed within six hours of close; if it is not, the round rolls over and every entry and every LUNC moves to the next round, which is drawn with its own committed secret. Withholding can delay a draw, not choose its winner. Every entry and every payout is an on-chain transaction and can be replayed independently on <a href="https://finder.terraport.finance/mainnet" target="_blank">Terra Finder</a>.</div></details><details class="faq"><summary>Can I win more than once in the same weekly draw?</summary><div class="faq-body">No. The three weekly places go to three distinct <em>minters</em> - the address recorded when each NFT was minted. Two NFTs minted by the same address cannot both win, even after being transferred apart. The flip side: if you hold NFTs that were minted by different addresses, they are treated as different entrants and can take more than one place. Each prize is paid to whoever owns the winning NFT when the round settles; if that owner cannot be determined - for example, the token was burned - it goes to the address that minted it.</div></details>
 
   <h2>NFTs &amp; the contract</h2>
 <details class="faq"><summary>Can I transfer or sell my Oracle Mask?</summary><div class="faq-body">Yes. The collection follows the standard CW721 interface, so transfers, approvals and marketplace listings all work the same way as with any other Terra Classic NFT.</div></details><details class="faq"><summary>What do the token numbers mean?</summary><div class="faq-body">Token IDs are sequential per tier - <code>common-1</code>, <code>rare-7</code>, <code>legendary-2</code> - and are displayed as <b>Common #1</b>, <b>Rare #7</b> and so on. The number is assigned by the contract and can never repeat.</div></details><details class="faq"><summary>Can the contract be changed after deployment?</summary><div class="faq-body">The contract keeps a migration admin so new mechanics can be added later - NFT crafting is next on the roadmap. A migration preserves the contract address, all existing NFTs and their metadata. Every upgrade is documented here and stays verifiable through the published code checksum.</div></details><details class="faq"><summary>Can anyone mint an NFT for free?</summary><div class="faq-body">No. The contract itself is the CW721 minter, so the standard mint entry point is rejected for every external caller - including the protocol admin. Paying the exact tier price is the only path to an Oracle Mask.</div></details>
