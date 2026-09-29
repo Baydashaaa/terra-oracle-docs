@@ -295,6 +295,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <a class="sidebar-link" onclick="showSection('oracle-qa')" data-section="oracle-qa"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.2a2.7 2.7 0 1 1 3.4 3.3c-.6.2-.9.7-.9 1.3v.4"/><circle cx="12" cy="17" r=".9" style="fill:currentColor;stroke:none"/></svg> Oracle Q&A</a>
   <a class="sidebar-link" onclick="showSection('dao-chat')" data-section="dao-chat"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A2.5 2.5 0 0 1 17.5 17H9l-4 3.5V6.5A2.5 2.5 0 0 1 7.5 4h10A2.5 2.5 0 0 1 20 6.5z"/><path d="M9 9h7M9 12.5h4.5"/></svg> DAO Chat</a>
   <a class="sidebar-link" onclick="showSection('oracle-draw')" data-section="oracle-draw"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5V7a1.5 1.5 0 0 1 1.5-1.5h14A1.5 1.5 0 0 1 20.5 7v2.5a2.5 2.5 0 0 0 0 5V17a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 17v-2.5a2.5 2.5 0 0 0 0-5z"/><path d="M12 8.5v1.5M12 13.5v2"/></svg> Oracle Draw</a>
+  <a class="sidebar-link" onclick="showSection('markets')" data-section="markets"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-5M10 20v-8M15 20v-6M20 20V9"/><path d="M4 11.5 9.5 7l4 3L20 4"/><path d="M16.5 4H20v3.5"/></svg> Markets</a>
   <a class="sidebar-link" onclick="showSection('circuit')" data-section="circuit"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="7.5" width="17" height="9" rx="2"/><path d="M8 7.5v9M12 7.5v9M16 7.5v9"/></svg> Circuit</a>
   <a class="sidebar-link" onclick="showSection('reputation')" data-section="reputation"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.8 2.5 5.2 5.7.8-4.1 4 1 5.7L12 16.8 6.9 19.5l1-5.7-4.1-4 5.7-.8z"/></svg> Reputation</a>
   <a class="sidebar-link" onclick="showSection('streak')" data-section="streak"><svg class="nicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s5.5 4.2 5.5 9a5.5 5.5 0 0 1-11 0c0-2 1-3.6 2-4.7 0 1.7.9 2.6 1.8 2.6 1.4 0 1.9-1.4 1.7-3.3-.1-1.4-.4-2.6 0-3.6z"/></svg> Daily Streak</a>
@@ -335,6 +336,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <div class="cards-grid">
     <a class="doc-card" onclick="showSection('oracle-qa')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Q&amp;A</div><div class="doc-card-desc">Ask under your wallet address, not your name. Governance, validators or the market. From 50,000 LUNC.</div></a>
     <a class="doc-card" onclick="showSection('dao-chat')"><div class="doc-card-icon"></div><div class="doc-card-title">DAO Chat</div><div class="doc-card-desc">Messages written to the chain itself. 5,000 LUNC each, and every tenth earns a draw entry.</div></a>
+    <a class="doc-card" onclick="showSection('markets')"><div class="doc-card-icon"></div><div class="doc-card-title">Markets</div><div class="doc-card-desc">Yes-or-no questions about Terra Classic, answered by the chain at a fixed block. Predict from 1,000 LUNC or open your own market.</div></a>
     <a class="doc-card" onclick="showSection('oracle-draw')"><div class="doc-card-icon"></div><div class="doc-card-title">Oracle Draw</div><div class="doc-card-desc">Daily and Weekly draws. The winner is computed from a secret committed before entries close, published afterwards so anyone can recheck it.</div></a>
     <a class="doc-card" onclick="showSection('reputation')"><div class="doc-card-icon"></div><div class="doc-card-title">Reputation</div><div class="doc-card-desc">Seven ranks, earned by contributing. Held in a smart contract, not our database.</div></a>
     <a class="doc-card" onclick="showSection('streak')"><div class="doc-card-icon"></div><div class="doc-card-title">Daily Streak</div><div class="doc-card-desc">Show up regularly for a REP multiplier, cheaper questions and free entries.</div></a>
@@ -350,7 +352,8 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <tr><td><strong>Blockchain</strong></td><td>Terra Classic · columbus-5</td></tr>
     <tr><td><strong>Payment token</strong></td><td>LUNC</td></tr>
     <tr><td><strong>Future token</strong></td><td>TCO (coming soon)</td></tr>
-    <tr><td><strong>Contracts</strong></td><td>Oracle Mask NFT · Oracle Score - see <a onclick="showSection('architecture')">Contracts</a></td></tr>
+    <tr><td><strong>Contracts</strong></td><td>Oracle Mask NFT · Oracle Score · Markets and its court - see <a onclick="showSection('architecture')">Contracts</a></td></tr>
+    <tr><td><strong>Prediction markets</strong></td><td>Live since 29 September 2026 - see <a onclick="showSection('markets')">Markets</a></td></tr>
     <tr><td><strong>Draw selection</strong></td><td>Committed secret revealed at settlement, mixed with entry entropy - see <a onclick="showSection('oracle-draw')">Oracle Draw</a></td></tr>
     <tr><td><strong>Question history</strong></td><td>Public Git repository, every edit a timestamped commit</td></tr>
     <tr><td><strong>Off-chain parts</strong></td><td>Listed in full under <a onclick="showSection('architecture')">Contracts &amp; architecture</a></td></tr>
@@ -769,6 +772,110 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <p>Every closed round records the block it used, so anyone can fetch that block themselves and repeat the calculation.</p>
 </section>
 
+<section class="doc-section" id="section-markets">
+  <div class="doc-tag">Protocol</div>
+  <h1 class="doc-title">Prediction <span>Markets</span></h1>
+  <p class="doc-subtitle">Yes-or-no questions about Terra Classic, answered by the chain itself. Those who call it right share the other side's pool.</p>
+  <div class="info-box warning"><strong>Beta.</strong> Markets opened on 29 September 2026. Predictions are capped per wallet while the section is new, and an operator key posts the outcome - read on for what that key can and cannot do.</div>
+
+  <h2>Where to play</h2>
+  <div class="callout info">
+    <svg class="nicon i-violet" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-5M10 20v-8M15 20v-6M20 20V9"/><path d="M4 11.5 9.5 7l4 3L20 4"/><path d="M16.5 4H20v3.5"/></svg>
+    <div>Markets live on <a href="https://terraoracle.io/markets" target="_blank" style="color:var(--accent2)"><b>terraoracle.io/markets</b></a>.
+    Open markets also appear on the home page under <b>Live markets</b>. Any Terra Classic wallet works; no Oracle Mask is needed.</div>
+  </div>
+
+  <h2>What a market is</h2>
+  <p>A market is one question about Terra Classic data - economy, governance, validators or network - with a
+  <strong>metric</strong>, a <strong>threshold</strong> and a <strong>block height</strong> fixed when it is created.
+  "Will the community pool be below 2B LUNC on 5 October?" becomes: read the community pool at block N, compare it with 2,000,000,000 LUNC.
+  The question text and the resolution rule are generated from those three values, and once published nobody can change them,
+  including the creator and the operator.</p>
+  <p>Nobody decides the answer by opinion. Each market page shows the exact query that reads the value at that block,
+  so anyone can run it and get the same number.</p>
+
+  <h2>Making a prediction</h2>
+  <ul style="margin:8px 0 16px 20px;line-height:1.9;color:var(--muted);font-size:15px;">
+    <li>Pick <strong>YES</strong> or <strong>NO</strong> and put in LUNC: from <strong>1,000</strong> to <strong>1,000,000 LUNC</strong> per wallet on one market.</li>
+    <li>Predictions close before the answer can be seen - at least one hour before the resolution block, and longer for markets far in the future
+    (3% of the time left), because block times drift.</li>
+    <li>If your side is right, you get your LUNC back plus a share of the other side's pool, in proportion to what you put in.
+    If it is wrong, you lose what you put in.</li>
+    <li>When the market settles, collect your payout with <strong>Claim</strong> on the market page. Terra Classic takes its usual transfer tax from it.</li>
+  </ul>
+
+  <h2>Where the losing pool goes</h2>
+  <p>Fees are taken <strong>only from the losing side</strong>. Nobody pays a fee just for taking part.</p>
+  <div class="prize-bar">
+    <div class="prize-row"><div class="prize-label">Winners</div><div class="prize-fill-wrap"><div class="prize-fill" style="width:90%;background:linear-gradient(90deg,#15803d,#22c55e)"></div></div><div class="prize-pct">90%</div></div>
+    <div class="prize-row"><div class="prize-label">Market creator</div><div class="prize-fill-wrap"><div class="prize-fill" style="width:3%;background:var(--gold)"></div></div><div class="prize-pct">3%</div></div>
+    <div class="prize-row"><div class="prize-label">New-market fund</div><div class="prize-fill-wrap"><div class="prize-fill" style="width:2%;background:#38d9d0"></div></div><div class="prize-pct">2%</div></div>
+    <div class="prize-row"><div class="prize-label">Protocol</div><div class="prize-fill-wrap"><div class="prize-fill" style="width:5%;background:#a78bfa"></div></div><div class="prize-pct">5%</div></div>
+  </div>
+  <p>The protocol's 5% is split in half: one half goes to the <a onclick="showSection('oracle-draw')">weekly draw</a> prize pool, the other to the
+  <a onclick="showSection('treasury')">treasury</a>.</p>
+
+  <h2>How the outcome is decided</h2>
+  <ol style="margin:8px 0 16px 20px;line-height:1.9;color:var(--muted);font-size:15px;">
+    <li><strong>The chain answers.</strong> After the resolution time, the keeper reads the metric at the fixed block and posts the result.</li>
+    <li><strong>Anyone can object for 48 hours.</strong> A challenge carries a bond of <strong>200,000 LUNC</strong> and a note saying what the chain actually shows.
+    Payouts stay shut while a result can still be challenged.</li>
+    <li><strong>No challenge:</strong> the market settles and payouts open.</li>
+    <li><strong>Challenged:</strong> the court decides. It is a council of three with equal votes; <strong>two votes</strong> are needed, and they have
+    <strong>48 hours</strong> to vote YES, NO or VOID. The keeper, the challenger and anyone with a prediction on that market cannot vote on it.</li>
+  </ol>
+  <table class="spec">
+    <tr><td>Challenger was right</td><td>Bond back, plus the protocol's share of that market</td></tr>
+    <tr><td>Challenger was wrong</td><td>Bond goes to the new-market fund</td></tr>
+    <tr><td>No quorum, or a tie</td><td>The market is voided and everyone, the challenger included, is refunded</td></tr>
+    <tr><td>No result within 7 days</td><td>The market is voided and everyone is refunded</td></tr>
+  </table>
+  <p>Once voting ends, <strong>anyone</strong> can close the case with the <b>Close case</b> button on the market page - it costs gas only.
+  It has to be closed within 72 hours of the challenge, otherwise the market is voided.</p>
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div><b>Block drift guard.</b> The resolution block is estimated from the average block time. If the chain reaches that block
+    before predictions close and someone predicted after it, the outcome may have been visible - the keeper voids the market
+    and refunds everyone instead of settling it.</div>
+  </div>
+
+  <h2>Opening a market</h2>
+  <p>Anyone can. You put up a bond of <strong>200,000 LUNC</strong>. It comes back in full when the market settles or is voided,
+  and is kept only if the question cannot be checked on chain - then it goes to the new-market fund.
+  As the creator you earn <strong>3%</strong> of the losing side of your market.</p>
+  <p>A market that plays out also earns its creator <strong>+40 REP</strong>: it has to settle with predictions on both sides and at least
+  <strong>300,000 LUNC</strong> on the losing side. See <a onclick="showSection('reputation')">Reputation</a>.</p>
+
+  <h2>Promotion and the bonus pool</h2>
+  <p>A creator can promote a market for <strong>250,000 LUNC</strong>, not refunded. A promoted market rotates in the featured slot at the top of Markets,
+  comes first in the list, is marked <b>Promoted</b> and takes a double-width card in <b>Live markets</b> on the home page.</p>
+  <p>Promoted markets can also get a <strong>50,000 LUNC bonus</strong> from the new-market fund, added to what the winners share.
+  Up to <strong>three</strong> promoted markets a week get it, while the fund has money. The fund was seeded with 300,000 LUNC at launch
+  and refills from the 2% share and from forfeited bonds.</p>
+  <div class="callout info">
+    <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
+    <div><b>Why only promoted markets.</b> If every new market got the bonus, a creator could predict alone on the obvious side of their own
+    market and collect it, because the empty side's pool would be the bonus itself. Promotion costs more than the bonus, so that stays unprofitable.</div>
+  </div>
+
+  <h2>What the chain enforces</h2>
+  <table class="spec">
+    <tr><td>Enforced by the contract</td><td>Bonds, caps, fees, the payout arithmetic, the challenge window, who may vote, the voiding rules</td></tr>
+    <tr><td>Done by the operator</td><td>Reading the metric at the block and posting it (the keeper), closing cases and settling on schedule</td></tr>
+    <tr><td>Checked by anyone</td><td>The value at the block - every market shows the query - and every transaction on the chain</td></tr>
+  </table>
+  <p>The keeper's key can post an outcome but cannot vote in the court, cannot change a market and cannot move funds.
+  A wrong result is exactly what the 48-hour challenge exists for.</p>
+
+  <h2>Contracts</h2>
+  <table class="spec">
+    <tr><td>Markets · oracle-prophecy 0.2.3</td><td><code>terra1rz70ljfnfpppeg9tksszca23x8w97qrdql0z7yqn4ewf6aftc45qsrgge2</code><br>code 11680</td></tr>
+    <tr><td>Court · oracle-court 0.1.0</td><td><code>terra1u3feuz2ugl884z3yakurm2ndynz6f83zsfsr0auzdnjztnrngshqycnqz2</code><br>code 11681</td></tr>
+    <tr><td>Keeper (resolver)</td><td><code>terra1myp7hzh6f7lp2uffzv55yvk2hjrhpz9vqt5hec</code></td></tr>
+    <tr><td>Court council</td><td><code>terra1nzlwpugmtg53sqldk6j0jvnq9zjrcl59zdy325</code><br><code>terra1wnm5se60umvzxw66tje2vkzdwrh0gwzagv6yjx</code><br><code>terra1x8gxjxgq7eq2hu7yswcn76dw7snzpeu782nyez</code><br>quorum 2, voting 48 hours</td></tr>
+  </table>
+</section>
+
 <section class="doc-section" id="section-reputation">
   <div class="doc-tag">Protocol</div>
   <h1 class="doc-title">Oracle <span>Reputation</span></h1>
@@ -1048,8 +1155,10 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <tr><td>Draw Pool · Daily</td><td>Entries, rounds, winner selection, payout<br><code>terra1d9ga3dzhg63v6rmm8ahts55ekjpwlm6dusw5cwhpt60s6t0actqqsul6tm</code></td></tr>
     <tr><td>Draw Pool · Weekly</td><td>Same contract, separate instance and separate funds<br><code>terra19w39c3qz6kc756hap92x374reptah9kp5825f5c67hmquy383r5qd7dmd8</code></td></tr>
     <tr><td>Circuit Rewards</td><td>Cumulative merkle distributor for the TCO share of Circuit rounds<br><code>terra18pau9q25ykswgey8ckcfxhdln27nk23qv6af0pjs2vye5r5crmcs7w9fr0</code></td></tr>
+    <tr><td>Markets</td><td>Prediction markets · bonds, pools, fees, payouts, challenges<br><code>terra1rz70ljfnfpppeg9tksszca23x8w97qrdql0z7yqn4ewf6aftc45qsrgge2</code></td></tr>
+    <tr><td>Markets court</td><td>Council votes on challenged outcomes<br><code>terra1u3feuz2ugl884z3yakurm2ndynz6f83zsfsr0auzdnjztnrngshqycnqz2</code></td></tr>
   </table>
-  <p>All five are CosmWasm contracts on <code>columbus-5</code>, built reproducibly, with published source. None can be silently swapped: a migration is a transaction on the chain like any other.</p>
+  <p>All seven are CosmWasm contracts on <code>columbus-5</code>, built reproducibly, with published source. None can be silently swapped: a migration is a transaction on the chain like any other.</p>
   <div class="callout info">
     <div><b>The pool contracts now settle the rounds.</b> Entries are recorded in the contract,
     the winner is derived there from the revealed secret, and the payout comes from the contract
@@ -1059,7 +1168,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </div>
 
   <h2>Component registry</h2>
-  <p>Everything the protocol runs on, in one place, as it stood on 23 September 2026. Code ids and
+  <p>Everything the protocol runs on, in one place, as it stood on 29 September 2026. Code ids and
   checksums are what the chain reports; compare them against a local build to confirm the source
   matches what is deployed. A migration is itself a public transaction, so a change here is visible.</p>
 
@@ -1104,6 +1213,22 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
       <td>code <code>11579</code><br><code>6359cc2b97d7f7b2893e737ae2c68722bcd71e67b9528f564df10a15bd235118</code></td>
       <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
       <td><a href="https://github.com/Baydashaaa/circuit-rewards" target="_blank">circuit-rewards</a></td>
+    </tr>
+
+    <tr>
+      <td><strong>Markets</strong><br>prediction markets, bonds, payouts</td>
+      <td><code>terra1rz70ljfnfpppeg9tksszca23x8w97qrdql0z7yqn4ewf6aftc45qsrgge2</code></td>
+      <td>code <code>11680</code><br><code>277c930f1de4038113922f55de942959043976fbed95b73bb484728facec203e</code></td>
+      <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
+      <td><a href="https://github.com/Baydashaaa/oracle-prophecy" target="_blank">oracle-prophecy</a></td>
+    </tr>
+
+    <tr>
+      <td><strong>Markets court</strong><br>council votes on challenges</td>
+      <td><code>terra1u3feuz2ugl884z3yakurm2ndynz6f83zsfsr0auzdnjztnrngshqycnqz2</code></td>
+      <td>code <code>11681</code><br><code>20ea2e6037916cd0e92be54fc0c777d422119127e344a98ca9c52d589be0b228</code></td>
+      <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
+      <td><a href="https://github.com/Baydashaaa/oracle-court" target="_blank">oracle-court</a></td>
     </tr>
 
     <tr>
@@ -1464,6 +1589,9 @@ curl -s https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/code/11571</pr
   <h2>NFTs &amp; the contract</h2>
 <details class="faq"><summary>Can I transfer or sell my Oracle Mask?</summary><div class="faq-body">Yes. The collection follows the standard CW721 interface, so transfers, approvals and marketplace listings all work the same way as with any other Terra Classic NFT.</div></details><details class="faq"><summary>What do the token numbers mean?</summary><div class="faq-body">Token IDs are sequential per tier - <code>common-1</code>, <code>rare-7</code>, <code>legendary-2</code> - and are displayed as <b>Common #1</b>, <b>Rare #7</b> and so on. The number is assigned by the contract and can never repeat.</div></details><details class="faq"><summary>Can the contract be changed after deployment?</summary><div class="faq-body">The contract keeps a migration admin so new mechanics can be added later - NFT crafting is next on the roadmap. A migration preserves the contract address, all existing NFTs and their metadata. Every upgrade is documented here and stays verifiable through the published code checksum.</div></details><details class="faq"><summary>Can anyone mint an NFT for free?</summary><div class="faq-body">No. The contract itself is the CW721 minter, so the standard mint entry point is rejected for every external caller - including the protocol admin. Paying the exact tier price is the only path to an Oracle Mask.</div></details>
 
+  <h2>Markets</h2>
+<details class="faq"><summary>Who decides the outcome of a market?</summary><div class="faq-body">The chain does: every market fixes a metric, a threshold and a block height before the first prediction, and the market page shows the query that reads the value. The keeper posts that value; if anyone disagrees, they challenge it with a bond and a council of three decides. See <a onclick="showSection('markets')">Markets</a>.</div></details><details class="faq"><summary>What happens to my LUNC if a market is voided?</summary><div class="faq-body">You get it back in full with Claim on the market page. A market is voided when the court does not reach a decision, when no result is posted within seven days, or when the outcome could have been visible while predictions were still open.</div></details><details class="faq"><summary>Is opening a market free?</summary><div class="faq-body">It needs a 200,000 LUNC bond, which comes back in full when the market settles or is voided. It is kept only if the question turns out to be impossible to check on chain. Promotion (250,000 LUNC) is optional and not refunded.</div></details>
+
   <h2>Reputation &amp; general</h2>
 <details class="faq"><summary>Does REP cost anything? Can I buy it?</summary><div class="faq-body">REP is not a token and cannot be bought, sold or transferred. It is earned purely through activity - asking and answering questions, chat messages, upvotes received, and NFT mints - and it determines your rank, fee discounts and weekly reward share.</div></details>
 
@@ -1552,7 +1680,7 @@ function showSection(id, noScroll){
   if (history.replaceState) history.replaceState(null, '', '#' + id);
 }
 
-const SECTION_NAMES={overview:'Overview','get-started':'Get Started','oracle-qa':'Oracle Q&A','dao-chat':'DAO Chat','oracle-draw':'Oracle Draw',contract:'Smart Contract',faq:'FAQ',reputation:'Reputation',streak:'Daily Streak',treasury:'Treasury'};
+const SECTION_NAMES={overview:'Overview','get-started':'Get Started','oracle-qa':'Oracle Q&A','dao-chat':'DAO Chat','oracle-draw':'Oracle Draw',contract:'Smart Contract',faq:'FAQ',reputation:'Reputation',markets:'Markets',circuit:'Circuit',streak:'Daily Streak',treasury:'Treasury'};
 
 /* ── heading anchors ─────────────────────────────────────────────── */
 function slugify(t){return t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,48);}
