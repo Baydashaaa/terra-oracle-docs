@@ -776,7 +776,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <div class="doc-tag">Protocol</div>
   <h1 class="doc-title">Prediction <span>Markets</span></h1>
   <p class="doc-subtitle">Yes-or-no questions about Terra Classic, answered by the chain itself. Those who call it right share the other side's pool.</p>
-  <div class="info-box warning"><strong>Beta.</strong> Markets opened on 29 September 2026. Predictions are capped per wallet while the section is new, and an operator key posts the outcome - read on for what that key can and cannot do.</div>
+  <div class="info-box warning"><strong>Beta.</strong> Markets opened on 29 September 2026. Predictions are capped while the section is new, an operator key posts the outcome, and the contracts themselves answer to a council multisig - read on for what each of them can and cannot do.</div>
 
   <h2>Where to play</h2>
   <div class="callout info">
@@ -796,7 +796,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
   <h2>Making a prediction</h2>
   <ul style="margin:8px 0 16px 20px;line-height:1.9;color:var(--muted);font-size:15px;">
-    <li>Pick <strong>YES</strong> or <strong>NO</strong> and put in LUNC: from <strong>1,000</strong> to <strong>1,000,000 LUNC</strong> per wallet on one market.</li>
+    <li>Pick <strong>YES</strong> or <strong>NO</strong> and put in LUNC: from <strong>1,000</strong> up to <strong>10,000,000 LUNC</strong> per wallet on each side of one market. You may back both sides.</li>
     <li>Predictions close before the answer can be seen - at least one hour before the resolution block, and longer for markets far in the future
     (3% of the time left), because block times drift.</li>
     <li>If your side is right, you get your LUNC back plus a share of the other side's pool, in proportion to what you put in.
@@ -832,6 +832,9 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </table>
   <p>Once voting ends, <strong>anyone</strong> can close the case with the <b>Close case</b> button on the market page - it costs gas only.
   It has to be closed within 72 hours of the challenge, otherwise the market is voided.</p>
+  <p><strong>The rules of a dispute are fixed per market.</strong> The challenge window, the bond, the court and its deadlines are copied
+  into the market when it is created, and the court takes its council and quorum as they stood at the moment of the challenge.
+  A later change to the settings applies only to markets opened after it.</p>
   <div class="callout info">
     <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
     <div><b>Block drift guard.</b> The resolution block is estimated from the average block time. If the chain reaches that block
@@ -860,17 +863,26 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
   <h2>What the chain enforces</h2>
   <table class="spec">
-    <tr><td>Enforced by the contract</td><td>Bonds, caps, fees, the payout arithmetic, the challenge window, who may vote, the voiding rules</td></tr>
+    <tr><td>Enforced by the contract</td><td>Bonds, caps, fees, the payout arithmetic, the challenge window (never shorter than an hour), who may vote, the voiding rules, the format of every market field</td></tr>
     <tr><td>Done by the operator</td><td>Reading the metric at the block and posting it (the keeper), closing cases and settling on schedule</td></tr>
+    <tr><td>Decided by the council multisig</td><td>Settings, pausing, contract upgrades - each one a proposal that needs two of three signatures</td></tr>
     <tr><td>Checked by anyone</td><td>The value at the block - every market shows the query - and every transaction on the chain</td></tr>
   </table>
   <p>The keeper's key can post an outcome but cannot vote in the court, cannot change a market and cannot move funds.
-  A wrong result is exactly what the 48-hour challenge exists for.</p>
+  Before posting, it reads the value twice - through a public API node and through an RPC node that confirms the block height of its
+  answer - and posts only when both agree. A wrong result is exactly what the 48-hour challenge exists for.</p>
+  <table class="spec">
+    <tr><th>Who can void a market</th><th></th></tr>
+    <tr><td>Before an outcome is posted</td><td>The keeper or the council multisig - for a question the chain cannot answer, or block drift</td></tr>
+    <tr><td>After an outcome is posted</td><td>Only the council multisig. The keeper cannot withdraw its own result to dodge a challenge</td></tr>
+    <tr><td>Under challenge</td><td>Nobody directly. The court decides, and if it does not, the market is voided on schedule</td></tr>
+  </table>
 
   <h2>Contracts</h2>
   <table class="spec">
-    <tr><td>Markets · oracle-prophecy 0.2.3</td><td><code>terra1rz70ljfnfpppeg9tksszca23x8w97qrdql0z7yqn4ewf6aftc45qsrgge2</code><br>code 11680</td></tr>
-    <tr><td>Court · oracle-court 0.1.0</td><td><code>terra1u3feuz2ugl884z3yakurm2ndynz6f83zsfsr0auzdnjztnrngshqycnqz2</code><br>code 11681</td></tr>
+    <tr><td>Markets · oracle-prophecy 0.2.4</td><td><code>terra1rz70ljfnfpppeg9tksszca23x8w97qrdql0z7yqn4ewf6aftc45qsrgge2</code><br>code 11684</td></tr>
+    <tr><td>Court · oracle-court 0.1.1</td><td><code>terra1u3feuz2ugl884z3yakurm2ndynz6f83zsfsr0auzdnjztnrngshqycnqz2</code><br>code 11685</td></tr>
+    <tr><td>Admin · council multisig</td><td><code>terra1vvwccg3ey00fg3xhux2cfgx2z5l47uuv0lzm72dtntctdqmf3wuqmdnm06</code><br>cw3 fixed multisig, code 11686 · 2 of 3, the same three addresses as the court council</td></tr>
     <tr><td>Keeper (resolver)</td><td><code>terra1myp7hzh6f7lp2uffzv55yvk2hjrhpz9vqt5hec</code></td></tr>
     <tr><td>Court council</td><td><code>terra1nzlwpugmtg53sqldk6j0jvnq9zjrcl59zdy325</code><br><code>terra1wnm5se60umvzxw66tje2vkzdwrh0gwzagv6yjx</code><br><code>terra1x8gxjxgq7eq2hu7yswcn76dw7snzpeu782nyez</code><br>quorum 2, voting 48 hours</td></tr>
   </table>
@@ -1157,8 +1169,9 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <tr><td>Circuit Rewards</td><td>Cumulative merkle distributor for the TCO share of Circuit rounds<br><code>terra18pau9q25ykswgey8ckcfxhdln27nk23qv6af0pjs2vye5r5crmcs7w9fr0</code></td></tr>
     <tr><td>Markets</td><td>Prediction markets · bonds, pools, fees, payouts, challenges<br><code>terra1rz70ljfnfpppeg9tksszca23x8w97qrdql0z7yqn4ewf6aftc45qsrgge2</code></td></tr>
     <tr><td>Markets court</td><td>Council votes on challenged outcomes<br><code>terra1u3feuz2ugl884z3yakurm2ndynz6f83zsfsr0auzdnjztnrngshqycnqz2</code></td></tr>
+    <tr><td>Council multisig</td><td>Admin of Markets and its court · 2 of 3<br><code>terra1vvwccg3ey00fg3xhux2cfgx2z5l47uuv0lzm72dtntctdqmf3wuqmdnm06</code></td></tr>
   </table>
-  <p>All seven are CosmWasm contracts on <code>columbus-5</code>, built reproducibly, with published source. None can be silently swapped: a migration is a transaction on the chain like any other.</p>
+  <p>All eight are CosmWasm contracts on <code>columbus-5</code>, built reproducibly, with published source. None can be silently swapped: a migration is a transaction on the chain like any other.</p>
   <div class="callout info">
     <div><b>The pool contracts now settle the rounds.</b> Entries are recorded in the contract,
     the winner is derived there from the revealed secret, and the payout comes from the contract
@@ -1168,7 +1181,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </div>
 
   <h2>Component registry</h2>
-  <p>Everything the protocol runs on, in one place, as it stood on 29 September 2026. Code ids and
+  <p>Everything the protocol runs on, in one place, as it stood on 1 October 2026. Code ids and
   checksums are what the chain reports; compare them against a local build to confirm the source
   matches what is deployed. A migration is itself a public transaction, so a change here is visible.</p>
 
@@ -1218,17 +1231,25 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <tr>
       <td><strong>Markets</strong><br>prediction markets, bonds, payouts</td>
       <td><code>terra1rz70ljfnfpppeg9tksszca23x8w97qrdql0z7yqn4ewf6aftc45qsrgge2</code></td>
-      <td>code <code>11680</code><br><code>277c930f1de4038113922f55de942959043976fbed95b73bb484728facec203e</code></td>
-      <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
+      <td>code <code>11684</code><br><code>78dbec9a0589420d9bfdc68d4504547526cb2f1049a3043fc6e6ebf6ed771862</code></td>
+      <td>council multisig<br><code>terra1vvwccg3ey00fg3xhux2cfgx2z5l47uuv0lzm72dtntctdqmf3wuqmdnm06</code></td>
       <td><a href="https://github.com/Baydashaaa/oracle-prophecy" target="_blank">oracle-prophecy</a></td>
     </tr>
 
     <tr>
       <td><strong>Markets court</strong><br>council votes on challenges</td>
       <td><code>terra1u3feuz2ugl884z3yakurm2ndynz6f83zsfsr0auzdnjztnrngshqycnqz2</code></td>
-      <td>code <code>11681</code><br><code>20ea2e6037916cd0e92be54fc0c777d422119127e344a98ca9c52d589be0b228</code></td>
-      <td><code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code></td>
+      <td>code <code>11685</code><br><code>1bd84618c786483804607c00f6944c7c183bc3981bf4eccf8378a722751cf2b4</code></td>
+      <td>council multisig<br><code>terra1vvwccg3ey00fg3xhux2cfgx2z5l47uuv0lzm72dtntctdqmf3wuqmdnm06</code></td>
       <td><a href="https://github.com/Baydashaaa/oracle-court" target="_blank">oracle-court</a></td>
+    </tr>
+
+    <tr>
+      <td><strong>Council multisig</strong><br>admin of Markets and its court, 2 of 3</td>
+      <td><code>terra1vvwccg3ey00fg3xhux2cfgx2z5l47uuv0lzm72dtntctdqmf3wuqmdnm06</code></td>
+      <td>code <code>11686</code><br><code>32a4c5dc3b475bad22daf0950dd0837f186f4ab9c79d8cb95b65ba8dbf74971e</code></td>
+      <td>itself</td>
+      <td><a href="https://github.com/CosmWasm/cw-plus/releases/tag/v1.1.2" target="_blank">cw-plus v1.1.2</a>, unmodified</td>
     </tr>
 
     <tr>
@@ -1243,14 +1264,15 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
   <div class="callout info">
     <svg class="nicon i-cyan" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.9"/></svg>
-    <div><b>One key migrates the production contracts.</b> Every contract above except the
+    <div><b>Who can migrate what.</b> Markets, its court and the multisig itself answer to the council multisig:
+    any change there needs two of three signatures, proposed and executed on chain. Every other contract above except the
     Prophecy TEST deployment can be migrated by <code>terra10u209ehlww30hknp85z0rq5uz3q5jx3pclx9xt</code>.
     It is a cold key that no automated job holds. Day-to-day work - opening draw rounds,
     recording free entries, attesting reputation - runs on separate operator keys, and those
     cannot change payouts, the treasury, contract code or the reveal window. The Prophecy TEST
     deployment answers to its own test key, which is also its resolver - that is why the market
-    is labelled a preview rather than a settled one. This is still a single point of control,
-    not a multisig, and calling it anything else would be dishonest at our size.</div>
+    is labelled a preview rather than a settled one. For those contracts this is still a single point of control,
+    and calling it anything else would be dishonest at our size.</div>
   </div>
 
   <h3>Circuit operating wallets</h3>
