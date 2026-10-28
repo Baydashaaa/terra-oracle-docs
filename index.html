@@ -775,7 +775,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 <section class="doc-section" id="section-markets">
   <div class="doc-tag">Protocol</div>
   <h1 class="doc-title">Prediction <span>Markets</span></h1>
-  <p class="doc-subtitle">Yes-or-no questions about Terra Classic, answered by the chain itself. Those who call it right share the other side's pool.</p>
+  <p class="doc-subtitle">Yes-or-no questions about Terra Classic, sport, crypto and the economy, each with its source named up front. Those who call it right share the other side's pool.</p>
   <div class="info-box warning"><strong>Beta.</strong> Markets opened on 29 September 2026. Predictions are capped while the section is new, an operator key posts the outcome, and the contracts themselves answer to a council multisig - read on for what each of them can and cannot do.</div>
 
   <h2>Where to play</h2>
@@ -786,7 +786,9 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   </div>
 
   <h2>What a market is</h2>
-  <p>A market is one question about Terra Classic data - economy, governance, validators or network - with a
+  <p>There are two kinds: markets on <strong>Terra Classic data</strong>, answered by the chain itself, and markets on
+  <strong>real-world events</strong> - sport, crypto, esports and the economy - answered by a named data source.</p>
+  <p>A Terra Classic market is one question about Terra Classic data - economy, governance, validators or network - with a
   <strong>metric</strong>, a <strong>threshold</strong> and a <strong>block height</strong> fixed when it is created.
   "Will the community pool be below 2B LUNC on 5 October?" becomes: read the community pool at block N, compare it with 2,000,000,000 LUNC.
   The question text and the resolution rule are generated from those three values, and once published nobody can change them,
@@ -794,11 +796,29 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <p>Nobody decides the answer by opinion. Each market page shows the exact query that reads the value at that block,
   so anyone can run it and get the same number.</p>
 
+  <h2>Real-world markets</h2>
+  <p>These are opened from a catalog of upcoming events, so the question, the rule and the source are filled in for you.
+  The rule is written into the question itself, and the market page shows how to read the result from the source yourself.</p>
+  <table class="spec">
+    <tr><th>Section</th><th>Source</th><th>Rule</th></tr>
+    <tr><td>Crypto</td><td>CoinGecko</td><td>The USD price at 20:00 UTC on the chosen day: the last CoinGecko data point at or before that time</td></tr>
+    <tr><td>Football</td><td>football-data.org</td><td>Regular time only: 90 minutes plus stoppage time. Extra time and penalties do not count</td></tr>
+    <tr><td>Basketball (NBA)</td><td>ESPN</td><td>Overtime counts</td></tr>
+    <tr><td>Hockey (NHL)</td><td>ESPN</td><td>"In regulation" markets count 60 minutes only, a tie is NO; "incl. OT/SO" markets use the official winner. Totals count regulation only</td></tr>
+    <tr><td>MMA (UFC)</td><td>ESPN</td><td>The winner by any method</td></tr>
+    <tr><td>Esports</td><td>PandaScore</td><td>The winner of the series (Bo1, Bo3, Bo5). A draw is NO for both teams</td></tr>
+    <tr><td>Economy</td><td>FRED</td><td>Fed decisions: the upper bound of the target range before and after the meeting. US CPI: the 12-month change of the CPI-U, rounded to 0.1 as BLS reports it</td></tr>
+  </table>
+  <p>An event that is postponed, cancelled, abandoned or awarded voids the market, and everyone is refunded. So does a UFC bout that
+  ends in a draw or a no contest, or where a fighter is replaced, and an esports match decided by forfeit.
+  Predictions close a few minutes before a match starts, and a source can be wrong or late - that is what the 48-hour challenge is for.</p>
+
   <h2>Making a prediction</h2>
   <ul style="margin:8px 0 16px 20px;line-height:1.9;color:var(--muted);font-size:15px;">
     <li>Pick <strong>YES</strong> or <strong>NO</strong> and put in LUNC: from <strong>1,000</strong> up to <strong>10,000,000 LUNC</strong> per wallet on each side of one market. You may back both sides.</li>
-    <li>Predictions close before the answer can be seen - at least one hour before the resolution block, and longer for markets far in the future
-    (3% of the time left), because block times drift.</li>
+    <li>Predictions close before the answer can be seen. For Terra Classic markets that is at least one hour before the resolution block, and longer for
+    markets far in the future (3% of the time left), because block times drift. For real-world markets the catalog sets it: five minutes before a
+    match starts, about a tenth of the time left for crypto prices, and before the meeting or release for the economy.</li>
     <li>If your side is right, you get your LUNC back plus a share of the other side's pool, in proportion to what you put in.
     If it is wrong, you lose what you put in.</li>
     <li>When the market settles, collect your payout with <strong>Claim</strong> on the market page. Terra Classic takes its usual transfer tax from it.</li>
@@ -817,7 +837,8 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
   <h2>How the outcome is decided</h2>
   <ol style="margin:8px 0 16px 20px;line-height:1.9;color:var(--muted);font-size:15px;">
-    <li><strong>The chain answers.</strong> After the resolution time, the keeper reads the metric at the fixed block and posts the result.</li>
+    <li><strong>The source answers.</strong> After the resolution time, the keeper reads the answer - the metric at the fixed block for Terra Classic markets,
+    the named data source for real-world markets - and posts the result.</li>
     <li><strong>Anyone can object for 48 hours.</strong> A challenge carries a bond of <strong>200,000 LUNC</strong> and a note saying what the chain actually shows.
     Payouts stay shut while a result can still be challenged.</li>
     <li><strong>No challenge:</strong> the market settles and payouts open.</li>
