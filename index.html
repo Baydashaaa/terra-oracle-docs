@@ -698,7 +698,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <li>Take <code>block_height</code> and fetch that block from any Terra Classic LCD (its <code>block_id.hash</code>, base64 &rarr; hex uppercase, must equal the recorded <code>block_hash</code>)</li>
     <li>Rebuild the ticket list, or use the frozen snapshot in <code>rounds/&lt;round_id&gt;.json</code> - the exact ticket order used, as pairs of <code>[wallet, ticket count]</code></li>
     <li>For a <strong>Daily</strong> round: compute <code>BigInt("0x" + block_hash) % total_entries</code> - it must equal the recorded <code>winner_index</code></li>
-    <li>For a <strong>Weekly</strong> round: replay the seed chain above in order, applying the duplicate-skip rule after each place</li>
+    <li>For a <strong>Weekly</strong> round the chain works on text, not bytes, and is a different rule from the contract one above: start with <code>seed = block_hash</code> as recorded, then for each place p = 0, 1, 2: <code>seed = sha256(seed + String(p))</code> as a lowercase hex string, <code>index = BigInt("0x" + seed) % total_entries</code>. If the wallet at that index already took a place, move forward one ticket at a time, wrapping at the end. Uniqueness in these rounds is by wallet, not by minter</li>
   </ol>
   <div class="info-box"><svg class="nicon i-green" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg> Both schemes fix the result before it is known to anyone reading the page, and both can be recomputed from public data. Older rounds stay checkable by the rule they were drawn under.</div>
 
