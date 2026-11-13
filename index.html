@@ -423,8 +423,8 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
     <tr><td><strong>Priority</strong></td><td>200,000 LUNC</td><td>100,000</td><td>100,000</td><td>+4</td><td>Pinned to the top of the Oracle Board for 24h</td></tr>
   </table>
   <div class="info-box success">
-    <strong>One entry always costs 25,000 LUNC paid into the Weekly Draw Pool.</strong><br>
-    The same rate applies to every source of entries &mdash; NFT tiers (25,000 / 125,000 / 250,000 LUNC for 1 / 5 / 10 entries), questions, and chat. No route to an entry is cheaper than another.
+    <strong>A paid entry costs 25,000 LUNC paid into the Weekly Draw Pool.</strong><br>
+    That rate applies to NFT tiers (25,000 / 125,000 / 250,000 LUNC for 1 / 5 / 10 entries) and to questions, whose pool leg is fixed per tariff. Chat entries are the exception: the message fee goes to the Treasury, so an entry earned by chatting adds a ticket without adding to the pot.
   </div>
   <div class="info-box">
     <strong>Rank and streak discounts</strong> reduce the Treasury half only. The Weekly Pool half is fixed per tariff, so a discount never reduces the number of entries you receive.
@@ -484,7 +484,8 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <p>Active participation in DAO Chat is rewarded with Weekly Draw entries:</p>
   <div class="info-box">
     Every <strong>10th message sent</strong> = <strong>1 free Weekly Draw entry</strong><br>
-    Capped at <strong>20 entries per weekly round</strong>. Entries reset once a Weekly Draw has actually taken place - normally Monday 20:00 UTC. If a draw is skipped or fails, entries carry over to the next round instead of being lost.
+    Capped at <strong>20 entries per weekly round</strong>. Entries reset once a Weekly Draw has actually taken place - normally Monday 20:00 UTC. If a draw is skipped or fails, entries carry over to the next round instead of being lost.<br>
+    These entries are not backed by LUNC in the pool: the message fee stays with the Protocol Treasury.
   </div>
   <h2>How to send a message</h2>
   <div class="steps">
@@ -548,9 +549,12 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   close the operator can already tell where the result points, so a ticket added then would be a
   ticket aimed. What you can check yourself is the file's commit history against what the
   contract holds - both are public, and they should say the same thing.</p>
-  <p>These entries carry no money into the pot, and they do not need to: the fees for the
-  messages and questions that earn them already go to the same pool. They are free to the
-  participant, not to the protocol.</p>
+  <p>Not every free entry brings money into the pot. A question's pool leg is paid to the Weekly
+  pool, and the streak entries are backed by transfers from the Reserve wallet. DAO Chat fees go
+  entirely to the Treasury, so chat entries add tickets without adding to the prize - they slightly
+  dilute everyone else's odds, which is why they are capped at 20 per round. Money sent to the pool
+  outside a mint is not part of the current round's pot: it becomes carry at the next settlement
+  and joins the pot of the round after that.</p>
 
   <h2>How winners are selected</h2>
   <p>Winners are selected by a commit-reveal scheme in the pool contract. A round is meant to be
@@ -1108,7 +1112,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
   <table>
     <tr><th>Wallet</th><th>%</th><th>Purpose</th></tr>
     <tr><td><strong style="color:#66ffaa;">REP Rewards</strong></td><td>25%</td><td>Weekly payouts to top 20% contributors by 7-day REP score</td></tr>
-    <tr><td><strong style="color:#5493f7;">Reserve</strong></td><td>15%</td><td>Protocol stability buffer - used only if protocol revenue drops</td></tr>
+    <tr><td><strong style="color:#5493f7;">Reserve</strong></td><td>15%</td><td>Protocol stability buffer; also funds the streak entries in the Weekly pool</td></tr>
     <tr><td><strong style="color:#ffd700;">Liquidity</strong></td><td>50%</td><td>Manual liquidity provision across selected trading pairs on Terra Classic DEXes</td></tr>
     <tr><td><strong style="color:#c084fc;">Development</strong></td><td>10%</td><td>Protocol development, maintenance, and operations</td></tr>
   </table>
@@ -1120,7 +1124,7 @@ h2:hover>.anchor,h3:hover>.anchor{opacity:.65}
 
     <div class="wallet-item">
       <div class="wallet-name">Protocol Treasury</div>
-      <div class="wallet-desc">Main inflow wallet. Receives all Q&A and Chat fees. Distributes weekly to the 4 protocol wallets.</div>
+      <div class="wallet-desc">Main inflow wallet. Receives all Chat fees and the Treasury half of each question fee - the Weekly Pool half is paid straight to the pool. Distributes weekly to the 4 protocol wallets.</div>
       <div class="wallet-addr">terra1cjpwx84jj2u822wmzuylfzsf99rr3gdn2sqesw</div>
     </div>
 
